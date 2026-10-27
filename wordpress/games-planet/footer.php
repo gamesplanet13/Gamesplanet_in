@@ -1,0 +1,1 @@
+<footer><p>© <?php echo esc_html(wp_date('Y')); ?> Games Planet. All rights reserved.</p></footer><?php wp_footer(); ?></body></html>

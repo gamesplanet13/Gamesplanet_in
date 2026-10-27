@@ -1,0 +1,407 @@
+﻿Type,SKU,Name,Published,Visibility in catalog,Description,Regular price,In stock?,Weight (g),Length (cm),Width (cm),Height (cm),Categories,Images,Parent,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global,Meta: gp_shop_page,Meta: gp_custom_type,Meta: gp_selector_url,Meta: gp_video_url
+variable,c82f3701a2b0,Push Button,1,visible,Only Red available • Yellow out of stock,,1,12,4,4,4,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/284c0566ee4d318e.webp,,Option,Red,1,0,arcade,,,
+variation,c82f3701a2b0-v1,Push Button — Red,1,,,35,1,12,,,,,,c82f3701a2b0,Option,Red,1,0,,,,
+variable,4a835df31351,Push Button (Imported),1,visible,,,1,12,5,4,4,Arcade Box Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/16f9805c22b2413e.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/49c1f7954f9b7d11.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/e9f097cbead570b1.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/711cd99703d3bfca.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/0397d3918ea26b4c.webp",,Option,"Ice Blue, Pink, Green, Black, Yellow",1,0,arcade,,,
+variation,4a835df31351-v1,Push Button (Imported) — Ice Blue,1,,,46,1,12,,,,,,4a835df31351,Option,Ice Blue,1,0,,,,
+variation,4a835df31351-v2,Push Button (Imported) — Pink,1,,,46,1,12,,,,,,4a835df31351,Option,Pink,1,0,,,,
+variation,4a835df31351-v3,Push Button (Imported) — Green,1,,,46,1,12,,,,,,4a835df31351,Option,Green,1,0,,,,
+variation,4a835df31351-v4,Push Button (Imported) — Black,1,,,46,1,12,,,,,,4a835df31351,Option,Black,1,0,,,,
+variation,4a835df31351-v5,Push Button (Imported) — Yellow,1,,,46,1,12,,,,,,4a835df31351,Option,Yellow,1,0,,,,
+simple,87bc653e7928,Old Rasila Push Button,1,visible,,13,1,12,6,4,4,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/d62750abeccd8f61.webp,,,,,,arcade,,,
+simple,fe193df472a4,MD Switch Button,1,visible,,60,1,5,5,3,1,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/cc3fc1f67027b9b7.webp,,,,,,arcade,,,
+simple,1e4bf2797d6b,ZING Crystal Switch,1,visible,,40,1,5,5,3,1,Arcade Box Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/cbba51482d367d36.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/80477abdc44f435e.webp",,,,,,arcade,,,
+simple,10c8c5eee46e,Black Switch Button,1,visible,,20,1,5,5,3,1,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/8dd25b79bd2af894.webp,,,,,,arcade,,,
+simple,7e48ca7cbed3,Coin Drop Switch Button,1,visible,,60,1,12,11,4,2,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/7f2c68504b4efe10.webp,,,,,,arcade,,,
+simple,acb30326a301,Rasila Handle (Without Switch),1,visible,,210,1,280,14,11,8,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/9382c1f85966bd7c.webp,,,,,,arcade,,,
+simple,150ec9399261,Rasila Handle with 4 Black Switches,1,visible,,290,1,300,14,11,8,Arcade Box Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/9382c1f85966bd7c.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/8dd25b79bd2af894.webp",,,,,,arcade,,,
+variable,329da4ecc87d,MD Handle (With Switch),1,visible,,,1,280,12,11,11,Arcade Box Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/2f2d1456247c452d.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/d75f03095b4d6d20.webp",,Option,Red,1,0,arcade,,,
+variation,329da4ecc87d-v1,MD Handle (With Switch) — Red,1,,,585,1,280,,,,,,329da4ecc87d,Option,Red,1,0,,,,
+simple,3d7353f84d2b,Coin Packet,1,visible,,220,1,620,12,12,3,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/f27a6226b9f47c0d.webp,,,,,,arcade,,,
+simple,ca9fb59434e0,Acrylic Coin Machine,1,visible,,200,1,120,13,15,8,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/d8896f3cca59e614.webp,,,,,,arcade,,,
+simple,0f0365140767,Acrylic Coin Machine with Switch,1,visible,,260,1,135,13,15,8,Arcade Box Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/d8896f3cca59e614.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/7f2c68504b4efe10.webp",,,,,,arcade,,,
+simple,92101c15f7bb,Remote Plate (White Colour),1,visible,,300,1,15,10,10,2,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/c69cd36a5da55dc9.webp,,,,,,arcade,,,
+simple,0e26abe20f5a,Remote Plate (Red Colour),1,visible,,199,1,15,10,10,2,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/e889f2e9dc8f46ea.webp,,,,,,arcade,,,
+simple,dc69f6327e5a,PS4 / PC / Android Red PCB,1,visible,,2000,1,0,,,,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/14634201247386a6.webp,,,,,,arcade,,,
+simple,a71c0624f2b6,USB Arcade PCB,1,visible,,999,1,0,,,,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/bc2585461d4b6feb.webp,,,,,,arcade,,,
+simple,05f69f5a1348,Battery Operated Vacuum Cleaner,1,visible,"Built-in rechargeable battery
+Micro USB charging",230,1,300,17,7,13,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/26d57acf8be15a99.webp,,,,,,electrical,,,
+simple,3b85efa7f4c2,Sofa Set with Air Pump,1,visible,,1100,1,1400,14,22,28,Decoration,"https://gamesplanet.in/wp-content/themes/games-planet/assets/6c7d093e3226525c.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/7820c5dd463fa0b2.webp",,,,,,decoration,,,
+simple,714e20d0daa6,Remote Lead,1,visible,,100,1,80,10,5,2,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/44f9eeb1d7c85fd6.webp,,,,,,arcade,,,
+simple,24342ce6e2bf,Generic 2.4G Wireless Double Gamepad - White (With USB Receiver),1,visible,,869,1,220,19,20,10,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/55cdf00b27266a49.webp,,,,,,gaming,,,
+simple,2d040e95e475,Generic 2.4G Wireless Double Gamepad - Black (With USB Receiver),1,visible,,799,1,220,19,20,10,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/a5f4aeb39f194a30.webp,,,,,,gaming,,,
+simple,e5c2448286f0,Generic 2.4G Wireless Single Gamepad - Black (Without Receiver),1,visible,,300,1,110,15,10,6,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/d38c9563fbb62568.webp,,,,,,gaming,,,
+simple,4eab1269fca5,Generic 2.4G Wireless Single Gamepad - White (Without Receiver),1,visible,,350,1,110,15,10,6,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/31ad924eb7555b9d.webp,,,,,,gaming,,,
+simple,949c9926f9e5,PS2 Slim Power Adapter with Power Cable,1,visible,,599,1,340,20,15,7,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/6350f761ddf7c529.webp,,,,,,ps2,,,
+simple,77794acb2b29,USB to PS2/PS3/PC Converter,1,visible,,360,1,100,15,6,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/1f88cc2e5c6ffc20.webp,,,,,,ps2,,,
+simple,78d6f8e98649,PS2 8MB FMCB Memory Card — PS2 Fat 3XXXX / 5XXXX,1,visible,,600,1,25,12,13,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/25a250ee6fc651eb.webp,,,,,,ps2,,,
+simple,ab797ba0f442,PS2 8MB FMCB Memory Card — PS2 Slim 7XXXX,1,visible,,600,1,25,12,13,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/fe1ef9d5a592a639.webp,,,,,,ps2,,,
+simple,3fb5b7d5a791,PS2 8MB FunTuna Memory Card — PS2 Slim 9XXXX,1,visible,,600,1,25,12,13,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/e4b1dd9b1daa47d3.webp,,,,,,ps2,,,
+simple,dabb0eb955d8,PS2 8MB Memory Card Blank,1,visible,,369,1,25,12,13,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/c57f68baa34a0003.webp,,,,,,ps2,,,
+simple,52d10f21a2b9,32GB USB for PS2 with Arcade Games,1,visible,,549,1,5,5,3,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/7df550395aa3ed19.webp,,,,,,ps2,,,
+simple,a376fe10980a,PS2 Slim Sticker/Skin,1,visible,,60,1,0,0,0,0,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/f4280e14dcb9b6e5.webp,,,,,,ps2,,,
+simple,ac65db97dd63,Power Cable for PS2 / PS3 / PS4 / PS5,1,visible,,129,1,130,15,5,5,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/43cd7612d5af0760.webp,,,,,,cables,,,
+simple,7df34a26956d,Normal HDMI Cable — 1.5 Meter,1,visible,,100,1,99,10,10,3,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/712a24219cf490cf.webp,,,,,,cables,,,
+simple,5c6802ad6921,HDMI Converter for PS2,1,visible,,340,1,80,14,9,3,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/48f1a4dc353c6063.webp,,,,,,ps2,,,
+simple,259397953cb8,AV Cable for PS2,1,visible,,99,1,70,15,4,3,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/9729266ce7b23b1e.webp,,,,,,ps2,,,
+simple,9f83f22f854b,PS2 Wired Controller (Replica),1,visible,,375,1,250,17,12,8,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/336d1161e2f6b26a.webp,,,,,,ps2,,,
+simple,05120c7abe71,PS2 Wireless Controller,1,visible,,525,1,250,8,13,17,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/c876f16a1d25fa0e.webp,,,,,,ps2,,,
+simple,200dbeba8e5c,PS3 Controller (Replica),1,visible,,620,1,250,22,15,9,PS3,https://gamesplanet.in/wp-content/themes/games-planet/assets/748e1c12e3dcc77d.webp,,,,,,ps3,,,
+variable,c2ffc81033a1,Wireless Controller for PS4 / PC / Android — Special Designs,1,visible,,,1,450,15,20,8,PS4,"https://gamesplanet.in/wp-content/themes/games-planet/assets/f8ffe2b5c8a596ed.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/bac9a6a6af5ea4a4.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/88becc8827d00c14.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/b7244a856c102f3b.webp",,Option,"FC25, Camouflage Green, GTA 6, Wooden",1,0,ps4,,,
+variation,c2ffc81033a1-v1,Wireless Controller for PS4 / PC / Android — Special Designs — FC25,1,,,999,1,450,,,,,,c2ffc81033a1,Option,FC25,1,0,,,,
+variation,c2ffc81033a1-v2,Wireless Controller for PS4 / PC / Android — Special Designs — Camouflage Green,1,,,999,1,450,,,,,,c2ffc81033a1,Option,Camouflage Green,1,0,,,,
+variation,c2ffc81033a1-v3,Wireless Controller for PS4 / PC / Android — Special Designs — GTA 6,1,,,999,1,450,,,,,,c2ffc81033a1,Option,GTA 6,1,0,,,,
+variation,c2ffc81033a1-v4,Wireless Controller for PS4 / PC / Android — Special Designs — Wooden,1,,,999,1,450,,,,,,c2ffc81033a1,Option,Wooden,1,0,,,,
+variable,a98e4e10d109,P5 Look Wireless Controller for PS4 / PC / Android,1,visible,,,1,450,15,20,8,PS4,,,Option,"Blue, Black",1,0,ps4,,,
+variation,a98e4e10d109-v1,P5 Look Wireless Controller for PS4 / PC / Android — Blue,1,,,1500,1,450,,,,,,a98e4e10d109,Option,Blue,1,0,,,,
+variation,a98e4e10d109-v2,P5 Look Wireless Controller for PS4 / PC / Android — Black,1,,,1500,1,450,,,,,,a98e4e10d109,Option,Black,1,0,,,,
+simple,3af45f7aefd3,PS4 Wireless Controller True Replica — Black,1,visible,,899,1,450,15,20,8,PS4,https://gamesplanet.in/wp-content/themes/games-planet/assets/a54b9f0f9b0c2b96.webp,,,,,,ps4,,,
+simple,395ed2c65c42,PS3 Controller Charging Cable,1,visible,,119,1,65,15,5,5,PS3,https://gamesplanet.in/wp-content/themes/games-planet/assets/abfda2036946acbd.webp,,,,,,ps3,,,
+simple,1a02817b2530,PS4 Controller Charging Cable,1,visible,,139,1,65,15,5,5,PS4,https://gamesplanet.in/wp-content/themes/games-planet/assets/a2258cca0ddf44ab.webp,,,,,,ps4,,,
+simple,4af3e21c73ac,PS5 USB-A to USB-C Cable,1,visible,,149,1,65,15,5,5,PS5,https://gamesplanet.in/wp-content/themes/games-planet/assets/de62c5ede2c10545.webp,,,,,,ps5,,,
+simple,a5dd0e9f1761,PS5 USB-C to USB-C Cable,1,visible,,199,1,65,15,5,5,PS5,https://gamesplanet.in/wp-content/themes/games-planet/assets/44c8b51424efd6c3.webp,,,,,,ps5,,,
+simple,22e06fc879e4,PXN V3 Pro Steering Wheel and Pedal Set,1,visible,"Steering wheel with pedal set
+180-degree steering rotation
+Built-in vibration feedback
+Entry-level multi-platform racing rig",6380,1,3000,30,27,25,Gaming Accessories,"https://gamesplanet.in/wp-content/themes/games-planet/assets/c2ec0a093235b06c.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/717b38b9f81eab96.webp",,,,,,gaming,,,
+simple,32171c74b824,Soldering Paste (Wel Fix),1,visible,,10,1,15,7,7,2,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/f91e2d32e6501ef2.webp,,,,,,electrical,,,
+simple,b1734a93a160,Solder Wire Small Pack,1,visible,,20,1,5,7,7,1,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/997f4ee87fb1ded9.webp,,,,,,electrical,,,
+simple,c967d60b831a,Solder Wire (Roll),1,visible,,80,1,22,5,5,5,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/71226fbeab92e36a.webp,,,,,,electrical,,,
+simple,5aa8aca08b82,Solder Wire (Boom),1,visible,,180,1,58,9,5,5,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/06830c3450642148.webp,,,,,,electrical,,,
+simple,076d487a5fea,15W Soldering Iron (LED),1,visible,,89,1,60,21,4,4,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/4dc96cf9662dbb2e.webp,,,,,,electrical,,,
+simple,e9ac99efe023,60W Soldering Iron (Madhur),1,visible,,290,1,162,27,6,5,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/c1d94615d480ae5b.webp,,,,,,electrical,,,
+simple,73126c936b69,25W Soldering Iron (Duke),1,visible,"25W Duke soldering iron
+Random colour: Yellow or Transparent White, subject to availability
+₹90 per piece",90,1,120,30,12,4,Electrical Items,"https://gamesplanet.in/wp-content/themes/games-planet/assets/ad8c08b4bb244478.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/a1011b77b572cb06.webp",,,,,,electrical,,,
+simple,fd436243bace,Laptop Power Cable,1,visible,,110,1,185,23,7,5,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/f6588eefc1a4f632.webp,,,,,,cables,,,
+simple,b091a9248c06,CPU Power Cable / PS4 Pro Power Cable,1,visible,,110,1,130,23,7,5,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/939dcab53c4ca48d.webp,,,,,,cables,,,
+simple,fdad9c416551,Blow Torch Flame Lighter,1,visible,,250,1,90,18,12,4,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/e6e210a7b4b325b5.webp,,,,,,electrical,,,
+simple,3a2bc7c9d527,Precision Screwdriver Kit,1,visible,,250,1,170,13,8,4,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/0d5e4a599983c01d.webp,,,,,,electrical,,,
+simple,5ce7399d2c36,Matrix Modbo 5.0 Modchip,1,visible,,549,1,5,3,3,1,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/b8160f512da98fc2.webp,,,,,,ps2,,,
+simple,a4de77b2f0f9,AA/AAA 4-Slot Battery Charger,1,visible,,399,1,140,13,7,7,Batteries and Charger,https://gamesplanet.in/wp-content/themes/games-planet/assets/1fe6184332dfb218.webp,,,,,,batteries,,,
+simple,ca713a7464d0,Simpex AA Rechargeable Cells (4 Pack),1,visible,,550,1,75,11,9,2,Batteries and Charger,https://gamesplanet.in/wp-content/themes/games-planet/assets/87b7d06a09abaf66.webp,,,,,,batteries,,,
+simple,ac97703d0ee8,Panasonic AAA Rechargeable Cells (2 Pack),1,visible,,350,1,25,12,10,2,Batteries and Charger,https://gamesplanet.in/wp-content/themes/games-planet/assets/3dcaf2804951b07f.webp,,,,,,batteries,,,
+simple,360f9693b7cc,Panasonic AAA Rechargeable Cells (4 Pack),1,visible,,700,1,50,12,10,2,Batteries and Charger,https://gamesplanet.in/wp-content/themes/games-planet/assets/68988c090bbcf11b.webp,,,,,,batteries,,,
+simple,862ddd6f993c,10 Socket Extension Board,1,visible,,170,1,650,30,12,7,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/968f972a7d45d8a8.webp,,,,,,electrical,,,
+simple,fc0aef87d395,64GB PD 2.0 USB for PS2 — Top 21 Games,1,visible,,1101,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/572b2af742f15f0f.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,b525f81c6174,64GB PD 2.0 USB for PS2 — Optional Games,1,visible,,1151,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/572b2af742f15f0f.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,20738d1a4576,64GB PD 3.0 USB for PS2 — Top 23 Games,1,visible,,1150,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/c0bbf8000a683906.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,f14fb2bc2f4d,64GB PD 3.0 USB for PS2 — Optional Games,1,visible,,1200,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/c0bbf8000a683906.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,88aef64b5651,128GB PD 3.0 USB for PS2 — Top 44 Games,1,visible,,2100,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/c0bbf8000a683906.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,a94c3a8ce565,128GB PD 3.0 USB for PS2 — Optional Games,1,visible,,2200,1,10,5,3,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/c0bbf8000a683906.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,9cb1c1a64e3f,128GB SSD USB for PS2 — Top 41 Games,1,visible,,3701,1,80,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,895d3d107e0d,128GB SSD USB for PS2 — Optional Games,1,visible,,3801,1,80,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,596117e3820f,256GB SSD USB for PS2 — Top 75 Games,1,visible,,5200,1,80,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,254764cde789,256GB SSD USB for PS2 — Optional Games,1,visible,,5400,1,80,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,c2002a45e635,500GB HDD USB for PS2 — Top 180 Games,1,visible,,5250,1,250,13,9,3,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,1be1d9c9b3ac,500GB HDD USB for PS2 — Optional Games,1,visible,,5650,1,250,13,9,3,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,c372cc37ee9f,500GB SSD USB for PS2 — Top 175 Games,1,visible,,11001,1,100,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,,https://youtube.com/shorts/pp_x8dDrDcs?si=Hi4g_u3HU_OEArgR
+simple,8dd6e1130ec7,500GB SSD USB for PS2 — Optional Games,1,visible,,11401,1,100,13,9,2,PS2 Game Drives — USB Only,https://gamesplanet.in/wp-content/themes/games-planet/assets/60b9fa20f321d1f5.webp,,,,,,ps2,,https://gamesplanet13.github.io/ps2gameselector/,
+simple,dbfa8231e89a,Best AV Cable for PS2,1,visible,"High-quality audio and video output
+PS2 multi-out to RCA connection",179,1,140,18,8,4,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/a45b0ae9dffca30d.webp,,,,,,ps2,,,
+simple,fe6db8f1f8a2,AV Component Connector,1,visible,"3.5mm TRRS to RCA female connector
+Video, left audio and right audio",160,1,60,18,7,3,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/cf10c28855ff4553.webp,,,,,,cables,,,
+simple,618eab241c20,AV Male to Male Cable,1,visible,"3 RCA male to 3 RCA male
+Yellow video with white/red stereo audio",120,1,150,20,12,4,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/b788cb514e00edab.webp,,,,,,cables,,,
+simple,b4ce3370cf98,HDMI Cable — 2.2 Meter,1,visible,"2.2 meter HDMI male-to-male cable
+HDR 2.0 / high-speed cable
+Gold-plated connectors",200,1,170,15,15,3,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/59aee08212efc52d.webp,,,,,,cpu,,,
+simple,6a89947808cc,HDMI 2.0 Male to Female Extension Cable — 1.5 Meter,1,visible,"1.5 meter extension cable
+HDMI male input to HDMI female output",150,1,75,15,15,1,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/a5f4407b577a5222.webp,,,,,,cpu,,,
+simple,09e8166bff4e,SATA Network Adapter / Converter for PlayStation 2 Fat,1,visible,"Supports 2.5-inch and 3.5-inch SATA HDD
+Storage support up to 2TB
+For internal PS2 Fat game drive setup",1299,1,160,17,10,5,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/633c0196ee123af6.webp,,,,,,ps2,,,
+simple,979b435d2953,Zebronics ZEB-CSH-01 2.5-inch SATA HDD / SSD Enclosure,1,visible,"USB Type-C 3.1 Gen 1
+Transfer speed up to 5Gbps
+Storage support up to 6TB
+Type-C to USB-A cable included",380,1,120,11,16,5,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/9a0f4f7be4217d4f.webp,,,,,,cpu,,,
+simple,ba680708b01f,RANZ CAT-6 LAN Patch Cord — 2 Meter,1,visible,"CAT-6 Ethernet patch cable
+2 meter length
+Price includes GST",49,1,75,17,23,3,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/0862a78aef40ec4d.webp,,,,,,cpu,,,
+simple,c3dd48db6645,RANZ CAT-6 LAN Patch Cord — 5 Meter,1,visible,"CAT-6 Ethernet patch cable
+5 meter length
+Price includes GST",80,1,130,20,25,4,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/48395219f2c2be36.webp,,,,,,cpu,,,
+simple,a708de345eee,RANZ CAT-6 LAN Patch Cord — 10 Meter,1,visible,"CAT-6 Ethernet patch cable
+10 meter length
+Price includes GST",130,1,280,20,20,7,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/84d47ff81f9dad89.webp,,,,,,cpu,,,
+simple,d7d9c61475c1,RANZ CAT-6 LAN Patch Cord — 20 Meter,1,visible,"CAT-6 Ethernet patch cable
+20 meter length
+Price includes GST",261,1,560,23,27,10,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/b62a90d488d48b04.webp,,,,,,cpu,,,
+simple,2ada63cc7b49,Plain Black Shock-Proof HDD Carry Cover,1,visible,"Hard protective shell
+Internal mesh pocket
+Approximate packed size and weight
+Price includes GST",92,1,90,16,11,4,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/686e1973d7ea6843.webp,,,,,,cpu,,,
+simple,23a6ff584039,Laptop Sleeve — 15.6 Inch,1,visible,"Soft protective sleeve
+Approximate packed size and weight
+Price includes GST",120,1,180,40,30,2,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/8a5dd336f55e1da7.webp,,,,,,cpu,,,
+simple,d4d63b6417fe,Folding Metal Laptop Stand,1,visible,"Foldable metal frame
+Multi-angle adjustment
+Anti-slip pads
+Approximate packed size and weight
+Price includes GST",215,1,250,24,5,2,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/0b7bf8221a1d2924.webp,,,,,,cpu,,,
+simple,033f9e87c159,L01 Mobile Phone Cooler,1,visible,"Gaming phone cooling fan
+Exact model image pending",932,1,120,12,9,5,Mobile Phone Coolers,,,,,,,coolers,,,
+simple,2cab15d4bea7,SL-16 Semiconductor Mobile Phone Cooler,1,visible,"Semiconductor cooling plate
+RGB lighting
+Adjustable cooling gears",966,1,120,12,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/6220d24278df67ea.webp,,,,,,coolers,,,
+simple,6cfb263739d5,SL-25 15W Semiconductor Mobile Phone Cooler,1,visible,"15W high-power cooling
+RGB lighting
+Cold-dome semiconductor plate",1379,1,130,10,10,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/dba6121b11e96bd6.webp,,,,,,coolers,,,
+simple,3b0eebf18779,SL01 Mobile Phone Cooler,1,visible,"Instant phone cooling
+RGB fan
+Clip-on design",966,1,120,12,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/bf2f52a47cb07744.webp,,,,,,coolers,,,
+simple,bed1fba8ae49,SL-21 Semiconductor Mobile Phone Cooler,1,visible,"Large semiconductor cooling plate
+Digital temperature display
+Multi-gear adjustment",1627,1,130,12,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/582c9df026f2ce19.webp,,,,,,coolers,,,
+simple,5549b36f0f79,SL-20 Mobile Phone Cooler,1,visible,"Gaming phone cooling fan
+Exact model image pending",1709,1,130,12,9,5,Mobile Phone Coolers,,,,,,,coolers,,,
+simple,7bf2478a4550,AL02 RGB Mobile Phone Cooler,1,visible,"Fast semiconductor cooling
+RGB lighting
+Compact round design",1049,1,110,9,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/f1a02e6d7c97bbbc.webp,,,,,,coolers,,,
+simple,1c6bc9f2c2ce,SL-31 Compact Mobile Phone Cooler,1,visible,"Compact portable design
+Digital temperature display
+RGB lighting",966,1,115,11,8,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/89c502b149e3c562.webp,,,,,,coolers,,,
+simple,72fd7b796a86,DY58 / SL09 Dual Semiconductor Mobile Phone Cooler,1,visible,"Dual-core semiconductor cooling
+RGB lighting
+3-level control
+5V 3A / 15W input",1428,1,150,12,9,6,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/a2079bf8daca4bea.webp,,,,,,coolers,,,
+simple,f35d5295c7c4,SL-14 Rechargeable Battery Mobile Phone Cooler,1,visible,"Built-in rechargeable battery / power bank
+Portable cable-free cooling
+Digital temperature display",1709,1,180,13,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/fb92bc9a05134b79.webp,,,,,,coolers,,,
+simple,38a08d769677,DY26 Mobile Phone Cooler,1,visible,"Gaming phone cooling fan
+Exact model image pending",883,1,120,12,9,5,Mobile Phone Coolers,,,,,,,coolers,,,
+simple,cd73511465d2,SL-22 Dual-Fan Mobile Phone Cooler,1,visible,"Dual cooling fans
+Digital temperature display
+Adjustable cooling controls
+RGB lighting",1627,1,170,14,9,5,Mobile Phone Coolers,https://gamesplanet.in/wp-content/themes/games-planet/assets/f958347c7a4b42bb.webp,,,,,,coolers,,,
+simple,46a599fe7aac,CPU Box — 6 Configurations,1,visible,,7810,1,0,,,,Custom Setups,https://gamesplanet.in/wp-content/themes/games-planet/assets/b161a0fb97711ffb.webp,,,,,,cpu,cpu,,
+simple,d6e84c5efdaf,Arcade Box — Mini / Counter / Full Body,1,visible,,6342,1,0,,,,Custom Setups,https://gamesplanet.in/wp-content/themes/games-planet/assets/07e69e36a764a2eb.webp,,,,,,arcade-box,arcade,,
+simple,70496335279f,PS2 Black Console — Build Your Set,1,visible,,8500,1,0,,,,Custom Setups,https://gamesplanet.in/wp-content/themes/games-planet/assets/09208c9a3c2be69e.webp,,,,,,ps2,ps2,,
+simple,848264fdc067,M22-SD,1,visible,,2590,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,975e4edf9475,M88,1,visible,,7540,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/92b49f7e166deb95.webp,,,,,,gamebox,,,
+simple,6de3b3570213,M23,1,visible,,3920,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,13dabbfdf569,M33,1,visible,,2110,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/db2bf2dd74d7f16d.webp,,,,,,gamebox,,,
+simple,995f31358ce5,M66 Neon,1,visible,,2690,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,ce58dec0715b,GD30,1,visible,,3480,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/7aefc898be28bb71.webp,,,,,,gamebox,,,
+simple,db78eb77155b,GD30 without Memory Card,1,visible,,3050,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,9b8bd6f4c304,GD20,1,visible,,3340,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,c87d15a98f28,G11 Pro,1,visible,,4500,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/c5680c113df317b8.webp,,,,,,gamebox,,,
+simple,22e5ef4b09c9,G10,1,visible,,2180,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/2f268aa56f3c67bf.webp,,,,,,gamebox,,,
+simple,ad45312751a2,G90,1,visible,,5220,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,79a9889ec05c,M15 Gamestick,1,visible,,1600,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/816d26eeef27a1b8.webp,,,,,,gamebox,,,
+simple,91ee3375b349,R36 Ultra,1,visible,,3920,1,0,,,,"Game Stick, Game Box & Handheld Consoles",https://gamesplanet.in/wp-content/themes/games-planet/assets/fc19f4a8b86f9449.webp,,,,,,gamebox,,,
+simple,01fc9b8c643c,X7M Remote,1,visible,,990,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,d343a38a6261,X9,1,visible,,2760,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,ab4489354360,K12,1,visible,,430,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,c136258be59a,SEGA,1,visible,,1310,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,404eb567c62d,GS5 Pro 32GB,1,visible,,3999,1,0,,,,"Game Stick, Game Box & Handheld Consoles",,,,,,,gamebox,,,
+simple,ce8120837fb0,PlayX PS4 Controller,1,visible,,1600,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,c5442f9c5f5c,PlayX Army Controller,1,visible,,1740,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,b3dc9253da77,PlayX Spiderman Controller,1,visible,,1450,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,bc029eb80960,PlayX Joy Bagncontroller,1,visible,,1240,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,fdf1e03fbfa9,Ucom PC USB Controller — 1.4m Cable,1,visible,,365,1,250,17,12,8,New Gaming Products,https://gamesplanet.in/wp-content/themes/games-planet/assets/e5e7dce7b4f8836a.webp,,,,,,gaming,,,
+simple,e9b798a47438,Turbo PC Controller,1,visible,,400,1,0,,,,New Gaming Products,,,,,,,gaming,,,
+simple,5455c683cd5a,PS4 Silicone Cover,1,visible,,130,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,9f0120fa418b,PS5 Silicone Cover,1,visible,,130,1,0,,,,New Gaming Products,,,,,,,ps5,,,
+simple,58895881f060,PS5 Bag,1,visible,,2110,1,0,,,,New Gaming Products,,,,,,,ps5,,,
+simple,a671e50e4826,Xbox HDD Casing,1,visible,,160,1,0,,,,New Gaming Products,,,,,,,gaming,,,
+simple,a655b4bf04ba,PS4 Pro Console,1,visible,,32630,1,0,,,,New Gaming Products,,,,,,,ps4,,,
+simple,70c8bbdf7619,Intel Core i3 3rd Gen,1,visible,,660,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/b40cc537b952fdbd.webp,,,,,,cpu,,,
+simple,9281a06c7474,Intel Core i5 3rd Gen,1,visible,,1740,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/1486a2ed9b41f73d.webp,,,,,,cpu,,,
+simple,9ae1c4690d39,Intel Core i5 6th Gen,1,visible,,2470,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/5a7cdbb81e2d61b7.webp,,,,,,cpu,,,
+simple,92defa9d941a,Intel Core i7 6th Gen,1,visible,,9860,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/fb09a5d586ff4227.webp,,,,,,cpu,,,
+simple,af5dfb92b7ce,Consistent H61 Motherboard,1,visible,,2610,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/65fa4f5ec90d67df.webp,,,,,,cpu,,,
+simple,eebd11ec7563,H81 Motherboard,1,visible,,3630,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/a0ba104d207dab0c.webp,,,,,,cpu,,,
+simple,10e110c93ddc,H110 DDR4 Motherboard,1,visible,,6530,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/1cf4546dd563c1f6.webp,,,,,,cpu,,,
+simple,c298c434e95f,Consistent DDR3 4GB RAM,1,visible,,1020,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/a48027b7e3b9107a.webp,,,,,,cpu,,,
+simple,d62c3c38bde6,Consistent DDR3 8GB RAM,1,visible,,2180,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/a48027b7e3b9107a.webp,,,,,,cpu,,,
+simple,888b873aa323,Consistent DDR4 8GB RAM,1,visible,,5660,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/5fd289bdede25be3.webp,,,,,,cpu,,,
+simple,4d74b36fa24b,Zebronics SMPS 450,1,visible,,700,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/60178e58d1325b19.webp,,,,,,cpu,,,
+simple,175268ee9b14,Lapcare CPU Fan,1,visible,,220,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/76cfbf5243113237.webp,,,,,,cpu,,,
+simple,9fe44297f5e8,Zebronics Basic Cabinet without SMPS,1,visible,,690,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/b161a0fb97711ffb.webp,,,,,,cpu,,,
+simple,d75159b9fe3e,Cabinet with SMPS,1,visible,Cabinet ₹690 + SMPS ₹700,1390,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/b161a0fb97711ffb.webp,,,,,,cpu,,,
+simple,246901f9fe50,ANT Esports Elite 1100 RGB Cabinet,1,visible,,2649,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/ba004bce15c62336.webp,,,,,,cpu,,,
+simple,df211876a3b0,ANT Esports RX550 PSU,1,visible,,4640,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/6f2c9733f5b77c6c.webp,,,,,,cpu,,,
+simple,e806173e8d5a,Zebronics GT740 DDR3 4GB,1,visible,,5370,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/d3dd39a48491f0df.webp,,,,,,cpu,,,
+simple,af75d613146d,TAG GTX 1660 Super 6GB,1,visible,,27550,1,0,,,,Computer Parts & Services,,,,,,,cpu,,,
+simple,332073b1a381,MSI RTX 3050 6GB,1,visible,,40600,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/7554a6479d62f057.webp,,,,,,cpu,,,
+simple,ef3534d9f64d,Gigabyte RTX 3050 8GB,1,visible,,58000,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/0050061f73564b81.webp,,,,,,cpu,,,
+simple,3749d31e57ab,Geonix 256GB SSD,1,visible,,3200,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/896aaf490f1d35fa.webp,,,,,,cpu,,,
+simple,386c365859e7,SanDisk Ultra 64GB USB 3.0 Pendrive,1,visible,,930,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/6c850f5e14b3cf4f.webp,,,,,,cpu,,,
+simple,3324a56c6584,64GB Game Setup,1,visible,,300,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/dfda056f84e0c91b.svg,,,,,,cpu,,,
+simple,5536cd5e1b07,64GB Game Setup — H61 Package,1,visible,,480,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/dfda056f84e0c91b.svg,,,,,,cpu,,,
+simple,4138c22779a7,256GB Game Setup,1,visible,,800,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/dfda056f84e0c91b.svg,,,,,,cpu,,,
+simple,3fda7d4d4784,Assembling,1,visible,,500,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/079acb468e78ee28.svg,,,,,,cpu,,,
+simple,74f9cc00956b,Windows Setup,1,visible,,350,1,0,,,,Computer Parts & Services,https://gamesplanet.in/wp-content/themes/games-planet/assets/0da66ca0343868a3.svg,,,,,,cpu,,,
+simple,5e6883803a9d,TYPE C OTG Cable,1,visible,,21,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,d2f2f31ae842,Rocker LIGHT BIG BAR SPEAKER,1,visible,,504,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,0443c88f1bc2,2 IN 1 TYPE C + Audio,1,visible,,49,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,9bb2d1e9144b,iPhone OTG Cable,1,visible,,98,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,8932b20deecc,MZ 204 Bluetooth Speaker,1,visible,,392,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,ae153623b6b7,Car Washer BAT,1,visible,,1190,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,d36deb4e2102,MZ LONG BAR,1,visible,,504,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,86e02ce37ea6,Rock LIGHT SPEAKER,1,visible,,476,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,59136cb25244,MZ Speaker,1,visible,,322,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,46254d8a7ea8,4 IN 1 USB Charging Cable,1,visible,,49,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,2d1886e74112,ULTRA Smart Watch Charger,1,visible,,364,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,6cdfe5f37cb8,MARSHEL SAMSUNG Earbuds,1,visible,,350,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,ba9f6baf79e8,REAL ME Neckband,1,visible,,182,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,4c9ad430623c,Crystal TWS Earbuds,1,visible,,154,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,9780cb4ff1ca,MINI BOOST 4 Bluetooth Speaker,1,visible,,168,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,6927e86900a4,Walkie Talkie Set,1,visible,,1540,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,b580c443d04b,PRO 2 Pods TWS Earbuds,1,visible,,308,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,e59515b7ea70,Samsung Type-C Audio Cable,1,visible,,49,1,0,,,,Mobile & Audio,,,,,,,mobile,,,
+simple,fd8cce6f1317,4.8mm Handle Switch Connector Pin,1,visible,"Available • ₹5 per pin
+Fits switches on MD and Rasila handles
+Photo shows two sides of one pin",5,1,0,,,,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/e53224b3722dd883.webp,,,,,,arcade,,,
+simple,a6451be2dc70,10 Core Wire — ₹35 per Meter,1,visible,"Available • Sold per meter
+Selected quantity means total meter length",35,1,0,,,,Arcade Box Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/dcebcce40c2fcf3c.webp,,,,,,arcade,,,
+simple,b6af74e58b63,Best HDMI Cable,1,visible,,350,1,0,,,,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/712a24219cf490cf.webp,,,,,,cables,,,
+simple,f0fb3972e6dc,Double Side Tape — 12 mm × 1.2 m,1,visible,"For electronics use
+Tape width: 12 mm • Roll length: 1.2 m
+₹35 per roll",35,1,60,10,10,2,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/8c1fe5504527ab9b.webp,,,,,,electrical,,,
+simple,0fd35f3dd57c,Glue Gun Stick,1,visible,"Hot glue stick for glue guns
+₹15 per stick • Quantity means number of sticks",15,1,70,15,2,2,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/6171c313e2b99548.webp,,,,,,electrical,,,
+simple,641d8b258677,Cable Ties for Electronics — 100 pcs Pack,1,visible,"For electronics wire bundling
+Heavier 150S • Nylon cable ties
+Actual packet photo included • Label: 150 × 4.6 mm, 100 PCS
+₹60 per pack • Quantity 1 = 100 ties
+Pack weight: 150 g",60,1,150,,,,Electrical Items,"https://gamesplanet.in/wp-content/themes/games-planet/assets/eee48f7323660b9e.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/5ef984d6befb7c49.webp",,,,,,electrical,,,
+simple,c818ce62c8db,PS4 Controller Rubber Set,1,visible,"Conductive rubber membrane replacement set for PS4 controllers
+₹150 per set
+Photos show loose parts and the packed set",150,1,10,5,5,1,PS4,"https://gamesplanet.in/wp-content/themes/games-planet/assets/63e6c151d925d495.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/da2a30bae16e7374.webp",,,,,,ps4,,,
+simple,138f6dd8942e,Ribbon for PS2 Slim — 7XXXX to 9XXXX Series,1,visible,"Compatible with PS2 Slim 7XXXX to 9XXXX series
+₹100 per ribbon • Quantity 1 = one ribbon
+Ribbon only; reset button PCB is sold separately",100,1,1,,,,PS2,"https://gamesplanet.in/wp-content/themes/games-planet/assets/3469f49bfb3e4928.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/4d8328da00dd21e6.webp",,,,,,ps2,,,
+variable,b5cab32cc2bc,PS2 Slim 90XXX Reset Button with PCB,1,visible,"For PS2 Slim 90XXX series
+Without Ribbon: reset button with PCB only — ₹300
+With Ribbon: reset button with PCB + 1 ribbon — ₹400
+Both photos show the two sides of the same PCB",,1,10,2,2,2,PS2,"https://gamesplanet.in/wp-content/themes/games-planet/assets/9f796e29b69c362e.webp, https://gamesplanet.in/wp-content/themes/games-planet/assets/eb557f685edb292f.webp",,Option,"Without Ribbon, With Ribbon",1,0,ps2,,,
+variation,b5cab32cc2bc-v1,PS2 Slim 90XXX Reset Button with PCB — Without Ribbon,1,,,300,1,10,,,,,,b5cab32cc2bc,Option,Without Ribbon,1,0,,,,
+variation,b5cab32cc2bc-v2,PS2 Slim 90XXX Reset Button with PCB — With Ribbon,1,,,400,1,10,,,,,,b5cab32cc2bc,Option,With Ribbon,1,0,,,,
+variable,080da727eb10,PS2 Slim 7XXXX Reset Button with PCB,1,visible,"For PS2 Slim models starting with 7 (7XXXX series)
+Without Ribbon: reset button + PCB only — ₹300
+With Ribbon: reset button + PCB + 1 PS2 ribbon — ₹400
+Photo shows both sides of one PCB",,1,10,2,2,2,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/f8538c7e90f09812.webp,,Option,"Without Ribbon, With Ribbon",1,0,ps2,,,
+variation,080da727eb10-v1,PS2 Slim 7XXXX Reset Button with PCB — Without Ribbon,1,,,300,1,10,,,,,,080da727eb10,Option,Without Ribbon,1,0,,,,
+variation,080da727eb10-v2,PS2 Slim 7XXXX Reset Button with PCB — With Ribbon,1,,,400,1,10,,,,,,080da727eb10,Option,With Ribbon,1,0,,,,
+variable,6c7a3847c73f,PS3 Super Slim Power / Reset Button with PCB,1,visible,"For PS3 Super Slim
+Without Ribbon: power/reset button + PCB — ₹800
+With Ribbon: PCB + 1 PS3 Super Slim power ribbon — ₹950
+Photo shows both sides of one PCB",,1,10,2,2,2,PS3,https://gamesplanet.in/wp-content/themes/games-planet/assets/ec4ca4ca178c3890.webp,,Option,"Without Ribbon, With Ribbon",1,0,ps3,,,
+variation,6c7a3847c73f-v1,PS3 Super Slim Power / Reset Button with PCB — Without Ribbon,1,,,800,1,10,,,,,,6c7a3847c73f,Option,Without Ribbon,1,0,,,,
+variation,6c7a3847c73f-v2,PS3 Super Slim Power / Reset Button with PCB — With Ribbon,1,,,950,1,10,,,,,,6c7a3847c73f,Option,With Ribbon,1,0,,,,
+simple,66b9af1581a6,PS3 Super Slim Power Ribbon / Flex Cable,1,visible,"Ribbon only — PCB sold separately
+₹150 per piece",150,1,10,2,2,2,PS3,https://gamesplanet.in/wp-content/themes/games-planet/assets/a704a9269c9f3ca5.webp,,,,,,ps3,,,
+variable,77f8efb09443,Controller Analog Mechanism,1,visible,"Replacement analog mechanism for PS4 / PS5 / Xbox controller repairs
+Without Cap: 1 mechanism only — ₹400 / 50 g
+With PS4 Cap: 1 mechanism + 1 PS4 cap — ₹530 / 100 g
+With PS5 Cap: 1 mechanism + 1 PS5 cap — ₹580 / 100 g
+Photos are different views of the same mechanism",,1,50,5.08,5.08,5.08,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/747c9aeb2cc9c0d9.webp,,Option,"Without Cap, With PS4 Cap, With PS5 Cap",1,0,gaming,,,
+variation,77f8efb09443-v1,Controller Analog Mechanism — Without Cap,1,,,400,1,50,,,,,,77f8efb09443,Option,Without Cap,1,0,,,,
+variation,77f8efb09443-v2,Controller Analog Mechanism — With PS4 Cap,1,,,530,1,100,,,,,,77f8efb09443,Option,With PS4 Cap,1,0,,,,
+variation,77f8efb09443-v3,Controller Analog Mechanism — With PS5 Cap,1,,,580,1,100,,,,,,77f8efb09443,Option,With PS5 Cap,1,0,,,,
+simple,19641c052c82,PS4 Analog Stick Cap,1,visible,"₹130 per cap • Quantity 1 = one cap
+Cap only — analog mechanism not included
+Photo shows different views of one cap",130,1,50,5.08,5.08,5.08,PS4,https://gamesplanet.in/wp-content/themes/games-planet/assets/7e5d20073d658fad.webp,,,,,,ps4,,,
+simple,39c9abcc603d,PS5 Analog Stick Cap,1,visible,"₹180 per cap • Quantity 1 = one cap
+Cap only — analog mechanism not included
+Photo shows different views of one cap",180,1,50,5.08,5.08,5.08,PS5,https://gamesplanet.in/wp-content/themes/games-planet/assets/951cb438df567d04.webp,,,,,,ps5,,,
+simple,8acaa16611d3,3 Pin Multi-Slot AC Adapter,1,visible,"1 wall socket to 3 plug connections
+₹30 per adapter",30,1,50,5,5,5,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/4c25040b354bce8a.webp,,,,,,electrical,,,
+simple,9f64d29fee45,Ansol Aluminium Soldering Flux,1,visible,"Aluminium soldering flux
+₹120 per bottle",120,1,150,6,6,6,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/16906c8680073f20.webp,,,,,,electrical,,,
+simple,3d6f078368c7,PS4 Slim 500GB Black,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",29999,1,0,,,,Game Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/1002d52223f5ac7e.webp,,,,,,consoles,,,
+simple,881f567c7c75,PS4 Slim 500GB White,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",30499,1,0,,,,Game Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/90da3d43ce57f0e1.webp,,,,,,consoles,,,
+simple,ccf7a868b615,PS4 Slim 500GB PlayStation Edition Blue,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",33499,1,0,,,,Game Consoles,,,,,,,consoles,,,
+simple,b6a236c337e7,PS4 Slim 500GB Dragon Quest Edition,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",33499,1,0,,,,Game Consoles,,,,,,,consoles,,,
+simple,540c84a65124,PS4 Pro 1TB Black,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",35999,1,0,,,,Game Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/d57a53023f5f1807.webp,,,,,,consoles,,,
+simple,a64483bcf46d,PS4 Pro 1TB White,1,visible,"Firmware 13.52 • Renewed / Next to New
+2 Months Warranty
+Includes 1 compatible non-original controller, TV / HDMI cable, power cable and USB charging cable
+Games optional — charged separately",35999,1,0,,,,Game Consoles,,,,,,,consoles,,,
+simple,c510b3f20b47,PS4 500GB Games Pack — Optional Service,1,visible,"Optional game-loading service for your PS4 console
+Choose games according to your preference; storage capacity must match your console",1500,1,0,,,,Game Consoles,,,,,,,consoles,,,
+simple,72649f939bda,PS4 1TB Games Pack — Optional Service,1,visible,"Optional game-loading service for your PS4 console
+Choose games according to your preference; storage capacity must match your console",3000,1,0,,,,Game Consoles,,,,,,,consoles,,,
+simple,c87acd81385e,Kontron USB Wi-Fi + Bluetooth Dongle,1,visible,,650,1,20,12,8,3,Computer & Network Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/2a13742b1d04bd18.svg,,,,,,cpu,,,
+simple,ffa9fb6b6db4,PS2 Slim Power Adapter + Power Cable,1,visible,Compatible with PS2 Slim 7XXXX and 9XXXX series.,599,1,340,2,0, ,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/3718977fb90f3ed3.webp,,,,,,ps2,,,
+simple,dcdc2024c612,FMCB Memory Card — PS2 Fat 3XXXX / 5XXXX,1,visible,8MB prepared FMCB memory card for supported PS2 Fat models.,600,1,25,1,2, ,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/a3344e459f3c0abc.webp,,,,,,ps2,,,
+simple,c4123a3ec591,FMCB Memory Card — PS2 Slim 7XXXX,1,visible,8MB prepared FMCB memory card for PS2 Slim 7XXXX models.,600,1,25,1,2, ,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/e878f95803e42f72.webp,,,,,,ps2,,,
+simple,0f20255b6c8e,FunTuna Memory Card — PS2 Slim 9XXXX,1,visible,8MB prepared FunTuna card for supported PS2 Slim 9XXXX models.,600,1,25,1,2, ,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/e87da4ba9d31d7c6.webp,,,,,,ps2,,,
+simple,3579c6c5e6dd,PS2 8MB Blank Memory Card,1,visible,Blank 8MB memory card for PlayStation 2.,369,1,25,1,2, ,PS2,https://gamesplanet.in/wp-content/themes/games-planet/assets/41d94683eb0f37cf.webp,,,,,,ps2,,,
+simple,1d246608f548,PS4 Controller Black (Replica),1,visible,Black replica controller for PlayStation 4.,999,1,450,1,5, ,PS4,https://gamesplanet.in/wp-content/themes/games-planet/assets/995edd6df186cd50.webp,,,,,,ps4,,,
+simple,39e1b10d9b3d,PS5 Controller Charging Cable (USB to C),1,visible,USB-A to USB-C charging cable for PS5 controllers.,149,1,65,1,5, ,PS5,https://gamesplanet.in/wp-content/themes/games-planet/assets/6cfff7eee879f646.webp,,,,,,ps5,,,
+simple,577543d2ef6f,PS5 Controller Charging Cable (C to C),1,visible,USB-C to USB-C cable for PS5 controllers and compatible devices.,199,1,65,1,5, ,PS5,https://gamesplanet.in/wp-content/themes/games-planet/assets/849b2cdb4ffed0dc.webp,,,,,,ps5,,,
+simple,c450fe8271e3,HDMI Cable,1,visible,"Standard HDMI cable for consoles, TVs and monitors.",99,1,99,1,0, ,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/fccbb2f876e97258.webp,,,,,,cables,,,
+simple,064899603044,CPU / PS4 Pro Power Cable,1,visible,Heavy-duty power cable for compatible PCs and PS4 Pro.,110,1,130,2,3, ,Cables,https://gamesplanet.in/wp-content/themes/games-planet/assets/9614cc6bd38528a1.webp,,,,,,cables,,,
+simple,058e247e4f30,PXN V3 Pro Steering Wheel Set — Black,1,visible,"Steering wheel, pedals and shifter with 180° rotation and vibration.",4999,1,3000,3,0, ,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/d3eee8e334c878c3.webp,,,,,,gaming,,,
+simple,0c3be3347637,PXN V3 Pro Steering Wheel Set — Orange,1,visible,"Multi-platform racing wheel, pedals and shifter set.",4999,1,3000,3,0, ,Gaming Accessories,https://gamesplanet.in/wp-content/themes/games-planet/assets/4cf8c3b249ab66e3.webp,,,,,,gaming,,,
+simple,e3302dc23f3e,Resham Solder Wire Roll,1,visible,Bright solder wire roll for electronics work.,80,1,22,5, ,×,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/e5422f7a55282f9d.webp,,,,,,electrical,,,
+simple,fbbcea18fa86,Boom Solder Wire,1,visible,Premium Boom solder wire spool.,180,1,58,9, ,×,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/265afea88a3919f4.webp,,,,,,electrical,,,
+simple,138d2ac83990,30W Soldering Iron (Madhur),1,visible,Fast-heating 30W soldering iron with replaceable tip.,290,1,162,2,7, ,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/fbcf313f94a1619f.webp,,,,,,electrical,,,
+simple,12929d61d982,25W Soldering Iron (Starmaxx),1,visible,General-purpose soldering iron for electrical repairs.,140,1,120,3,0, ,Electrical Items,https://gamesplanet.in/wp-content/themes/games-planet/assets/776070ca37787387.webp,,,,,,electrical,,,
+simple,2a271a20ab46,64GB PD 3.0 USB for PS2 — Top 21 Games,1,visible,Preloaded selection of Top 21 PS2 games.,1501,1,10,5, ,×,PS2 Game Drives,https://gamesplanet.in/wp-content/themes/games-planet/assets/8a53f429e2fc320b.webp,,,,,,ps2,,,
+simple,d49934648e25,128GB PD 3.0 USB for PS2 — Top 41 Games,1,visible,Preloaded selection of Top 41 PS2 games.,2751,1,10,5, ,×,PS2 Game Drives,https://gamesplanet.in/wp-content/themes/games-planet/assets/8a53f429e2fc320b.webp,,,,,,ps2,,,
+simple,2addfd3a5105,256GB SSD USB for PS2 — Top 71 Games,1,visible,Preloaded selection of Top 71 PS2 games.,5201,1,80,1,3, ,PS2 Game Drives,https://gamesplanet.in/wp-content/themes/games-planet/assets/facb9060bdc13f23.webp,,,,,,ps2,,,
+simple,e96da9cec6be,500GB HDD USB for PS2 — Top 175 Games,1,visible,Preloaded selection of Top 175 PS2 games.,7001,1,250,1,3, ,PS2 Game Drives,https://gamesplanet.in/wp-content/themes/games-planet/assets/facb9060bdc13f23.webp,,,,,,ps2,,,
+simple,e56d6e74fdcc,GPZ M88 GameStick — 128GB,1,visible,Premium retro GameStick with wireless controllers and HDMI output.,6299,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/92b49f7e166deb95.webp,,,,,,gamebox,,,
+simple,19688e3c0d90,GPZ M66 GameStick — 64GB,1,visible,Compact plug-and-play retro GameStick.,2999,1,400,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/9eb3a58d1214aa5a.webp,,,,,,gamebox,,,
+simple,a00f384e1a1f,GPZ M66 GameStick — 128GB,1,visible,Compact plug-and-play retro GameStick.,5499,1,400,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/9eb3a58d1214aa5a.webp,,,,,,gamebox,,,
+simple,ec449fbd13b6,GPZ M66 GameStick — 256GB,1,visible,Compact plug-and-play retro GameStick.,7499,1,400,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/9eb3a58d1214aa5a.webp,,,,,,gamebox,,,
+simple,c8db545c7727,GPZ GS5 Mini — 64GB,1,visible,Wireless retro GameStick with multiple storage options.,3699,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/16c2751287f26d43.webp,,,,,,gamebox,,,
+simple,0145b325a7aa,GPZ GS5 Mini — 128GB,1,visible,Wireless retro GameStick with multiple storage options.,6199,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/16c2751287f26d43.webp,,,,,,gamebox,,,
+simple,bc23638b74f3,GPZ GS5 Mini — 256GB,1,visible,Wireless retro GameStick with multiple storage options.,8199,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/16c2751287f26d43.webp,,,,,,gamebox,,,
+simple,dbffb0cdf6d3,GS5 Pro — Vayava V3 OS — 64GB Unbranded Card,1,visible,Premium Vayava V3 OS GameStick with two wireless controllers.,3999,1,500,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/14e5336257434206.webp,,,,,,gamebox,,,
+simple,7ed9d40d19fa,GS5 Pro — Vayava V3 OS — 64GB HP Original Card,1,visible,Premium Vayava V3 OS GameStick with two wireless controllers.,4999,1,500,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/14e5336257434206.webp,,,,,,gamebox,,,
+simple,0ae882ea8dd9,GS5 Pro — Vayava V3 OS — 128GB Unbranded Card,1,visible,Premium Vayava V3 OS GameStick with two wireless controllers.,5999,1,500,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/14e5336257434206.webp,,,,,,gamebox,,,
+simple,99d2443e4827,GS5 Pro — Vayava V3 OS — 128GB SanDisk Original Card,1,visible,Premium Vayava V3 OS GameStick with two wireless controllers.,6999,1,500,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/14e5336257434206.webp,,,,,,gamebox,,,
+simple,69e41adfb466,GS5 Pro — Vayava V3 OS — 256GB SanDisk Original Card,1,visible,Premium Vayava V3 OS GameStick with two wireless controllers.,8999,1,500,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/14e5336257434206.webp,,,,,,gamebox,,,
+simple,ff85c86f9598,GPZ M22 V3 GameStick — 64GB,1,visible,Retro GameStick with HDMI output and wireless controllers.,3499,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/f803e7fb1246a6ca.webp,,,,,,gamebox,,,
+simple,46478b04f93b,GPZ M22 V3 GameStick — 128GB,1,visible,Retro GameStick with HDMI output and wireless controllers.,5999,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/f803e7fb1246a6ca.webp,,,,,,gamebox,,,
+simple,38cc3fe2d271,GPZ M22 V3 GameStick — 256GB,1,visible,Retro GameStick with HDMI output and wireless controllers.,7999,1,450,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/f803e7fb1246a6ca.webp,,,,,,gamebox,,,
+simple,3e62bf6df883,GPZ M33 GameStick — 64GB,1,visible,Value retro gaming stick with wireless controllers.,2699,1,430,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/db2bf2dd74d7f16d.webp,,,,,,gamebox,,,
+simple,41e23398243c,GPZ M33 GameStick — 128GB,1,visible,Value retro gaming stick with wireless controllers.,5199,1,430,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/db2bf2dd74d7f16d.webp,,,,,,gamebox,,,
+simple,ca5ec71b297a,GPZ M33 GameStick — 256GB,1,visible,Value retro gaming stick with wireless controllers.,7199,1,430,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/db2bf2dd74d7f16d.webp,,,,,,gamebox,,,
+simple,5a529b795eb0,GPZ GameStick Pro P5 (AOKO) — 2024 Edition — 64GB,1,visible,Budget plug-and-play retro GameStick with two wireless controllers.,1899,1,400,2,2, ,GameSticks,https://gamesplanet.in/wp-content/themes/games-planet/assets/816d26eeef27a1b8.webp,,,,,,gamebox,,,
+simple,83516366a89e,Vayava GD10 — 64GB,1,visible,Vayava GD-series retro gaming stick.,2399,1,450,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/d7a7c420ffba1683.webp,,,,,,gaming,,,
+simple,6cd8e420b4b2,Vayava GD35 Standard — 64GB,1,visible,Premium Vayava GD35 edition.,4599,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/7d501cefa0bc8d10.webp,,,,,,gaming,,,
+simple,48ebcd0642c3,Vayava GD35 Standard — 128GB,1,visible,Premium Vayava GD35 edition.,7300,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/7d501cefa0bc8d10.webp,,,,,,gaming,,,
+simple,7733c325e09d,Vayava GD35 Standard — 256GB,1,visible,Premium Vayava GD35 edition.,9300,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/7d501cefa0bc8d10.webp,,,,,,gaming,,,
+simple,27d4e1692502,Vayava GD35 GTA San Andreas Edition — 64GB,1,visible,Special GTA San Andreas themed edition.,6599,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/18d8d6ac0253cc98.webp,,,,,,gaming,,,
+simple,4536ec619629,Vayava GD35 GTA San Andreas Edition — 128GB,1,visible,Special GTA San Andreas themed edition.,9300,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/18d8d6ac0253cc98.webp,,,,,,gaming,,,
+simple,be1399616359,Vayava GD35 GTA San Andreas Edition — 256GB,1,visible,Special GTA San Andreas themed edition.,11300,1,500,2,2, ,GD Series,https://gamesplanet.in/wp-content/themes/games-planet/assets/18d8d6ac0253cc98.webp,,,,,,gaming,,,
+simple,97cd6f228532,GameBox G10 Plus — 64GB,1,visible,Android-style retro GameBox for TV gaming.,3599,1,550,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/2f268aa56f3c67bf.webp,,,,,,gaming,,,
+simple,e38b8e44c9a0,GameBox G11 Pro Regular — 64GB,1,visible,G11 Pro GameBox with multiple storage options.,4599,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/c5680c113df317b8.webp,,,,,,gaming,,,
+simple,8e3086a5ffe0,GameBox G11 Pro Regular — 128GB,1,visible,G11 Pro GameBox with multiple storage options.,7300,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/c5680c113df317b8.webp,,,,,,gaming,,,
+simple,88769cb1b83e,GameBox G11 Pro Regular — 256GB,1,visible,G11 Pro GameBox with multiple storage options.,9300,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/c5680c113df317b8.webp,,,,,,gaming,,,
+simple,518622bdf1ac,GameBox G11 Pro Special Edition — 64GB,1,visible,Special edition G11 Pro GameBox.,6699,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/27a3ac214d3857bf.webp,,,,,,gaming,,,
+simple,99249569afd9,GameBox G11 Pro Special Edition — 128GB,1,visible,Special edition G11 Pro GameBox.,9598,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/27a3ac214d3857bf.webp,,,,,,gaming,,,
+simple,10ba1713cc8e,GameBox G11 Pro Special Edition — 256GB,1,visible,Special edition G11 Pro GameBox.,11798,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/27a3ac214d3857bf.webp,,,,,,gaming,,,
+simple,78f13db51017,GameBox G11 Pro GTA San Andreas Edition — 64GB,1,visible,GTA San Andreas themed G11 Pro edition.,6599,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/529f77634418ad11.webp,,,,,,gaming,,,
+simple,49646a3305cb,GameBox G11 Pro GTA San Andreas Edition — 128GB,1,visible,GTA San Andreas themed G11 Pro edition.,9300,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/529f77634418ad11.webp,,,,,,gaming,,,
+simple,18fa832f7c3d,GameBox G11 Pro GTA San Andreas Edition — 256GB,1,visible,GTA San Andreas themed G11 Pro edition.,11300,1,600,2,2, ,GameBox,https://gamesplanet.in/wp-content/themes/games-planet/assets/529f77634418ad11.webp,,,,,,gaming,,,
+simple,03f95aa79661,R35S Handheld Console — 64GB,1,visible,Portable retro handheld gaming console.,2699,1,350,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/f2624198fba79c54.webp,,,,,,gamebox,,,
+simple,4a0b43f86e91,R36S Handheld Console — 64GB,1,visible,Portable Linux retro handheld console.,2899,1,350,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/9bf938829046a1e4.webp,,,,,,gamebox,,,
+simple,4457f7d3d65b,R36 Ultra Handheld Console — 64GB,1,visible,R36 Ultra portable retro console.,3199,1,350,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/fc19f4a8b86f9449.webp,,,,,,gamebox,,,
+simple,7dd69bf09c9d,G90 Handheld Console — 64GB,1,visible,Powerful 64GB handheld with PSP support and HDMI TV output.,4699,1,400,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/fc19f4a8b86f9449.webp,,,,,,gamebox,,,
+simple,0cce6e76d030,Black Hawk Handheld Console — Standard,1,visible,Compact portable retro gaming handheld.,2399,1,350,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/0dcf796f603f6255.webp,,,,,,gamebox,,,
+simple,92e337564026,Sega 16-bit UMD Mini — Standard,1,visible,Compact 16-bit plug-and-play mini retro console with two controllers.,1199,1,350,2,0, ,Handheld Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/99f1ed9db5e116df.webp,,,,,,gamebox,,,
+simple,dabd35f71259,PlayStation 2 Slim 7xxxx Console — Black,1,visible,PS2 Slim console. Colour and condition are confirmed before dispatch.,6800,1,1800,3,8, ,Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/079e257819fbe137.webp,,,,,,gaming,,,
+simple,b91bf6487b93,PlayStation 2 Slim 7xxxx Console — White,1,visible,PS2 Slim console. Colour and condition are confirmed before dispatch.,7300,1,1800,3,8, ,Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/079e257819fbe137.webp,,,,,,gaming,,,
+simple,4160fcf930a9,PlayStation 2 Slim 7xxxx Console — Silver,1,visible,PS2 Slim console. Colour and condition are confirmed before dispatch.,7800,1,1800,3,8, ,Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/079e257819fbe137.webp,,,,,,gaming,,,
+simple,be9d50ad8fec,PlayStation 3 Slim Console — 500GB,1,visible,PlayStation 3 Slim console with 500GB storage.,15999,1,2500,3,8, ,Consoles,https://gamesplanet.in/wp-content/themes/games-planet/assets/9114d292e1d5fb74.webp,,,,,,gaming,,,
