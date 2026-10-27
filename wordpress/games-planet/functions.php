@@ -11,7 +11,10 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('games-planet', get_stylesheet_uri(), array(), '1.0.0');
     if (!is_front_page() && !(function_exists('is_product') && is_product())) { return; }
     wp_enqueue_script('gp-hero', get_template_directory_uri() . '/hero-data.js', array(), '1.0.0', true);
-    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero'), '1.0.0', true);
+    wp_enqueue_script('gp-postal', get_template_directory_uri() . '/postal.js', array(), '1.1.0', true);
+    wp_add_inline_script('gp-postal', 'window.GP_NATIVE_POSTAL=true;', 'before');
+    wp_enqueue_script('gp-delivery', get_template_directory_uri() . '/delivery.js', array('gp-postal'), '1.1.0', true);
+    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero', 'gp-delivery'), '1.1.0', true);
     $base = trailingslashit(get_template_directory_uri());
     $catalog = json_decode(file_get_contents(get_template_directory() . '/catalog.json'), true);
     // The bundled snapshot is replaced by editable WooCommerce products only after
