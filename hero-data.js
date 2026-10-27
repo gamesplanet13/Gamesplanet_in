@@ -1,1 +1,1 @@
-window.GP_HERO="assets/07e69e36a764a2eb.webp";
+window.GP_HERO="assets/arcade-cabinet-enhanced.png";
