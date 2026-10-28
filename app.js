@@ -71,4 +71,4 @@ for(const im of document.querySelectorAll('img[src^="assets/"]'))im.src=asset(im
 persist();window.addEventListener('hashchange',route);route();
 })();
 
-;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261028-swipe';document.head.append(s);})();
+;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261028-small-primary';document.head.append(s);})();
