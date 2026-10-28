@@ -6,7 +6,7 @@ const allowed=(p,v='')=>{if(p.includedOnly)return false;if(/xbox/i.test(p.name)&
 const products=(window.GP_CATALOG||[]).filter(p=>allowed(p));const byId=new Map(products.map(p=>[p.id,p]));for(const p of products)for(const id of p.aliases||[])byId.set(id,p);
 const label=id=>categories.find(c=>c[0]===id)?.[1]||'Gaming accessories';const inCategory=(p,c)=>!p.includedOnly&&!p.addonOnly&&(c==='consoles'?p.shopPage!=='gamebox'&&(p.shopPages||[]).includes('consoles'):c==='all'||p.shopPage===c||(p.shopPages||[]).includes(c));
 const productUrl=p=>p.url||(!window.GP_ASSET_BASE&&p.pagePath?asset(p.pagePath):'#product/'+p.id);
-const photo=(p,cls='')=>p.images?.length?`<img class="${cls}" data-cycle="${p.id}" src="${esc(asset(p.images[0]))}" alt="${esc(p.name)}" loading="lazy">`:`<div class="no-photo"><span>G✦</span>Product photo coming soon</div>`;
+const photo=(p,cls='')=>p.images?.length?`<img class="${cls}" src="${esc(asset(p.images[0]))}" alt="${esc(p.name)}" loading="lazy">`:`<div class="no-photo"><span>G✦</span>Product photo coming soon</div>`;
 let cart={};try{cart=JSON.parse(localStorage.getItem('gp-unified-cart-v1')||'{}')}catch{}if(!cart||Array.isArray(cart)||typeof cart!=='object')cart={};
 const variants=p=>(p.variants||[]).filter(v=>allowed(p,v));const unit=(p,v)=>Number(p.variantPrices?.[v]??p.price);const key=(id,v)=>id+'::'+v;
 // Preserve saved carts from older storage-specific product pages.
@@ -68,7 +68,6 @@ $('headerSearchInput').addEventListener('input',e=>{ui.search=e.target.value;$('
 $('mobileCart').addEventListener('click',()=>{renderCart();$('cartDialog').showModal()});
 if(window.GP_ACCOUNT_URL){$('accountLink').href=window.GP_ACCOUNT_URL;$('accountLabel').textContent='Account'}else{$('accountLink').href=base+'customer.html';$('accountLabel').textContent='My details / Login'}
 for(const im of document.querySelectorAll('img[src^="assets/"]'))im.src=asset(im.getAttribute('src'));
-let slide=0;if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{if(document.visibilityState!=='visible')return;slide++;for(const im of document.querySelectorAll('img[data-cycle]')){const p=byId.get(im.dataset.cycle);if(!p||p.images.length<2)continue;const r=im.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)continue;im.src=asset(p.images[slide%p.images.length])}},3000);
 persist();window.addEventListener('hashchange',route);route();
 })();
 
