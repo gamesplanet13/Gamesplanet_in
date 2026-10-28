@@ -8,17 +8,17 @@ add_action('after_setup_theme', function () {
     add_theme_support('html5', array('search-form', 'gallery', 'caption', 'style', 'script'));
 });
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('games-planet', get_stylesheet_uri(), array(), '1.4.0');
+    wp_enqueue_style('games-planet', get_stylesheet_uri(), array(), '1.5.0');
     if (!is_front_page() && !(function_exists('is_product') && is_product())) { return; }
     wp_enqueue_script('gp-hero', get_template_directory_uri() . '/hero-data.js', array(), '1.0.0', true);
     wp_enqueue_script('gp-postal', get_template_directory_uri() . '/postal.js', array(), '1.1.0', true);
     wp_add_inline_script('gp-postal', 'window.GP_NATIVE_POSTAL=true;', 'before');
     wp_enqueue_script('gp-delivery', get_template_directory_uri() . '/delivery.js', array('gp-postal'), '1.1.0', true);
-    wp_enqueue_script('gp-setup-data', get_template_directory_uri() . '/setup-data.js', array(), '1.4.0', true);
-    wp_enqueue_script('gp-setup-engine', get_template_directory_uri() . '/setup-engine.js', array('gp-setup-data'), '1.4.0', true);
-    wp_enqueue_script('gp-checkout', get_template_directory_uri() . '/checkout.js', array('gp-setup-engine'), '1.4.0', true);
+    wp_enqueue_script('gp-setup-data', get_template_directory_uri() . '/setup-data.js', array(), '1.5.0', true);
+    wp_enqueue_script('gp-setup-engine', get_template_directory_uri() . '/setup-engine.js', array('gp-setup-data'), '1.5.0', true);
+    wp_enqueue_script('gp-checkout', get_template_directory_uri() . '/checkout.js', array('gp-setup-engine'), '1.5.0', true);
     wp_enqueue_script('gp-policies', get_template_directory_uri() . '/policies-data.js', array(), '1.3.0', true);
-    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero', 'gp-delivery', 'gp-checkout', 'gp-policies'), '1.4.0', true);
+    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero', 'gp-delivery', 'gp-checkout', 'gp-policies'), '1.5.0', true);
     $base = trailingslashit(get_template_directory_uri());
     $catalog = json_decode(file_get_contents(get_template_directory() . '/catalog.json'), true);
     // The bundled snapshot is replaced by editable WooCommerce products only after
@@ -83,6 +83,7 @@ add_action('wp_enqueue_scripts', function () {
                 if (isset($bundle[$key])) { $entry[$key] = $bundle[$key]; }
             }
         }
+        if (!empty($bundle['includedGames'])) { $entry['images'] = $bundle['images']; }
         if (!empty($bundle['includedOnly'])) { $entry['price'] = 0; }
         if (isset($bundle['customType']) && $bundle['customType'] === 'ps2') { $entry['url'] = 'https://gamesplanet13.github.io/ps2/'; }
     }
