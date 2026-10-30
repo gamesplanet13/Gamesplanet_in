@@ -152,3 +152,4 @@ persist();window.addEventListener('hashchange',route);route();
 })();
 
 ;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261028-small-primary';document.head.append(s);})();
+;(function(){if(document.querySelector('script[src*="/shared-store.js"]'))return;const script=document.createElement('script');script.src='https://gamesplanet13.github.io/arcade-accessories-/shared-store.js?v=20261030-unified-v4';document.head.append(script)})();
