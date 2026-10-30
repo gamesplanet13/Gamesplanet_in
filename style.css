@@ -25,3 +25,8 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .video-card{display:grid;gap:8px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;overflow:hidden;text-align:left;padding:0;color:inherit;cursor:pointer}.video-card img{width:100%;aspect-ratio:16/9;object-fit:cover}.video-card span{padding:10px;font-weight:600;font-size:14px;line-height:1.5}.product-video-player iframe{width:100%;aspect-ratio:16/9;border:0}.inline-store-policies{margin-top:28px}.policy-copy{line-height:1.8;max-width:850px;overflow-wrap:anywhere}.policy-copy h1{font-size:28px}.policy-copy h2{font-size:24px}.policy-copy h3{font-size:19px}.policy-copy ul{padding-left:22px}.policy-tabs{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.optional-games{margin:16px 0;padding:16px;border:1px solid #e2e8f0;border-radius:12px}.optional-games button{margin:6px 0;width:100%}
 
 .free-games-poster{display:block;width:100%;max-width:480px;height:auto;border-radius:12px;margin:12px 0}.arcade-tv-options{margin:14px 0}.arcade-tv-options select{display:block;width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font:inherit}.console-group-heading{font-size:22px;margin:16px 0 0}
+
+/* Ready gaming CPU category — visible across desktop and mobile navigation. */
+.policy-nav .nav-ready-cpu{display:inline-flex;align-items:center;flex-shrink:0;padding:7px 12px;border:1px solid #b8d8fc;border-radius:999px;background:#eaf4ff;color:#14538b;font-weight:750;line-height:1.25}
+.policy-nav .nav-ready-cpu:hover,.policy-nav .nav-ready-cpu:focus-visible{background:#d9ebff;color:#0b4377}
+@media(max-width:600px){.policy-nav .nav-ready-cpu{padding:5px 10px;font-size:11px}}
