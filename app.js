@@ -36,7 +36,8 @@ function gamingDiscount(p,v=''){
  if(/\bR(?:35S|36S|36\s*Ultra)\b|handheld/i.test(full))return 0;
  if(!((p.shopPage==='gamebox'&&!/controller|gamepad|cable|adapter|case|cover|remote/i.test(n))||/\bgame\s*stick\b|\bgame\s*box\b/i.test(n)))return 0;
  const size=String(v||n).match(/(?:^|\D)(64|128|256)\s*GB\b/i);
- return size?({'64':200,'128':300,'256':500}[size[1]]||0):0;
+ if(size)return {'64':200,'128':300,'256':500}[size[1]]||0;
+ return (/^(?:M15 Gamestick|G10)$/i.test(n.trim())&&p.shopPage==='gamebox')?200:0;
 }
 const promoWa='https://wa.me/917983624797?text='+encodeURIComponent('Hello Games Planet, I subscribed to SinghTechGaming, GamesPlanet13 and GamesVallah. I will share all 3 screenshots. Please verify and send my gaming coupon.');
 function promoDetails(p,v){
