@@ -65,7 +65,7 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  #shopView .shop-layout>aside{margin:0 0 15px}
  #shopView .search span{font-size:12px;margin:0 0 7px}
  #shopView .search input{font-size:16px;padding:13px;min-height:47px;box-sizing:border-box}
- #shopView .filters{display:none!important}
+ #shopView:has(.gp-mobile-category) .filters{display:none!important}
  #shopView .gp-mobile-category{display:flex;flex-direction:column;gap:6px;margin:13px 0 0;font-size:12px;font-weight:650;color:#313a45}
  #shopView .gp-mobile-category select{display:block;width:100%;min-height:46px;max-width:100%;padding:9px 36px 9px 13px;background:#fff;color:#17212e;border:1px solid #cbd5e1;border-radius:9px;font:inherit;font-size:14px;appearance:auto}
  #shopView .shop-toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 17px;flex-wrap:wrap}
