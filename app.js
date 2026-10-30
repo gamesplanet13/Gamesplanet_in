@@ -69,6 +69,7 @@ const variants=p=>(p.variants||[]).filter(v=>allowed(p,v));const unit=(p,v)=>Num
 // Preserve saved carts from older storage-specific product pages.
 for(const [k,x] of Object.entries(cart)){const p=byId.get(x?.id);if(p&&(x.id!==p.id||(!x.variant&&p.variants?.length))){const v=x.variant||p.aliasVariants?.[x.id]||p.variants?.[0]||'',target=key(p.id,v);cart[target]={id:p.id,variant:v,qty:Math.min(999,(cart[target]?.qty||0)+(Number(x.qty)||1))};delete cart[k];}}
 Object.keys(cart).forEach(k=>{const x=cart[k],p=byId.get(x?.id);if(!p||!allowed(p,x.variant)||!Number.isInteger(x.qty)||x.qty<1||x.qty>999||(variants(p).length&&!variants(p).includes(x.variant))||p.customType)delete cart[k]});
+window.GP_STORE_EXPORT_CART=()=>window.GPCheckout.rows(Object.values(cart),byId);
 function persist(){try{localStorage.setItem('gp-unified-cart-v1',JSON.stringify(cart))}catch{}
  if(window.GPSharedStore?.version===2){
   try{window.GPSharedStore.save('Gamesplanet_in',window.GPCheckout.rows(Object.values(cart),byId))}catch(e){console.warn('Shared cart sync failed',e)}
