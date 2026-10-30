@@ -51,12 +51,28 @@ function promoDetails(p,v){
 const label=id=>categories.find(c=>c[0]===id)?.[1]||'Gaming accessories';const inCategory=(p,c)=>!p.includedOnly&&!p.addonOnly&&(c==='consoles'?p.shopPage!=='gamebox'&&(p.shopPages||[]).includes('consoles'):c==='all'||p.shopPage===c||(p.shopPages||[]).includes(c));
 const productUrl=p=>p.url||(!window.GP_ASSET_BASE&&p.pagePath?asset(p.pagePath):'#product/'+p.id);
 const photo=(p,cls='')=>p.images?.length?`<img class="${cls}" src="${esc(asset(p.images[0]))}" alt="${esc(p.name)}" loading="lazy" data-product-photo-id="${esc(p.id)}">`:`<div class="no-photo"><span>G✦</span>Product photo coming soon</div>`;
-let cart={};try{cart=JSON.parse(localStorage.getItem('gp-unified-cart-v1')||'{}')}catch{}if(!cart||Array.isArray(cart)||typeof cart!=='object')cart={};
+let cart={};
+try{
+ const raw=localStorage.getItem('gp_shared_cart_v2'),reset=localStorage.getItem('gp_shared_cart_reset_v2');
+ if(raw!==null||reset!==null){
+  const shared=JSON.parse(raw||'{}'),rows=shared?.Gamesplanet_in?.items||[];
+  for(const item of rows){
+   const id=item.storeProductId||products.find(p=>p.name===item.product)?.id;
+   const p=byId.get(id);if(!p)continue;
+   const v=item.storeVariant||p.variants?.find(x=>item.variant===x||String(item.variant).startsWith(x+' • '))||'';
+   const k=id+'::'+v;cart[k]={id,variant:v,qty:Math.min(999,(cart[k]?.qty||0)+(Number(item.quantity)||1))};
+  }
+ }else cart=JSON.parse(localStorage.getItem('gp-unified-cart-v1')||'{}');
+}catch{}
+if(!cart||Array.isArray(cart)||typeof cart!=='object')cart={};
 const variants=p=>(p.variants||[]).filter(v=>allowed(p,v));const unit=(p,v)=>Number(p.variantPrices?.[v]??p.price);const key=(id,v)=>id+'::'+v;
 // Preserve saved carts from older storage-specific product pages.
 for(const [k,x] of Object.entries(cart)){const p=byId.get(x?.id);if(p&&(x.id!==p.id||(!x.variant&&p.variants?.length))){const v=x.variant||p.aliasVariants?.[x.id]||p.variants?.[0]||'',target=key(p.id,v);cart[target]={id:p.id,variant:v,qty:Math.min(999,(cart[target]?.qty||0)+(Number(x.qty)||1))};delete cart[k];}}
 Object.keys(cart).forEach(k=>{const x=cart[k],p=byId.get(x?.id);if(!p||!allowed(p,x.variant)||!Number.isInteger(x.qty)||x.qty<1||x.qty>999||(variants(p).length&&!variants(p).includes(x.variant))||p.customType)delete cart[k]});
-function persist(){try{localStorage.setItem('gp-unified-cart-v1',JSON.stringify(cart))}catch{}$('cartCount').textContent=Object.values(cart).reduce((s,x)=>s+x.qty,0);if($('cartTotal'))$('cartTotal').textContent=money(Object.values(cart).reduce((s,x)=>s+unit(byId.get(x.id),x.variant)*x.qty,0))}
+function persist(){try{localStorage.setItem('gp-unified-cart-v1',JSON.stringify(cart))}catch{}
+ if(window.GPSharedStore?.version===2){
+  try{window.GPSharedStore.save('Gamesplanet_in',window.GPCheckout.rows(Object.values(cart),byId))}catch(e){console.warn('Shared cart sync failed',e)}
+ }$('cartCount').textContent=Object.values(cart).reduce((s,x)=>s+x.qty,0);if($('cartTotal'))$('cartTotal').textContent=money(Object.values(cart).reduce((s,x)=>s+unit(byId.get(x.id),x.variant)*x.qty,0))}
 let toastTimer;function toast(t){$('toast').textContent=t;$('toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('visible'),2200)}
 function add(id,v='',quantity=1){const p=byId.get(id);if(!p||!allowed(p,v)||p.customType)return;const k=key(id,v);if(cart[k]?.qty>=999)return;cart[k]={id,variant:v,qty:Math.min(999,(cart[k]?.qty||0)+Math.max(1,Math.min(999,Math.floor(Number(quantity)||1))))};persist();toast('Added to your shopping bag')}
 function card(p){return `<article class="product-card"><a class="product-photo" href="${esc(productUrl(p))}"><span class="tag">${esc(p.customType?'Build your set':p.packLabel||label(p.shopPage))}</span>${photo(p)}</a><div class="meta">${esc(label(p.shopPage))}</div><a class="product-title" href="${esc(productUrl(p))}">${esc(p.name)}</a><div class="product-row"><span class="price">${p.customType?'From ':''}${isM88(p)?money(6499):money(p.price)}</span>${isM88(p)?'<div class="gp-card-coupon"><s>₹6,799</s> · You will get extra ₹500 discount on prepaid with coupon</div>':gamingDiscount(p,p.variants?.[0]||'')>0?'<div class="gp-card-coupon">Coupon discount on eligible GameSticks / GameBoxes</div>':''}<button class="add-button" data-add="${p.id}" aria-label="${esc((variants(p).length||p.customType||p.readyCpuVersion?'View ':'Add ')+p.name)}">${p.customType?'CUSTOMIZE':p.readyCpuVersion?'VIEW SETUP':'ADD'}</button></div></article>`}
