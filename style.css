@@ -51,3 +51,28 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .gp-coupon-claim:hover{background:#126d43;color:#fff}
 .gp-promo-standard strong{color:#145d99;font-size:17px}
 @media(max-width:600px){.gp-promo{padding:11px}.gp-promo-grid{gap:7px}.gp-promo-grid section{padding:9px}.gp-promo-grid h3{font-size:11px}.gp-promo-grid strong{font-size:21px}.gp-promo-grid small,.gp-promo-grid p{font-size:10px}.gp-courier-free{padding:6px;font-size:10px}.gp-promo-main strong{font-size:19px}}
+
+/* 2026-10-31: compact mobile shop view; no cropped category pills or empty gaps. */
+.gp-mobile-category{display:none}
+@media(max-width:700px){
+ #shopView.section{padding:14px 4% 86px;min-height:0}
+ #shopView .breadcrumb{margin:0 0 14px;padding-top:0;line-height:1.4}
+ #shopView .section-heading{align-items:flex-end;margin:0 0 16px;gap:12px}
+ #shopView .section-heading .page-title{font-size:27px;line-height:1.14;letter-spacing:-.7px;margin:0 0 7px}
+ #shopView #resultCount{font-size:12px;line-height:1.4;margin:3px 0 0}
+ #shopView .section-heading>a{font-size:11px;margin:0 0 4px;flex:0 0 auto}
+ #shopView .shop-layout{display:block}
+ #shopView .shop-layout>aside{margin:0 0 15px}
+ #shopView .search span{font-size:12px;margin:0 0 7px}
+ #shopView .search input{font-size:16px;padding:13px;min-height:47px;box-sizing:border-box}
+ #shopView .filters{display:none!important}
+ #shopView .gp-mobile-category{display:flex;flex-direction:column;gap:6px;margin:13px 0 0;font-size:12px;font-weight:650;color:#313a45}
+ #shopView .gp-mobile-category select{display:block;width:100%;min-height:46px;max-width:100%;padding:9px 36px 9px 13px;background:#fff;color:#17212e;border:1px solid #cbd5e1;border-radius:9px;font:inherit;font-size:14px;appearance:auto}
+ #shopView .shop-toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 17px;flex-wrap:wrap}
+ #shopView .shop-toolbar select{max-width:min(55vw,190px);min-height:42px;margin-left:5px;font-size:12px}
+ #shopView .shop-layout .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px;min-width:0}
+ #shopView .product-grid .product-card{min-width:0}
+ #shopView .product-grid .product-photo{height:auto;aspect-ratio:1}
+ #shopView .product-grid .product-title{overflow-wrap:break-word}
+ #shopView .product-grid .console-group-heading{margin:8px 0 0;font-size:19px}
+}
