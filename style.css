@@ -96,3 +96,16 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  .gp-ready-cpu-selection{font-size:10px;margin:7px 0;padding:7px;line-height:1.5}
  .product-card .add-button{font-size:10px;line-height:1.2;min-height:40px}
 }
+
+/* AI rendered examples: commercial arcade parlour cabinet, home arcade box, RGB gaming PC, normal tower PC. */
+.gp-cpu-use-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0;max-width:100%}
+.gp-cpu-use-grid a{min-width:0;display:flex;flex-direction:column;overflow:hidden;border-radius:11px;background:white;border:1px solid #cbdcec;color:#163752;text-decoration:none}
+.gp-cpu-use-grid a:hover{border-color:#3982c5;box-shadow:0 4px 14px #17395c20}
+.gp-cpu-art{display:block;min-height:110px;background:#11253c url("https://gamesplanet13.github.io/arcade-accessories-/images/cpu-use-cases-ai.webp") center no-repeat;background-size:400% 100%}
+.gp-cpu-art.parlour{background-position:0 50%}
+.gp-cpu-art.home{background-position:33.333% 50%}
+.gp-cpu-art.gaming{background-position:66.667% 50%}
+.gp-cpu-art.office{background-position:100% 50%}
+.gp-cpu-use-grid strong{font-size:12px;padding:10px 10px 2px}
+.gp-cpu-use-grid small{padding:2px 10px 12px;font-size:10px;color:#60758d;line-height:1.4}
+@media(max-width:700px){.gp-cpu-use-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gp-cpu-art{min-height:100px}.gp-cpu-use-grid strong{font-size:11px}}
