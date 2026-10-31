@@ -76,3 +76,23 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  #shopView .product-grid .product-title{overflow-wrap:break-word}
  #shopView .product-grid .console-group-heading{margin:8px 0 0;font-size:19px}
 }
+
+/* Restored complete CPU setup: show included and optional components clearly. */
+.gp-cpu-banner{grid-column:1/-1;display:block;padding:20px;background:linear-gradient(135deg,#eef6ff,#f8fcff);border:1px solid #bddaf5;border-radius:14px;margin:0 0 15px}
+.gp-cpu-banner h2{font-size:22px;font-weight:750;letter-spacing:-.3px;margin:0 0 10px;color:#14355d}
+.gp-cpu-banner p{font-size:13px;line-height:1.65;color:#40556d;margin:8px 0}
+.gp-cpu-banner-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.gp-cpu-banner-actions a{display:inline-flex;align-items:center;padding:11px 13px;background:#142b4c;color:#fff;text-decoration:none;font-size:12px;font-weight:750;border-radius:9px}
+.gp-cpu-banner-actions a:nth-child(2){background:#fff;color:#142b4c;border:1px solid #8ca7c6}
+.gp-ready-cpu-selection{font-size:11px;line-height:1.65;margin:9px 10px 12px;color:#40556d;background:#f5f9ff;border:1px solid #e0ecfc;border-radius:8px;padding:9px;overflow-wrap:anywhere}
+.gp-ready-cpu-selection b{font-weight:800;color:#164877}
+.product-card .add-button{overflow-wrap:normal}
+@media(max-width:700px){
+ .gp-cpu-banner{padding:13px;margin:0 0 7px}
+ .gp-cpu-banner h2{font-size:19px}
+ .gp-cpu-banner p{font-size:12px}
+ .gp-cpu-banner-actions{display:grid;grid-template-columns:1fr;gap:8px}
+ .gp-cpu-banner-actions a{min-height:43px;justify-content:center;text-align:center}
+ .gp-ready-cpu-selection{font-size:10px;margin:7px 0;padding:7px;line-height:1.5}
+ .product-card .add-button{font-size:10px;line-height:1.2;min-height:40px}
+}
