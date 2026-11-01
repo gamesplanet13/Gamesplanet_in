@@ -101,19 +101,19 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .gp-cpu-use-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0;max-width:100%}
 .gp-cpu-use-grid a{min-width:0;display:flex;flex-direction:column;overflow:hidden;border-radius:11px;background:white;border:1px solid #cbdcec;color:#163752;text-decoration:none}
 .gp-cpu-use-grid a:hover{border-color:#3982c5;box-shadow:0 4px 14px #17395c20}
-.gp-cpu-art{display:block;min-height:110px;background:#11253c url("https://gamesplanet13.github.io/arcade-accessories-/images/cpu-use-cases-ai.webp") center no-repeat;background-size:400% 100%}
-.gp-cpu-art.parlour{background-position:0 50%}
-.gp-cpu-art.home{background-position:33.333% 50%}
-.gp-cpu-art.gaming{background-position:66.667% 50%}
-.gp-cpu-art.office{background-position:100% 50%}
+.gp-cpu-art{display:block;min-height:110px;background:#11253c url("https://gamesplanet13.github.io/arcade-accessories-/images/cpu-use-cases-ai.webp") center no-repeat;background-size:300% auto}
+.gp-cpu-art.parlour{background-position:0 42%}
+.gp-cpu-art.home{background-position:50% 42%}
+.gp-cpu-art.gaming{background-position:100% 42%}
+.gp-cpu-art.office{background-position:100% 42%}
 .gp-cpu-use-grid strong{font-size:12px;padding:10px 10px 2px}
 .gp-cpu-use-grid small{padding:2px 10px 12px;font-size:10px;color:#60758d;line-height:1.4}
 @media(max-width:700px){.gp-cpu-use-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gp-cpu-art{min-height:100px}.gp-cpu-use-grid strong{font-size:11px}}
 
 /* Current CPU gaming scene banner; USB storage products use their own minimal images. */
-.gp-cpu-big-banner{width:100%;max-width:100%;height:auto;aspect-ratio:1500/650;object-fit:contain;display:block;margin:4px 0 16px;border-radius:12px;background:#121a46}
-.gp-cpu-art{background-image:url('assets/cpu-arcade-home-gaming-showcase.svg')!important;background-size:300% 100%!important}
-.gp-cpu-art.parlour{background-position:0 50%!important}
-.gp-cpu-art.home{background-position:50% 50%!important}
-.gp-cpu-art.gaming{background-position:100% 50%!important}
+.gp-cpu-big-banner{width:100%;max-width:100%;height:auto;aspect-ratio:900/445;object-fit:contain;display:block;margin:4px 0 16px;border-radius:12px;background:#121a46}
+.gp-cpu-art{background-image:url('assets/cpu-arcade-home-gaming-showcase.jpg')!important;background-size:300% auto!important}
+.gp-cpu-art.parlour{background-position:0 42%!important}
+.gp-cpu-art.home{background-position:50% 42%!important}
+.gp-cpu-art.gaming{background-position:100% 42%!important}
 @media(max-width:700px){.gp-cpu-big-banner{border-radius:8px;margin:8px 0 12px}}
