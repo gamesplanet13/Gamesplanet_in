@@ -20,6 +20,8 @@ window.GP_CATALOG.forEach(p=>{
  if(!profile)return;
  p.weight=profile.weight;p.dimensions=profile.dimensions;
  p.shipping={...(p.shipping||{}),weight:profile.weight,dimensions:profile.dimensions};
+ p.technicalTable=(Array.isArray(p.technicalTable)?p.technicalTable:[]).filter(row=>!/^(?:package|packed|parcel|shipping)\s*(?:weight|dimensions|size)$/i.test(String(row?.[0]||'')));
+ p.technicalTable.push(['Parcel Weight',profile.weight+' g'],['Parcel Dimensions',profile.dimensions.join(' × ')+' cm']);
  if(Array.isArray(p.variants)&&p.variants.length){
   p.variantWeights={...(p.variantWeights||{})};
   for(const variant of p.variants){const v=gpzGamingShippingProfile(p.name,variant);if(v)p.variantWeights[variant]=v.weight;}
