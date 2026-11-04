@@ -177,8 +177,27 @@ function rotateProductPhotos(){
 }
 window.setInterval(rotateProductPhotos,3500);
 
+window.GP_APPLY_SHARED_INVENTORY=function(data){
+ const records=data?.records||{};
+ const norm=n=>String(n||'').trim().toLowerCase().replace(/[‐‑–—−]/g,'-').replace(/\\s+/g,' ');
+ for(const p of products){
+  const m=records[norm(p.name)]||records[norm(p.legacyName)];
+  p.stock=m?Math.max(0,Number(m.stock??999)):999;
+  p.variantStocks={...(p.variantStocks||{})};
+  if(!m)continue;
+  if(Number.isFinite(Number(m.price)))p.price=Number(m.price);
+  for(const v of p.variants||[]){
+   const a=m.variants?.[v];if(!a)continue;
+   p.variantPrices={...(p.variantPrices||{}),[v]:Number(a.price??m.price)};
+   p.variantStocks[v]=Math.max(0,Number(a.stock??999));
+  }
+ }
+ persist();route();
+};
 persist();window.addEventListener('hashchange',route);route();
 })();
 
 ;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261028-small-primary';document.head.append(s);})();
 ;(function(){if(document.querySelector('script[src*="/shared-store.js"]'))return;const script=document.createElement('script');script.src='https://gamesplanet13.github.io/arcade-accessories-/shared-store.js?v=20261030-unified-v4';document.head.append(script)})();
+
+;(function(){if(document.querySelector('script[data-gp-shared-inventory]'))return;const s=document.createElement('script');s.dataset.gpSharedInventory='1';s.src='https://gamesplanet13.github.io/arcade-accessories-/shared-inventory-client.js?v=20261104-stock-master';document.head.append(s)})();
