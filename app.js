@@ -81,7 +81,15 @@ function persist(){try{localStorage.setItem('gp-unified-cart-v1',JSON.stringify(
   try{window.GPSharedStore.save('Gamesplanet_in',window.GPCheckout.rows(Object.values(cart),byId))}catch(e){console.warn('Shared cart sync failed',e)}
  }$('cartCount').textContent=Object.values(cart).reduce((s,x)=>s+x.qty,0);if($('cartTotal'))$('cartTotal').textContent=money(Object.values(cart).reduce((s,x)=>s+unit(byId.get(x.id),x.variant)*x.qty,0))}
 let toastTimer;function toast(t){$('toast').textContent=t;$('toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('visible'),2200)}
-function add(id,v='',quantity=1){const p=byId.get(id);if(!p||!allowed(p,v)||p.customType)return;const k=key(id,v);if(cart[k]?.qty>=999)return;cart[k]={id,variant:v,qty:Math.min(999,(cart[k]?.qty||0)+Math.max(1,Math.min(999,Math.floor(Number(quantity)||1))))};persist();toast('Added to your shopping bag')}
+function add(id,v='',quantity=1){
+ const p=byId.get(id);if(!p||!allowed(p,v)||p.customType)return;
+ const k=key(id,v),available=Math.max(0,Math.min(999,Math.floor(Number(p.variantStocks?.[v]??p.stock??999))));
+ const already=Number(cart[k]?.qty)||0;
+ if(already>=available){toast(available===0?'Out of stock':'Only '+available+' units available');return;}
+ const request=Math.max(1,Math.min(999,Math.floor(Number(quantity)||1)));
+ cart[k]={id,variant:v,qty:Math.min(available,already+request)};
+ persist();toast('Added to your shopping bag');
+}
 function card(p){return `<article class="product-card"><a class="product-photo" href="${esc(productUrl(p))}"><span class="tag">${esc(p.customType?'Build your set':p.packLabel||label(p.shopPage))}</span>${photo(p)}</a><div class="meta">${esc(label(p.shopPage))}</div><a class="product-title" href="${esc(productUrl(p))}">${esc(p.name)}</a>${p.readyCpuVersion?'<div class="gp-ready-cpu-selection"><b>PRE-SELECTED:</b> '+esc((p.technicalTable||[]).slice(1,5).map(x=>x[1]).join(' · '))+'<br><b>OPTIONAL:</b> Batocera games USB 64GB ₹1,999*, USB 128GB ₹3,899*, 500GB HDD ₹5,999*, SSD, Windows, controllers, Wi-Fi/Bluetooth, Arcade Box & TV'+(p.readyCpuVersion===6?' · GT740 DDR3 4GB graphics INCLUDED':' · Graphics card optional')+'</div>':''}<div class="product-row"><span class="price">${p.customType==='ps2'?'Starting ':p.customType?'From ':''}${money(p.price)}</span>${isM88(p)?'<div class="gp-card-coupon"><s>₹6,799</s> · You will get extra ₹500 discount on prepaid with coupon</div>':gamingDiscount(p,p.variants?.[0]||'')>0?'<div class="gp-card-coupon">You will get extra '+money(gamingDiscount(p,p.variants?.[0]||''))+' discount with coupon</div>':''}<button class="add-button" data-add="${p.id}" aria-label="${esc((variants(p).length||p.customType||p.readyCpuVersion?'View ':'Add ')+p.name)}">${p.customType?'CUSTOMIZE':p.readyCpuVersion?'CUSTOMIZE + OPTIONS':'ADD'}</button></div></article>`}
 let category='all',limit=24;const ui={search:'',sort:'featured'};
 function renderShop(onlySaved=location.hash==='#wishlist'){
