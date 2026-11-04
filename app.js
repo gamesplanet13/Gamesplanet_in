@@ -179,7 +179,7 @@ window.setInterval(rotateProductPhotos,3500);
 
 window.GP_APPLY_SHARED_INVENTORY=function(data){
  const records=data?.records||{};
- const norm=n=>String(n||'').trim().toLowerCase().replace(/[‐‑–—−]/g,'-').replace(/\\s+/g,' ');
+ const norm=n=>String(n||'').trim().toLowerCase().replace(/[‐‑–—−]/g,'-').replace(/\s+/g,' ');
  for(const p of products){
   const m=records[norm(p.name)]||records[norm(p.legacyName)];
   p.stock=m?Math.max(0,Number(m.stock??999)):999;
