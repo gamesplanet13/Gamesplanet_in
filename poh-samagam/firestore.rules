@@ -1,0 +1,54 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+    match /events/{eventId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['date','time','address','map','titlePa','titleHi','titleEn','occasionPa','occasionHi','occasionEn'])
+        && request.resource.data.date is string
+        && request.resource.data.date.size() <= 10
+        && request.resource.data.time is string
+        && request.resource.data.time.size() <= 5
+        && request.resource.data.address is string
+        && request.resource.data.address.size() <= 1000
+        && request.resource.data.titlePa is string
+        && request.resource.data.titlePa.size() <= 250;
+      allow delete: if isAdmin();
+    }
+    match /settings/{docId} {
+      allow read: if docId == 'public';
+      allow write: if docId == 'public' && isAdmin()
+        && request.resource.data.keys().hasOnly(['name','wa','live'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.wa is string
+        && request.resource.data.wa.size() <= 18
+        && request.resource.data.live is string
+        && request.resource.data.live.size() <= 200;
+    }
+    match /suggestions/{suggestionId} {
+      allow create: if request.resource.data.keys().hasOnly(['name','contact','message','createdAt'])
+        && request.resource.data.keys().hasAll(['name','contact','message','createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.contact is string
+        && request.resource.data.contact.size() <= 100
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000
+        && request.resource.data.createdAt == request.time;
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
