@@ -128,3 +128,17 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .gp-price-stack{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;align-items:flex-start;gap:1px}
 .gp-tier-hint{display:block;max-width:100%;margin:1px 0 0;padding:0;color:#86919b;font-size:9px;font-weight:400;line-height:1.15;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gp-tier-detail{margin-top:2px;margin-bottom:4px;font-size:9px}
+
+/* Arcade accessories: product images 2.5x previous size, mobile-safe */
+#shopGrid.gp-arcade-enlarged .product-photo{height:538px;max-height:72vw}
+#shopGrid.gp-arcade-enlarged .product-photo img{width:96%;height:96%;object-fit:contain}
+.gp-arcade-enlarged-detail .product-thumbnails button{flex:0 0 185px;height:185px}
+.gp-arcade-enlarged-detail .product-main-image{width:98%;height:98%}
+@media(max-width:700px){
+ #shopGrid.gp-arcade-enlarged .product-photo{height:350px;max-height:none}
+ .gp-arcade-enlarged-detail .product-thumbnails button{flex:0 0 150px;height:150px}
+}
+@media(max-width:420px){
+ #shopGrid.gp-arcade-enlarged .product-photo{height:245px}
+ .gp-arcade-enlarged-detail .product-thumbnails button{flex:0 0 135px;height:135px}
+}
