@@ -107,7 +107,9 @@ function card(p){
  const seen=new Set(),vs=variants(p),rows=vs.length?vs:[''];
  const group=document.createElement('div');group.className='gp-photo-purchase-rows';
  rows.forEach((v,index)=>{
-  const candidates=[p.variantImages?.[v],...(p.variantPhotos?.[v]||[]),...(index===0?(p.images||[]):[])].filter(Boolean);
+  const primary=p.variantImages?.[v]||(vs.length?p.images?.[index]:p.images?.[0]);
+  const assigned=new Set(rows.filter(other=>other!==v).flatMap((other)=>[p.variantImages?.[other]||p.images?.[rows.indexOf(other)],...(p.variantPhotos?.[other]||[])]).filter(Boolean));
+  const candidates=[primary,...(p.variantPhotos?.[v]||[]),...(index===0?(p.images||[]).filter(src=>!assigned.has(src)):[])].filter(Boolean);
   const photos=candidates.filter(src=>{const url=asset(src);if(seen.has(url))return false;seen.add(url);return true});
   const row=document.createElement('div');row.className='gp-photo-price-row';
   row.innerHTML='<div class="gp-row-photo-strip">'+photos.map(src=>'<a href="'+esc(productUrl(p))+'"><img src="'+esc(asset(src))+'" alt="'+esc(p.name+(v?' '+v:''))+'" loading="lazy"></a>').join('')+'</div><span class="gp-row-price">'+(v?'<small>'+esc(v)+'</small>':'')+money(unit(p,v))+'</span>'+
