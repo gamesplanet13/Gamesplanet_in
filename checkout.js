@@ -17,7 +17,7 @@ function tierHint(p){
  const rate=Math.min(Number(p?.price),rule.price);
  return rule.min+'+ '+(wire?'m':'pcs')+' · ₹'+rate+'/'+(wire?'m':'pc');
 }
-function rows(entries,byId){const quantities=new Map(entries.map(x=>[x.id,productQuantity(entries,x.id)]));const result=[];for(const x of entries){const p=byId.get(x.id);if(p?.includedOnly)throw Error('Games are included free with the matching PS4 console; remove the separate pack.');if(!p)throw Error('A cart product is unavailable. Refresh your cart.');const qty=Number(x.qty);if(!Number.isInteger(qty)||qty<1||qty>999)throw Error('Choose a valid quantity.');if(p.variants?.length&&!p.variants.includes(x.variant))throw Error('Select a valid variant for '+p.name);
+function rows(entries,byId){const quantities=new Map(entries.map(x=>[x.id,productQuantity(entries,x.id)]));const result=[];for(const x of entries){const p=byId.get(x.id);if(p?.includedOnly)throw Error('Games are included free with the matching PS4 console; remove the separate pack.');if(!p)throw Error('A cart product is unavailable. Refresh your cart.');if(/^Push Button(?: — Red Only)?$/.test(p.name))throw Error('This product is no longer available.');const qty=Number(x.qty);if(p.name==='MD Handle (With Switch)'&&x.variant==='Black'&&qty>4)throw Error('Only 4 black MD handles are available.');if(!Number.isInteger(qty)||qty<1||qty>999)throw Error('Choose a valid quantity.');if(p.variants?.length&&!p.variants.includes(x.variant))throw Error('Select a valid variant for '+p.name);
  if(p.readyCpuVersion){
   if(!root.GPCPU)throw Error('CPU configuration is unavailable. Please reload.');
   const built=root.GPCPU.calculate(root.GPCPU.preset(p.readyCpuVersion));
