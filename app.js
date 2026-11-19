@@ -107,8 +107,9 @@ function card(p){
  const seen=new Set(),vs=variants(p),rows=vs.length?vs:[''];
  const group=document.createElement('div');group.className='gp-photo-purchase-rows';
  rows.forEach((v,index)=>{
-  const primary=p.variantImages?.[v]||(vs.length?p.images?.[index]:p.images?.[0]);
-  const assigned=new Set(rows.filter(other=>other!==v).flatMap((other)=>[p.variantImages?.[other]||p.images?.[rows.indexOf(other)],...(p.variantPhotos?.[other]||[])]).filter(Boolean));
+  const rowImage=variant=>p.variantImages?.[variant]||(p.name==='MD Handle (With Switch)'?p.images?.[variant==='Black'?1:0]:p.images?.[rows.indexOf(variant)]);
+  const primary=vs.length?rowImage(v):p.images?.[0];
+  const assigned=new Set(rows.filter(other=>other!==v).flatMap((other)=>[rowImage(other),...(p.variantPhotos?.[other]||[])]).filter(Boolean));
   const candidates=[primary,...(p.variantPhotos?.[v]||[]),...(index===0?(p.images||[]).filter(src=>!assigned.has(src)):[])].filter(Boolean);
   const photos=candidates.filter(src=>{const url=asset(src);if(seen.has(url))return false;seen.add(url);return true});
   const row=document.createElement('div');row.className='gp-photo-price-row';
