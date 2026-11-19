@@ -174,3 +174,20 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 }
 
 .product-card .gp-card-specs{display:flex;flex-wrap:wrap;gap:4px 8px;font:11px/1.4 system-ui;color:#64748b;margin:5px 0}.product-card .gp-card-specs>span{white-space:nowrap}.gp-card-description{font:11px/1.4 system-ui;color:#64748b;margin:4px 0 7px}
+
+/* Consistent photo and purchasing rows. */
+.product-card{display:flex;flex-direction:column;min-width:0}
+.product-card>.product-title{order:-5}
+.gp-photo-purchase-rows{order:-4;display:grid;gap:8px}
+.product-card>.gp-card-specs{order:-3}
+.product-card>.gp-card-description{order:-2}
+.gp-photo-price-row{display:grid;grid-template-columns:minmax(64px,1fr) auto auto;align-items:center;gap:6px;min-width:0}
+.gp-row-photo-strip{display:flex;gap:6px;overflow-x:auto;min-width:0}
+.gp-row-photo-strip a{flex:0 0 80px}
+.gp-row-photo-strip img{display:block;width:80px;height:80px;object-fit:contain}
+.gp-row-price{font-size:15px;font-weight:800;white-space:nowrap}
+.gp-row-price small{display:block;font-size:11px;white-space:normal}
+.gp-card-qty{display:flex;align-items:center;flex-wrap:nowrap;width:92px;gap:2px}
+.gp-card-qty button{width:28px;min-width:28px;height:32px;padding:0;font-size:18px}
+.gp-card-qty span{width:30px;text-align:center;font-size:13px}
+@media(max-width:359px){.gp-row-photo-strip a{flex-basis:64px}.gp-row-photo-strip img{width:64px;height:64px}}
