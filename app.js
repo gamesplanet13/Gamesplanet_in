@@ -3,6 +3,7 @@ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,
 const base=window.GP_ASSET_BASE||'',asset=s=>/^https?:\/\//.test(s)?s:base+s;
 const categories=[['all','All products'],['consoles','Game consoles'],['ps2','PS2 & accessories'],['ps3','PS3'],['ps4','PS4'],['ps5','PS5'],['arcade','Arcade accessories'],['arcade-box','Arcade boxes'],['cpu','PC & computer parts'],['usb-storage','USB Storage & Batocera'],['ready-cpu','Ready Gaming CPUs'],['gamebox','GameSticks & handhelds'],['gaming','Gaming accessories'],['mobile','Mobile & audio'],['coolers','Phone coolers'],['cables','Cables & connectors'],['electrical','Electrical essentials'],['batteries','Batteries & chargers'],['decoration','Home & decoration']];
 const allowed=(p,v='')=>{
+ if(p?.name==='Old Rasila Push Button')return false;
  if(!p||p.includedOnly||p.hiddenFromStore===true||p.available===false||p.active===false||p.status==='unavailable'||p.stock===0)return false;
  if(v&&(p.variantStocks?.[v]===0||p.unavailableVariants?.includes(v)))return false;
  if(!v&&Array.isArray(p.variants)&&p.variants.length&&p.variants.every(x=>p.variantStocks?.[x]===0||p.unavailableVariants?.includes(x)))return false;if(/xbox/i.test(p.name)&&/controller|gamepad/i.test(p.name))return false;if(['Zippy Coin Drop Switch','10 Core Wire (Per Meter)'].includes(p.name))return false;if(p.name==='MD Handle (With Switch)'&&v&&v!=='Red')return false;if(/^Push Button(?: — Red Only)?$/.test(p.name)&&v&&v!=='Red')return false;return true};
