@@ -239,10 +239,50 @@ window.GP_APPLY_SHARED_INVENTORY=function(data){
  }
  persist();route();
 };
+const adGenres = {
+  arcade:'arcade','arcade-box':'arcade',ps2:'fighting',ps3:'wrestling',ps4:'mythic',
+  ps5:'racing',consoles:'fighting',gaming:'racing',gamebox:'flying',
+  cpu:'mission','ready-cpu':'mission','usb-storage':'mission',mobile:'flying',
+  coolers:'flying',electrical:'mission',cables:'mission',batteries:'racing',decoration:'arcade'
+};
+function placeProductAd(host, title, product, theme) {
+  const ad = window.GPProductAd;
+  if(!host||!ad||!allowed(product))return;
+  const variant = variants(product)[0];
+  const image = product.variantImages?.[variant]||product.images?.[0];
+  if(!image)return;
+  const wheel = /PXN V3 Pro Steering Wheel/i.test(product.name)&&!/Orange/i.test(product.name);
+  ad.mount(host,{title,photoName:product.name,genre:wheel?'racing':theme,image:asset(image),wheel});
+}
+function updateProductAds(){
+  const ad=window.GPProductAd;
+  if(!ad)return;
+  if(!$('productView').hidden&&currentProduct){
+    placeProductAd($('productPageContent'),currentProduct.name,currentProduct,adGenres[currentProduct.shopPage]||'arcade');
+    ad.preview($('imageZoom'),$('zoomImage'),new URL(productUrl(currentProduct),document.baseURI).href);
+    return;
+  }
+  if(!$('shopView').hidden&&location.hash!=='#wishlist'){
+    const items=products.filter(p=>allowed(p)&&p.images?.length&&inCategory(p,category));
+    const item=category==='gaming'?items.find(p=>p.name==='PXN V3 Pro Steering Wheel and Pedal Set')||items[0]:items[0];
+    placeProductAd($('shopView'),label(category),item,adGenres[category]||'arcade');
+    return;
+  }
+  if(!$('homeView').hidden){
+    const product=products.find(p=>allowed(p)&&p.images?.length&&p.shopPage==='gamebox');
+    placeProductAd($('homeView'),'Games Planet',product,'flying');
+  }
+}
+const adScript=document.createElement('script');
+adScript.src='https://gamesplanet13.github.io/arcade-accessories-/catalog-ad.js?v=20261120-ads';
+adScript.addEventListener('load',updateProductAds,{once:true});
+document.head.append(adScript);
+window.addEventListener('hashchange',()=>requestAnimationFrame(updateProductAds));
+document.addEventListener('gp:master-stock-ready',()=>requestAnimationFrame(updateProductAds));
 persist();window.addEventListener('hashchange',route);route();
 })();
 
-;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261028-small-primary';document.head.append(s);})();
+;(function(){const s=document.createElement('script');s.src=(window.GP_ASSET_BASE||'')+'product-gallery.js?v=20261120-preview-brand';document.head.append(s);})();
 ;(function(){if(document.querySelector('script[src*="/shared-store.js"]'))return;const script=document.createElement('script');script.src='https://gamesplanet13.github.io/arcade-accessories-/shared-store.js?v=20261030-unified-v4';document.head.append(script)})();
 
 ;(function(){if(document.querySelector('script[data-gp-shared-inventory]'))return;const s=document.createElement('script');s.dataset.gpSharedInventory='1';s.src='https://gamesplanet13.github.io/arcade-accessories-/shared-inventory-client.js?v=20261104-stock-master';document.head.append(s)})();
