@@ -18,7 +18,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('gp-setup-engine', get_template_directory_uri() . '/setup-engine.js', array('gp-setup-data'), '1.5.1', true);
     wp_enqueue_script('gp-checkout', get_template_directory_uri() . '/checkout.js', array('gp-setup-engine'), '1.5.1', true);
     wp_enqueue_script('gp-policies', get_template_directory_uri() . '/policies-data.js', array(), '1.3.0', true);
-    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero', 'gp-delivery', 'gp-checkout', 'gp-policies'), '1.5.1', true);
+    wp_enqueue_script('gp-store', get_template_directory_uri() . '/app.js', array('gp-hero', 'gp-delivery', 'gp-checkout', 'gp-policies'), '1.5.2', true);
     $base = trailingslashit(get_template_directory_uri());
     $catalog = json_decode(file_get_contents(get_template_directory() . '/catalog.json'), true);
     // The bundled snapshot is replaced by editable WooCommerce products only after
@@ -75,6 +75,15 @@ add_action('wp_enqueue_scripts', function () {
     foreach ($catalog as &$entry) {
         $bundle = isset($bundle_by_id[$entry['id']]) ? $bundle_by_id[$entry['id']] : null;
         if (!$bundle) { continue; }
+        $arcade_shipping_ids = array('a6451be2dc70', 'cd6efc52aa45', 'ca9fb59434e0', '0f0365140767', '7e48ca7cbed3', '3d7353f84d2b', 'acb30326a301', '150ec9399261', '4a835df31351');
+        if (in_array($entry['id'], $arcade_shipping_ids, true)) {
+            if ($entry['id'] === '4a835df31351' && !empty($entry['variantWeights'])) {
+                $entry['variantWeights'] = array_fill_keys(array_keys($entry['variantWeights']), $bundle['weight']);
+            }
+            foreach (array('weight', 'dimensions', 'dimensionsPerMeters') as $key) {
+                if (isset($bundle[$key])) { $entry[$key] = $bundle[$key]; }
+            }
+        }
         foreach (array('shopPages', 'consoleOrder', 'includedOnly', 'includedGames', 'gamesListUrl', 'optionalAddons', 'arcadeType', 'systemModes', 'variantDetails', 'shipping', 'tvOptions', 'includedTV') as $key) {
             if (array_key_exists($key, $bundle)) { $entry[$key] = $bundle[$key]; }
         }
