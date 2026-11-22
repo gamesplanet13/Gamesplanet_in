@@ -129,21 +129,7 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .gp-tier-hint{display:block;max-width:100%;margin:1px 0 0;padding:0;color:#86919b;font-size:9px;font-weight:400;line-height:1.15;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gp-tier-detail{margin-top:2px;margin-bottom:4px;font-size:9px}
 
-/* Arcade accessories: 2.5x LARGER IMAGE AREAS, NOT AN IMAGE ZOOM INSIDE OLD CARDS */
-#shopGrid.gp-arcade-enlarged{
- display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
- gap:24px!important;align-items:start!important
-}
-#shopGrid.gp-arcade-enlarged .product-card{width:100%!important;min-width:0!important;max-width:none!important}
-#shopGrid.gp-arcade-enlarged .product-photo{
- display:flex!important;width:100%!important;height:538px!important;
- min-height:0!important;max-height:none!important;overflow:hidden!important;
- box-sizing:border-box!important
-}
-#shopGrid.gp-arcade-enlarged .product-photo img{
- display:block!important;width:100%!important;height:100%!important;
- max-width:100%!important;object-fit:contain!important;transform:none!important
-}
+/* Larger galleries on arcade accessory product pages. */
 .gp-arcade-enlarged-detail .gallery-main{
  width:100%!important;min-height:0!important;max-height:none!important;
  height:auto!important;aspect-ratio:1/1!important;overflow:hidden!important
@@ -158,10 +144,6 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  flex:0 0 185px!important;width:185px!important;height:185px!important;max-width:100%!important
 }
 @media(max-width:700px){
- #shopGrid.gp-arcade-enlarged{grid-template-columns:minmax(0,1fr)!important}
- #shopGrid.gp-arcade-enlarged .product-photo{
-  height:auto!important;min-height:0!important;aspect-ratio:1/1!important
- }
  .gp-arcade-enlarged-detail .product-thumbnails button{
   flex:0 0 145px!important;width:145px!important;height:145px!important
  }
@@ -181,13 +163,34 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
 .gp-photo-purchase-rows{order:-4;display:grid;gap:8px}
 .product-card>.gp-card-specs{order:-3}
 .product-card>.gp-card-description{order:-2}
-.gp-photo-price-row{display:grid;grid-template-columns:minmax(64px,1fr) auto auto;align-items:center;gap:6px;min-width:0}
-.gp-row-photo-strip{display:flex;gap:6px;overflow-x:auto;min-width:0}
-.gp-row-photo-strip a{flex:0 0 80px}
-.gp-row-photo-strip img{display:block;width:80px;height:80px;object-fit:contain}
-.gp-row-price{font-size:15px;font-weight:800;white-space:nowrap}
-.gp-row-price small{display:block;font-size:11px;white-space:normal}
-.gp-card-qty{display:flex;align-items:center;flex-wrap:nowrap;width:92px;gap:2px}
-.gp-card-qty button{width:28px;min-width:28px;height:32px;padding:0;font-size:18px}
-.gp-card-qty span{width:30px;text-align:center;font-size:13px}
-@media(max-width:359px){.gp-row-photo-strip a{flex-basis:64px}.gp-row-photo-strip img{width:64px;height:64px}}
+.gp-photo-price-row{display:grid;grid-template-columns:clamp(48px,14vw,72px) minmax(0,1fr) auto;align-items:center;gap:8px;min-width:0}
+.gp-row-photo{display:grid;place-items:center;min-width:0;aspect-ratio:1}
+.gp-row-photo img{display:block;width:100%;height:100%;min-width:0;object-fit:contain}
+.gp-row-photo-missing{font-size:10px;text-align:center;color:#64748b;background:#f4f5f7}
+.gp-row-price{min-width:0;font-size:15px;font-weight:800;overflow-wrap:anywhere}
+.gp-row-price small{display:block;font-size:11px}
+.gp-card-qty{display:grid;grid-template-columns:32px 24px 32px;align-items:center;gap:2px}
+.gp-card-qty button{width:100%;min-width:0;height:36px;padding:0;font-size:18px}
+.gp-card-qty span{text-align:center;font-size:13px;font-variant-numeric:tabular-nums}
+#shopView .shop-layout{grid-template-columns:190px minmax(0,1fr)}
+#shopView .shop-layout #shopGrid,
+.related-products .product-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));align-items:start}
+#shopView .shop-layout #shopGrid.gp-arcade-enlarged{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+.home-product-row{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.product-card .gp-card-specs .gp-available,
+.trade-product .product-purchase .gp-available{min-width:0!important;width:auto!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important}
+@media(max-width:760px){
+ #shopView .shop-layout #shopGrid,
+ #shopView .shop-layout #shopGrid.gp-arcade-enlarged,
+ .related-products .product-grid{grid-template-columns:minmax(0,1fr)}
+ #shopView .product-card+.product-card{padding-top:16px;border-top:1px solid #e9ebee}
+ .gp-photo-price-row{grid-template-columns:clamp(54px,20vw,88px) minmax(0,1fr) auto}
+ .gp-row-price small{font-size:12px}
+ .gp-card-qty{grid-template-columns:44px 24px 44px}
+ .gp-card-qty button{height:44px}
+ .home-product-row .product-card{flex-basis:min(100%,290px)}
+}
+@media(max-width:359px){
+ .gp-photo-price-row{gap:6px}
+ .gp-card-qty{grid-template-columns:38px 22px 38px}
+}
