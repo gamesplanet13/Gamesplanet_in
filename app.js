@@ -269,46 +269,28 @@ window.GP_APPLY_SHARED_INVENTORY=function(data){
  reconcileCart();persist();route();
  if($('cartDialog').open)renderCart();
 };
-const adGenres = {
-  arcade:'arcade','arcade-box':'arcade',ps2:'fighting',ps3:'wrestling',ps4:'mythic',
-  ps5:'racing',consoles:'fighting',gaming:'racing',gamebox:'flying',
-  cpu:'mission','ready-cpu':'mission','usb-storage':'mission',mobile:'flying',
-  coolers:'flying',electrical:'mission',cables:'mission',batteries:'racing',decoration:'arcade'
-};
-function placeProductAd(host, title, product, theme) {
-  const ad = window.GPProductAd;
-  if(!host||!ad||!allowed(product))return;
-  const variant = variants(product)[0];
-  const image = product.variantImages?.[variant]||product.images?.[0];
-  if(!image)return;
-  const wheel = /PXN V3 Pro Steering Wheel/i.test(product.name)&&!/Orange/i.test(product.name);
-  ad.mount(host,{title,photoName:product.name,genre:wheel?'racing':theme,image:asset(image),wheel});
+function mountCategoryBanner(host, category, title){
+ const eligible=products.filter(p=>allowed(p)&&p.images?.length&&inCategory(p,category==='ready-cpu'?'cpu':category));
+ window.GPProductAd.mount(host,{title,category,eligible});
 }
 function updateProductAds(){
-  const ad=window.GPProductAd;
-  if(!ad)return;
-  if(!$('productView').hidden&&currentProduct){
-    if(!isConsoleCategory(currentProduct.shopPage))placeProductAd($('productPageContent'),currentProduct.name,currentProduct,adGenres[currentProduct.shopPage]||'arcade');
-    ad.preview($('imageZoom'),$('zoomImage'),new URL(productUrl(currentProduct),document.baseURI).href);
-    return;
-  }
-  if(!$('shopView').hidden&&location.hash!=='#wishlist'){
-    if(isConsoleCategory(category)){
-     $('shopView').querySelector(':scope > .gp-embedded-ad')?.remove();
-     return;
-    }
-    const items=products.filter(p=>allowed(p)&&p.images?.length&&inCategory(p,category));
-    const item=category==='gaming'?items.find(p=>p.name==='PXN V3 Pro Steering Wheel and Pedal Set')||items[0]:items[0];
-    placeProductAd($('shopView'),label(category),item,adGenres[category]||'arcade');
-    return;
-  }
-  if(!$('homeView').hidden){
-    const product=products.find(p=>allowed(p)&&p.images?.length&&p.shopPage==='gamebox');
-    placeProductAd($('homeView'),'Games Planet',product,'flying');
-  }
+ const ad=window.GPProductAd;
+ if(!ad)return;
+ if(!$('productView').hidden&&currentProduct){
+  const category=currentProduct.shopPage;
+  mountCategoryBanner($('productPageContent'),category,label(category));
+  ad.preview($('imageZoom'),$('zoomImage'),new URL(productUrl(currentProduct),document.baseURI).href);
+  return;
+ }
+ if(!$('shopView').hidden){
+  if(location.hash==='#wishlist')$('shopView').querySelector(':scope > .gp-embedded-ad')?.remove();
+  else mountCategoryBanner($('shopView'),category,label(category));
+  return;
+ }
+ if(!$('homeView').hidden)mountCategoryBanner($('homeView'),'all','Games Planet');
 }
 const adScript=document.createElement('script');
-adScript.src='https://gamesplanet13.github.io/arcade-accessories-/catalog-ad.js?v=20261120-ads';
+adScript.src='https://gamesplanet13.github.io/arcade-accessories-/catalog-ad.js?v=20261122-thumbnails';
 adScript.addEventListener('load',updateProductAds,{once:true});
 document.head.append(adScript);
 window.addEventListener('hashchange',()=>requestAnimationFrame(updateProductAds));
