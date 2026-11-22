@@ -2,7 +2,7 @@
 if(!window.GPSharedCatalog&&location.hostname==='gamesplanet13.github.io'){
  await new Promise(resolve=>{
   const script=document.createElement('script');
-  script.src='https://gamesplanet13.github.io/arcade-accessories-/category-data.js?v=20261122-shared-catalog';
+  script.src='https://gamesplanet13.github.io/arcade-accessories-/category-data.js?v=20261123-catalog-availability';
   const timeout=setTimeout(resolve,3500);
   const done=()=>{clearTimeout(timeout);resolve();};
   script.addEventListener('load',done,{once:true});
@@ -15,11 +15,32 @@ const gpLedStyle=document.createElement('style');gpLedStyle.textContent='.led-co
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),money=n=>'₹'+Number(n||0).toLocaleString('en-IN');
 const base=window.GP_ASSET_BASE||'',asset=s=>/^https?:\/\//.test(s)?s:base+s;
 const categories=[['all','All products'],['consoles','Game consoles'],['ps2','PS2 & accessories'],['ps2-consoles','PS2 consoles'],['ps2-fmcb','PS2 FMCB & USB'],['new','New products'],['ps3','PS3'],['ps4','PS4'],['ps5','PS5'],['arcade','Arcade accessories'],['arcade-box','Arcade boxes'],['cpu','PC & computer parts'],['usb-storage','USB Storage & Batocera'],['ready-cpu','Ready Gaming CPUs'],['gamebox','GameSticks & handhelds'],['gaming','Gaming accessories'],['mobile','Mobile & audio'],['coolers','Phone coolers'],['cables','Cables & connectors'],['electrical','Electrical essentials'],['batteries','Batteries & chargers'],['decoration','Home & decoration']];
+function retiredProduct(name){
+ const label=String(name||'').trim().replace(/[‐‑–—−]/g,'-').replace(/\s+/g,' ');
+ return /^(?:Old Rasila Push Button|Push Button(?:\s*-\s*Red Only)?|Zippy Coin Drop Switch|10 Core Wire \(Per Meter\)|Remote Plate \(White Colou?r\)|Imported Arcade Push Button H60 \/ H54)$/i.test(label)
+  || /^Play\s*X\b.*controller\b/i.test(label)
+  || /^64\s*GB\s+PD\s+2\.0\s+USB\s+for\s+PS2\b/i.test(label);
+}
+function usableCatalogPhoto(photo){
+ if(typeof photo!=='string'||!photo.trim())return false;
+ const path=photo.split(/[?#]/,1)[0].toLowerCase();
+ return !/(?:^|[\/_-])(?:pending|placeholder|coming[-_ ]?soon|unavailable|no[-_ ]?(?:image|photo))(?:[\/_.-]|$)/.test(path)
+  && !/\/(?:p5-look-(?:blue|black)\.png|temp_0_1769456869449\.jpg)$/.test(path);
+}
+function missingCatalogPhoto(product){
+ if(product.addonOnly||product.cpuAddonOnly||product.includedOnly)return false;
+ return product.photoUnavailable===true||!(product.images||[]).some(usableCatalogPhoto);
+}
+function unavailableCatalogStatus(status){
+ return /^(?:coming[\s_-]+soon|unavailable|out[\s_-]+of[\s_-]+stock)$/i.test(String(status||'').trim());
+}
 const allowed=(p,v='')=>{
- if(p?.name==='Old Rasila Push Button'||/^Push Button(?: — Red Only)?$/.test(p?.name||''))return false;
- if(!p||p.includedOnly||p.photoUnavailable||p.hiddenFromStore===true||p.available===false||p.active===false||p.status==='unavailable'||p.stock===0)return false;
+ if(!p||p.includedOnly||retiredProduct(p.name)||missingCatalogPhoto(p))return false;
+ if(p.hiddenFromStore===true||p.available===false||p.active===false||unavailableCatalogStatus(p.status)||p.stock===0)return false;
  if(v&&(p.variantStocks?.[v]===0||p.unavailableVariants?.includes(v)))return false;
- if(!v&&Array.isArray(p.variants)&&p.variants.length&&p.variants.every(x=>p.variantStocks?.[x]===0||p.unavailableVariants?.includes(x)))return false;if(/xbox/i.test(p.name)&&/controller|gamepad/i.test(p.name))return false;if(['Zippy Coin Drop Switch','10 Core Wire (Per Meter)'].includes(p.name))return false;if(/^Push Button(?: — Red Only)?$/.test(p.name)&&v&&v!=='Red')return false;return true};
+ if(!v&&p.variants?.length&&p.variants.every(label=>p.variantStocks?.[label]===0||p.unavailableVariants?.includes(label)))return false;
+ return !(/xbox/i.test(p.name)&&/controller|gamepad/i.test(p.name));
+};
 // Show only the four distinct ready CPU hardware builds; keep historic IDs supported in the engine.
 const originalCpu=(window.GP_CATALOG||[]).find(p=>p.customType==='cpu');
 const readyCpuProducts=(window.GP_SETUP_DATA?.cpu||[]).flatMap(d=>{
