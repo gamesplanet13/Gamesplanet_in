@@ -194,3 +194,18 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  .gp-photo-price-row{gap:6px}
  .gp-card-qty{grid-template-columns:38px 22px 38px}
 }
+
+/* Console collections use the original photo-first comparison cards. */
+#shopView .shop-layout #shopGrid.gp-console-collection{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px}
+.gp-console-card>.product-title{order:0}
+.gp-console-card>.gp-card-specs,.gp-console-card>.gp-card-description{order:0}
+.gp-console-card>.product-photo{height:auto;aspect-ratio:1}
+.gp-console-card .product-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.gp-console-card .price{overflow-wrap:anywhere}
+@media(max-width:1100px){
+ #shopView .shop-layout #shopGrid.gp-console-collection{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ #shopView .shop-layout #shopGrid.gp-console-collection{gap:23px 14px}
+ #shopGrid.gp-console-collection .product-card+.product-card{padding-top:0;border-top:0}
+}
