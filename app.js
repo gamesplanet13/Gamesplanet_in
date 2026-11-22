@@ -2,7 +2,7 @@
 if(!window.GPSharedCatalog&&location.hostname==='gamesplanet13.github.io'){
  await new Promise(resolve=>{
   const script=document.createElement('script');
-  script.src='https://gamesplanet13.github.io/arcade-accessories-/category-data.js?v=20261123-catalog-routing';
+  script.src='https://gamesplanet13.github.io/arcade-accessories-/category-data.js?v=20261123-catalog-routing-photos';
   const timeout=setTimeout(resolve,3500);
   const done=()=>{clearTimeout(timeout);resolve();};
   script.addEventListener('load',done,{once:true});
