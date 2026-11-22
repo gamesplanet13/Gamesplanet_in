@@ -14,7 +14,7 @@ if(window.GPSharedCatalog)window.GP_CATALOG=window.GPSharedCatalog.forGames();
 const gpLedStyle=document.createElement('style');gpLedStyle.textContent='.led-color-option{display:block;text-align:center;font-size:11px;font-weight:800;padding:3px;color:#18324a}.product-thumbnails button:has(.led-color-option){min-width:70px}';document.head.append(gpLedStyle);
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),money=n=>'₹'+Number(n||0).toLocaleString('en-IN');
 const base=window.GP_ASSET_BASE||'',asset=s=>/^https?:\/\//.test(s)?s:base+s;
-const categories=[['all','All products'],['consoles','Game consoles'],['ps2','PS2 & accessories'],['ps3','PS3'],['ps4','PS4'],['ps5','PS5'],['arcade','Arcade accessories'],['arcade-box','Arcade boxes'],['cpu','PC & computer parts'],['usb-storage','USB Storage & Batocera'],['ready-cpu','Ready Gaming CPUs'],['gamebox','GameSticks & handhelds'],['gaming','Gaming accessories'],['mobile','Mobile & audio'],['coolers','Phone coolers'],['cables','Cables & connectors'],['electrical','Electrical essentials'],['batteries','Batteries & chargers'],['decoration','Home & decoration']];
+const categories=[['all','All products'],['consoles','Game consoles'],['ps2','PS2 & accessories'],['ps2-consoles','PS2 consoles'],['ps2-fmcb','PS2 FMCB & USB'],['new','New products'],['ps3','PS3'],['ps4','PS4'],['ps5','PS5'],['arcade','Arcade accessories'],['arcade-box','Arcade boxes'],['cpu','PC & computer parts'],['usb-storage','USB Storage & Batocera'],['ready-cpu','Ready Gaming CPUs'],['gamebox','GameSticks & handhelds'],['gaming','Gaming accessories'],['mobile','Mobile & audio'],['coolers','Phone coolers'],['cables','Cables & connectors'],['electrical','Electrical essentials'],['batteries','Batteries & chargers'],['decoration','Home & decoration']];
 const allowed=(p,v='')=>{
  if(p?.name==='Old Rasila Push Button'||/^Push Button(?: — Red Only)?$/.test(p?.name||''))return false;
  if(!p||p.includedOnly||p.photoUnavailable||p.hiddenFromStore===true||p.available===false||p.active===false||p.status==='unavailable'||p.stock===0)return false;
@@ -65,7 +65,15 @@ function promoDetails(p,v){
  if(m)return '<div class="gp-promo"><div class="gp-promo-head">Special price — Save ₹300 <small>Extra prepaid discount available with coupon</small></div><div class="gp-promo-main"><span>Old price <s>₹6,799</s></span><strong>₹6,499 <small>Current selling price</small></strong></div><p class="gp-promo-extra">You will get extra discount of ₹500 with a coupon on full prepaid payment.</p><div class="gp-promo-grid"><section><h3>Prepaid — Full Payment</h3><strong>₹5,999</strong><p><b>Extra ₹500 OFF</b> with coupon</p><div class="gp-courier-free">Courier FREE · Included in offer</div><small>Pay ₹5,999 now · No other charges</small></section><section><h3>Cash on Delivery</h3><strong>₹6,499</strong><p>COD courier charge = 2× standard prepaid courier rate (extra)</p><b>₹600 advance</b><small>Remaining balance and double courier charge calculated at checkout</small></section></div><p class="gp-promo-caption">These two boxes are for price information only. Prepaid extra discount requires a coupon. COD product price is ₹6,499 without coupon. COD shipping is 2× the standard prepaid shipping rate. Final payment breakdown is shown at checkout.</p>'+channels+'</div>';
  return '<div class="gp-promo gp-promo-standard"><div class="gp-promo-head">You will get extra discount with coupon</div><p>Selected variant <b>'+esc(v||p.name)+'</b> • regular price <s>'+money(unit(p,v))+'</s> • <b>Save '+money(d)+'</b> with coupon</p><p>Coupon product price: <strong>'+money(Math.max(0,unit(p,v)-d))+'</strong>. Courier and COD terms remain as per regular checkout.</p>'+channels+'</div>';
 }
-const label=id=>categories.find(c=>c[0]===id)?.[1]||'Gaming accessories';const inCategory=(p,c)=>!p.includedOnly&&!p.addonOnly&&(c==='consoles'?p.shopPage!=='gamebox'&&(p.shopPages||[]).includes('consoles'):c==='all'||p.shopPage===c||(p.shopPages||[]).includes(c));
+const label=id=>categories.find(c=>c[0]===id)?.[1]||'Gaming accessories';
+function inCategory(p,c){
+ if(p.includedOnly||p.addonOnly)return false;
+ if(c==='ps2-consoles')return p.customType==='ps2'||p.consoleOrder===2;
+ if(c==='ps2-fmcb')return p.shopPage==='ps2'&&/\b(?:FMCB|FunTuna|memory card|USB)\b/i.test(p.name);
+ if(c==='new')return p.isNew===true;
+ if(c==='consoles')return p.shopPage!=='gamebox'&&(p.shopPages||[]).includes('consoles');
+ return c==='all'||p.shopPage===c||(p.shopPages||[]).includes(c);
+}
 // CPU model pages share the original complete/manual configurator.
 const CPU_HOME='https://gamesplanet13.github.io/Gamesplanet_in/';
 const cpuCompleteUrl=n=>CPU_HOME+'cpu-complete-setup.html?preset='+Number(n);
@@ -280,8 +288,7 @@ window.GP_APPLY_SHARED_INVENTORY=function(data){
  if($('cartDialog').open)renderCart();
 };
 function mountCategoryBanner(host, category, title){
- const eligible=products.filter(p=>allowed(p)&&p.images?.length&&inCategory(p,category==='ready-cpu'?'cpu':category));
- window.GPProductAd.mount(host,{title,category,eligible});
+ window.GPProductAd.mount(host,{title,category});
 }
 function updateProductAds(){
  const ad=window.GPProductAd;
@@ -300,7 +307,7 @@ function updateProductAds(){
  if(!$('homeView').hidden)mountCategoryBanner($('homeView'),'all','Games Planet');
 }
 const adScript=document.createElement('script');
-adScript.src='https://gamesplanet13.github.io/arcade-accessories-/catalog-ad.js?v=20261122-thumbnails';
+adScript.src='https://gamesplanet13.github.io/arcade-accessories-/catalog-ad.js?v=20261123-approved-banners';
 adScript.addEventListener('load',updateProductAds,{once:true});
 document.head.append(adScript);
 window.addEventListener('hashchange',()=>requestAnimationFrame(updateProductAds));
