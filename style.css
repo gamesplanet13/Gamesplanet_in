@@ -209,3 +209,7 @@ header.store-header{position:sticky;top:0;z-index:4;border-bottom:1px solid #f1f
  #shopView .shop-layout #shopGrid.gp-console-collection{gap:23px 14px}
  #shopGrid.gp-console-collection .product-card+.product-card{padding-top:0;border-top:0}
 }
+
+.gp-console-card .gp-console-price{font-size:clamp(15px,2vw,20px);font-weight:800;line-height:1.2;margin-top:3px;color:var(--ink,#172232)}
+.gp-console-card .gp-console-info{font-size:12px;line-height:1.4;color:#526276;margin:5px 0 0}
+.gp-console-card>.product-title{margin-bottom:2px}

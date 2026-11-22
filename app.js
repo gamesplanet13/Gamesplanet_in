@@ -128,9 +128,19 @@ function originalCard(p){return `<article class="product-card"><a class="product
 function syncCardQuantities(){document.querySelectorAll('[data-card-quantity]').forEach(el=>{el.textContent=cart[key(el.dataset.cardId,el.dataset.cardVariant||'')]?.qty||0})}
 const isConsoleCategory=c=>['consoles','ps2','ps3','ps4','ps5'].includes(c);
 function consoleCard(p){
- return originalCard(p).replace('class="product-card"','class="product-card gp-console-card"');
+ const href=esc(productUrl(p));
+ const price=(p.customType?'From ':'')+money(p.price);
+ const firmware=p.features?.map(feature=>feature.match(/\bFirmware\s+([\d.]+)/i)?.[1]).find(Boolean);
+ const info=[firmware&&'FW '+firmware,p.includedGames?.count&&p.includedGames.count+' games included'].filter(Boolean);
+ return `<article class="product-card gp-console-card">
+  <a class="product-photo" href="${href}" aria-label="${esc(p.name)}">${photo(p)}</a>
+  <a class="product-title" href="${href}">${esc(p.name)}</a>
+  <div class="gp-console-price">${esc(price)}</div>
+  ${info.length?`<p class="gp-console-info">${esc(info.join(' · '))}</p>`:''}
+ </article>`;
 }
 function card(p){
+ if(isConsoleCategory(p.shopPage)||inCategory(p,'consoles'))return consoleCard(p);
  const template=document.createElement('template');template.innerHTML=originalCard(p);
  const article=template.content.firstElementChild,title=article.querySelector('.product-title'),oldPhoto=article.querySelector('.product-photo'),oldRow=article.querySelector('.product-row');
  const vs=variants(p),rows=vs.length?vs:[''];
