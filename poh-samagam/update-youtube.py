@@ -12,9 +12,9 @@ import time
 ROOT=pathlib.Path(__file__).parent
 OUT=ROOT/"youtube-status.json"
 CHANNELS=[
- "https://www.youtube.com/playlist?list=UULVDxFgFt0_TKCKZxnf7KSmNA",
  "https://www.youtube.com/@akaaljisahaitv1313/streams",
- "https://www.youtube.com/channel/UCDxFgFt0_TKCKZxnf7KSmNA/streams"
+ "https://www.youtube.com/channel/UCDxFgFt0_TKCKZxnf7KSmNA/streams",
+ "https://www.youtube.com/playlist?list=UULVDxFgFt0_TKCKZxnf7KSmNA"
 ]
 NOW=datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00","Z")
 try: old=json.loads(OUT.read_text(encoding="utf-8"))
@@ -76,7 +76,8 @@ try:
     completed=[]
     for item in ids[:12]:
         vid=item["id"]
-        if item.get("live_status")=="is_upcoming":continue
+        flat_state=item.get("live_status")
+        if flat_state in ("is_upcoming","upcoming"):continue
         try:
             v=query("https://www.youtube.com/watch?v="+vid)
             if not video_id(v):continue
@@ -84,16 +85,22 @@ try:
             if live=="is_live":
                 status["live"]=normalize(v)
                 continue
-            # Only items found on the channel's dedicated Streams tab are
-            # eligible for past-livestream replay (not ordinary videos).
+            if live in ("is_upcoming","upcoming"):continue
+            # These IDs were taken ONLY from the channel's dedicated
+            # Streams tab / UULV livestream playlist. YouTube sometimes
+            # reports a completed stream with an empty live_status.
             if live in ("was_live","post_live") or v.get("was_live") is True or (
-                live not in ("is_live","is_upcoming") and (v.get("duration") or 0)>600
+                (v.get("duration") or 0)>0 and live not in ("is_live","is_upcoming")
             ):
                 completed.append(normalize(v))
         except Exception as exc:
             print("Cannot inspect",vid,str(exc)[:130])
-            if item.get("live_status") in ("was_live","post_live"):
-                completed.append({"videoId":vid,"title":item.get("title") or "Past livestream","date":None})
+            # When the detailed video endpoint is rate-limited, retain a
+            # candidate proven to belong to the livestream-only list.
+            if flat_state not in ("is_live","is_upcoming","upcoming"):
+                when=item.get("date")
+                date=when[:4]+"-"+when[4:6]+"-"+when[6:8]+"T00:00:00Z" if isinstance(when,str) and len(when)==8 else None
+                completed.append({"videoId":vid,"title":item.get("title") or "Past livestream","date":date})
     if completed:
         completed.sort(key=lambda x:x.get("date") or "",reverse=True)
         status["recorded"]=completed[0]
