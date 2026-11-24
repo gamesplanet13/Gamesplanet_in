@@ -39,13 +39,13 @@ jobs:
       - name: Fail closed if original certificate is no longer available
         if: steps.signing.outputs.cache-hit != 'true'
         run: |
-          if [ -f poh-samagam/apk/Safar-e-Shahadat-2026-1.apk ]; then
+          if ls poh-samagam/apk/Safar-e-Shahadat-2026-*.apk >/dev/null 2>&1; then
             echo "::error::Signing cache expired. Refusing to publish an APK signed with a new key. Configure persistent release signing."
             exit 1
           fi
       - name: Build installable APK
         working-directory: safar-e-shahadat-2026-android
-        run: gradle --no-daemon :app:assembleDebug
+        run: gradle --no-daemon :app:assembleDebug -PappVersionCode=${{ github.run_number }}
       - name: Save original signing certificate cache
         if: steps.signing.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
