@@ -57,7 +57,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleHi": "स. जयदीप सिंह जी के घर, गुरुद्वारा गुरु नानक दरबार वाली गली",
     "address": "",
     "timeNote": "9:00–11:00 PM",
-    "map": "",
+    "map": "https://maps.app.goo.gl/LDWhGozb4roMhUdF9?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
