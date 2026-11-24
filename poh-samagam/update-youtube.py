@@ -12,6 +12,7 @@ import time
 ROOT=pathlib.Path(__file__).parent
 OUT=ROOT/"youtube-status.json"
 CHANNELS=[
+ "https://www.youtube.com/playlist?list=UULVDxFgFt0_TKCKZxnf7KSmNA",
  "https://www.youtube.com/@akaaljisahaitv1313/streams",
  "https://www.youtube.com/channel/UCDxFgFt0_TKCKZxnf7KSmNA/streams"
 ]
