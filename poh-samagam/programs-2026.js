@@ -457,7 +457,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleHi": "गुरुद्वारा गुरु नानक दरबार — स. गुरजीत सिंह जी (सोनू वीर जी), आधार कार्ड वालों की ओर से",
     "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
     "timeNote": "9:00–11:00 PM",
-    "map": "",
+    "map": "https://maps.app.goo.gl/9So7e1LeuB2wVT2S8?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
