@@ -1,63 +1,88 @@
 #!/usr/bin/env python3
-"""Update last completed livestream and currently broadcasting video for Akaal Ji Sahai TV.
-Non-authoritative YouTube extraction; failure preserves last recorded entry.
+"""Discover current and last completed livestream, retaining last verified recording.
+YouTube's /streams tab is the primary source; never claim ordinary uploads are live recordings.
 """
-import json, subprocess, datetime, pathlib, sys
+import json
+import subprocess
+import datetime
+import pathlib
+import sys
+import time
 
-OUT=pathlib.Path(__file__).with_name("youtube-status.json")
-CHANNEL="https://www.youtube.com/@akaaljisahaitv1313/streams"
-now=datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+ROOT=pathlib.Path(__file__).parent
+OUT=ROOT/"youtube-status.json"
+CHANNELS=[
+ "https://www.youtube.com/@akaaljisahaitv1313/streams",
+ "https://www.youtube.com/channel/UCDxFgFt0_TKCKZxnf7KSmNA/streams"
+]
+NOW=datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+try: old=json.loads(OUT.read_text(encoding="utf-8"))
+except (FileNotFoundError,ValueError): old={}
+status={"checkedAt":NOW,"live":None,"recorded":old.get("recorded"),"status":"unavailable","message":""}
+def query(url,flat=False,limit=12):
+    cmd=[sys.executable,"-m","yt_dlp","--dump-single-json","--skip-download","--ignore-errors","--no-warnings","--socket-timeout","20","--retries","2"]
+    if flat:cmd+=["--flat-playlist","--playlist-items",f"1:{limit}"]
+    else:cmd+=["--no-playlist"]
+    cmd.append(url)
+    proc=subprocess.run(cmd,capture_output=True,text=True,timeout=130)
+    if not proc.stdout.strip():raise RuntimeError((proc.stderr or "No YouTube response")[-600:])
+    try:return json.loads(proc.stdout)
+    except ValueError as e:raise RuntimeError("Invalid YouTube response") from e
+
+def video_id(entry):
+    vid=entry.get("id")
+    if isinstance(vid,str) and len(vid)==11:return vid
+    return None
+
+def normalize(data):
+    when=data.get("release_timestamp") or data.get("timestamp")
+    if when:
+        when=datetime.datetime.fromtimestamp(when,datetime.timezone.utc).isoformat().replace("+00:00","Z")
+    elif data.get("release_date") or data.get("upload_date"):
+        v=data.get("release_date") or data.get("upload_date")
+        when=f"{v[:4]}-{v[4:6]}-{v[6:]}T00:00:00Z" if len(v)==8 else None
+    else:when=None
+    return {"videoId":data["id"],"title":data.get("title") or "Akaal Ji Sahai TV","date":when}
+
+def candidates():
+    result=[]
+    errors=[]
+    for channel in CHANNELS:
+        try:
+            listing=query(channel,flat=True,limit=15)
+            for item in listing.get("entries") or []:
+                if item and video_id(item) and video_id(item) not in result:result.append(video_id(item))
+            if result:break
+        except Exception as exc:errors.append(str(exc)[:180])
+    if not result:raise RuntimeError("; ".join(errors) or "No publicly accessible streams")
+    return result
+
 try:
-    old=json.loads(OUT.read_text(encoding="utf-8"))
-except (FileNotFoundError,ValueError):
-    old={}
-status={"checkedAt":now,"live":None,"recorded":old.get("recorded"),"status":"unavailable"}
-def extract(url, flat=False):
-    args=[sys.executable,"-m","yt_dlp","-J","--no-warnings","--no-playlist","--skip-download",url]
-    if flat: args += ["--flat-playlist","--playlist-items","1:12"]
-    else: args += ["--socket-timeout","12"]
-    p=subprocess.run(args,capture_output=True,text=True,timeout=100)
-    if p.returncode: raise RuntimeError(p.stderr[-550:])
-    return json.loads(p.stdout)
-def candidate(entry):
-    vid=entry.get("id") or entry.get("url","").split("v=")[-1]
-    if not isinstance(vid,str) or len(vid)!=11: return None
-    return vid
-def normalize(v):
-    date=v.get("release_timestamp") or v.get("timestamp")
-    if date:
-        date=datetime.datetime.fromtimestamp(date,datetime.timezone.utc).isoformat().replace("+00:00","Z")
-    elif v.get("upload_date") and len(v["upload_date"])==8:
-        d=v["upload_date"];date=f"{d[:4]}-{d[4:6]}-{d[6:]}T00:00:00Z"
-    else: date=None
-    return {"videoId":v["id"],"title":v.get("title") or "Akaal Ji Sahai TV","date":date}
-try:
-    # Process actual /streams tab, not the general channel videos (so fallback is a recorded LIVE).
-    args=[sys.executable,"-m","yt_dlp","-J","--flat-playlist","--playlist-items","1:12","--skip-download","--no-warnings",CHANNEL]
-    p=subprocess.run(args,capture_output=True,text=True,timeout=110)
-    if p.returncode: raise RuntimeError(p.stderr[-700:])
-    listing=json.loads(p.stdout)
-    entries=listing.get("entries") or []
-    complete=[]
-    for item in entries[:8]:
-        if not item: continue
-        vid=candidate(item)
-        if not vid: continue
-        try: meta=extract("https://www.youtube.com/watch?v="+vid)
-        except Exception as err: print("skip",vid,str(err)[:150]);continue
-        state=meta.get("live_status")
-        if state=="is_live":
-            status["live"]=normalize(meta)
-        elif state in ("was_live","post_live") or (meta.get("was_live") and state=="not_live"):
-            complete.append(normalize(meta))
-        if status["live"] and complete: break
-    if complete:
-        # Stream tab entries usually newest first; prefer actual timestamps where available.
-        complete.sort(key=lambda x:x.get("date") or "",reverse=True)
-        status["recorded"]=complete[0]
-    status["status"]="ok"
-except Exception as err:
-    print("YouTube check failed:",str(err)[:500])
-# Persist last recorded stream; don't falsely label an old Live as currently live.
+    ids=candidates()
+    completed=[]
+    for vid in ids[:12]:
+        try:
+            v=query("https://www.youtube.com/watch?v="+vid)
+            if not video_id(v):continue
+            live=v.get("live_status")
+            if live=="is_live":
+                status["live"]=normalize(v)
+                continue
+            # /streams can include upcoming streams. Never use those as a recording.
+            if live in ("was_live","post_live") or v.get("was_live") is True:
+                completed.append(normalize(v))
+        except Exception as exc:
+            print("Cannot inspect",vid,str(exc)[:130])
+    if completed:
+        completed.sort(key=lambda x:x.get("date") or "",reverse=True)
+        status["recorded"]=completed[0]
+    if status["recorded"] or status["live"]:
+        status["status"]="ok"
+    else:
+        status["message"]="Stream tab read but no verified completed recordings identified"
+except Exception as exc:
+    status["message"]=str(exc)[:250]
+    print("YouTube discovery issue:",status["message"])
+# Keep verified recording during network failures, but no unverified 'currently live' status.
 OUT.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(status,ensure_ascii=False))
