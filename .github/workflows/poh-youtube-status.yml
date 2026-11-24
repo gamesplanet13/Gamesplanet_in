@@ -1,5 +1,10 @@
 name: Refresh Poh Samagam YouTube Live Status
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'poh-samagam/update-youtube.py'
+      - '.github/workflows/poh-youtube-status.yml'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
