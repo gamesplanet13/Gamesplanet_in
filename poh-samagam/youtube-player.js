@@ -5,9 +5,9 @@
  if(!player||!badge||!date)return;
  const lang=()=> $('lang')?.value||'en';
  const tr={
- en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Previously streamed',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator'},
- pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ'},
- hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो'}
+ en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator'},
+ pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ'},
+ hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो'}
  };
  let data=null,manual='',shown='';
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
@@ -33,7 +33,7 @@
   let time=entry?.date||'';
   if(time){
     let parsed=new Date(time);
-    date.textContent=Number.isNaN(parsed.getTime())?'':w.date+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(parsed);
+    date.textContent=Number.isNaN(parsed.getTime())?'':(kind==='live'?w.started:w.date)+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(parsed);
   }else date.textContent='';
   if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
   if(id&&id!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0';shown=id}
