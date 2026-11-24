@@ -1,0 +1,43 @@
+name: Import final approved Safar-e-Shahadat 2026 poster
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/poh-approved-banner-final.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Save approved poster and blurred theme backdrop
+        env:
+          APPROVED_IMAGE: 'https://d2jqrm6oza8nb6.cloudfront.net/datasets/6bccbf53-59ba-4dbe-9a85-70d508a2f977.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiOGI3ZDk2OTk4MTRhN2M0MiIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY4NDM3N30.yKuFGCdyvpQ6yNwaNQccuRhF3zadEi6NpCrLs81xbGU'
+        run: |
+          set -eu
+          mkdir -p poh-samagam/assets
+          curl -fL --retry 3 --max-time 65 "$APPROVED_IMAGE" -o /tmp/approved.png
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image, ImageFilter
+          img=Image.open('/tmp/approved.png').convert('RGB')
+          assert img.width >= 1200, img.size
+          img.save('poh-samagam/assets/safare-final-2026.webp','WEBP',quality=92,method=6)
+          background=img.copy()
+          background.thumbnail((1360,900))
+          background=background.filter(ImageFilter.GaussianBlur(18))
+          background.save('poh-samagam/assets/safare-final-2026-blur.webp','WEBP',quality=78,method=6)
+          print('Images saved',img.size)
+          PY
+      - name: Commit both images
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add poh-samagam/assets/safare-final-2026.webp poh-samagam/assets/safare-final-2026-blur.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish final approved Safar-e-Shahadat artwork'
+            git pull --rebase
+            git push
+          fi
