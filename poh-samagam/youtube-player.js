@@ -2,7 +2,7 @@
 (()=>{
   const $=id=>document.getElementById(id);
   const frame=$('liveFrame'),badge=$('videoStatus'),date=$('videoDate'),title=$('videoTitle');
-  const lamp=$('verifiedLiveLamp'),sound=$('liveSoundButton'),unavailable=$('videoUnavailable');
+  const lamp=$('verifiedLiveLamp'),sound=$('liveSoundButton'),unavailable=$('videoUnavailable'),fallback=$('videoFallback'),fallbackMsg=$('videoFallbackMessage');
   if(!frame||!badge||!date)return;
   const channel='https://www.youtube.com/@akaaljisahaitv1313/streams';
   const copy={
@@ -59,6 +59,7 @@
       return;
     }
     active=key;soundEnabled=false;
+    if(fallback){fallback.classList.toggle('hidden',choice.type!=='unavailable');if(fallbackMsg&&choice.type==='unavailable')fallbackMsg.textContent=language()==='pa'?'ਇਸ ਵੇਲੇ Live ਜਾਂ ਪਿਛਲੀ Live recording ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ':language()==='hi'?'अभी लाइव या पिछली लाइव रिकॉर्डिंग की पुष्टि नहीं हुई':'Live or last livestream could not be confirmed'}
     if(choice.type==='unavailable'){
       frame.classList.add('hidden');
       frame.removeAttribute('src');
