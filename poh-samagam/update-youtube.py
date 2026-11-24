@@ -67,7 +67,11 @@ try:
             status["live"]=normalize(current)
     except Exception as exc:
         print("Direct live lookup failed:",str(exc)[:140])
-    ids=candidates()
+    try:
+        ids=candidates()
+    except Exception as exc:
+        print('Livestream history lookup failed:',str(exc)[:180])
+        ids=[]
     completed=[]
     for vid in ids[:12]:
         try:
