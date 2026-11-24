@@ -60,15 +60,15 @@
     }
     active=key;soundEnabled=false;
     if(fallback){fallback.classList.toggle('hidden',choice.type!=='unavailable');if(fallbackMsg&&choice.type==='unavailable')fallbackMsg.textContent=language()==='pa'?'ਇਸ ਵੇਲੇ Live ਜਾਂ ਪਿਛਲੀ Live recording ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ':language()==='hi'?'अभी लाइव या पिछली लाइव रिकॉर्डिंग की पुष्टि नहीं हुई':'Live or last livestream could not be confirmed'}
-    // Keep the video window visible even when metadata extraction fails.
-    // The channel live-only embed is a playback attempt, not proof of LIVE.
-    // Do not remove the frame or hide its video area.
-    frame.classList.remove('hidden');
+    // Keep the VIDEO SLOT visible. Without a verified live or archived video
+    // ID do not embed a broken channel-level /live_stream endpoint.
+    // Use the single in-window fallback, never a duplicate action below it.
     if(choice.type==='unavailable'){
-      const url='https://www.youtube.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&autoplay=0&playsinline=1&rel=0';
-      if(frame.src!==url)frame.src=url;
+      frame.classList.add('hidden');
+      frame.removeAttribute('src');
       return;
     }
+    frame.classList.remove('hidden');
     const autoplay=choice.type==='live'&&visible;
     if(autoplay)autoplayStarted=true;
     const params=new URLSearchParams({rel:'0',playsinline:'1',enablejsapi:'1',origin:location.origin,autoplay:autoplay?'1':'0',mute:autoplay?'1':'0'});
