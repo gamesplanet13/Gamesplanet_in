@@ -22,7 +22,9 @@
  };
  function draw(){
   const L=lang(),w=tr[L]||tr.en;
-  const isLive=data?.status==='ok'&&valid(data?.live?.videoId);
+  const checked=Date.parse(data?.checkedAt||'');
+  const fresh=Number.isFinite(checked)&&Date.now()-checked>=0&&Date.now()-checked<20*60*1000;
+  const isLive=fresh&&data?.status==='ok'&&valid(data?.live?.videoId);
   const entry=isLive?data.live:(valid(data?.recorded?.videoId)?data.recorded:null);
   const custom=getId(manual);
   const id=entry?.videoId||custom;
@@ -30,14 +32,17 @@
   const kind=isLive?'live':entry?'recorded':custom?'manual':'latest';
   badge.textContent=kind==='live'?w.live:kind==='recorded'?w.recorded:kind==='manual'?w.manual:w.latest;
   badge.dataset.kind=kind;
+  badge.setAttribute('aria-live','polite');
+  const liveLamp=$('verifiedLiveLamp');
+  if(liveLamp){liveLamp.hidden=!isLive;liveLamp.textContent=isLive?({pa:'🔴 ਲਾਈਵ ਚੱਲ ਰਿਹਾ ਹੈ',hi:'🔴 लाइव चल रहा है',en:'🔴 LIVE AVAILABLE'})[L]:''}
   let time=entry?.date||'';
   if(time){
     let parsed=new Date(time);
     date.textContent=Number.isNaN(parsed.getTime())?'':(kind==='live'?w.started:w.date)+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(parsed);
   }else date.textContent='';
   if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
-  if(id&&id!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0';shown=id}
-  if(!id&&shown!=='livestreams'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UULVDxFgFt0_TKCKZxnf7KSmNA';shown='livestreams'}
+  if(id){const key=kind+':'+id;if(key!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1'+(isLive?'&autoplay=1&mute=1':'&autoplay=0');shown=key}}
+  if(!id&&shown!=='livestreams'){player.src='https://www.youtube-nocookie.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&autoplay=0&playsinline=1';shown='livestreams'}
   $('videoUnavailable')?.classList.add('hidden');
  }
  async function sync(){
