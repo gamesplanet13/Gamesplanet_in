@@ -1,0 +1,395 @@
+{
+  "year": 2026,
+  "programs": [
+    {
+      "date": "2026-11-19",
+      "time": "",
+      "titlePa": "ਬਰੇਲੀ ਸਮਾਗਮ",
+      "titleHi": "बरेली समागम",
+      "titleEn": "Bareilly Samagam",
+      "timeNote": "",
+      "address": "Bareilly, Uttar Pradesh",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-11-26",
+      "time": "21:00",
+      "titlePa": "ਸ. ਗੁਰਜੀਤ ਸਿੰਘ ਅਹੂਜਾ ਜੀ ਦੇ ਘਰ ਵਿਖੇ",
+      "titleHi": "स. गुरजीत सिंह अहूजा जी के घर",
+      "titleEn": "Gurjeet Singh Ahuja Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-11-27",
+      "time": "21:00",
+      "titlePa": "ਵਿਸ਼ੇਸ਼ ਕੀਰਤਨ ਦੀਵਾਨ — ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ; ਭਾਈ ਸਰਬਜੀਤ ਸਿੰਘ ਜੀ ਪਟਨਾ ਸਾਹਿਬ ਵਾਲੇ",
+      "titleHi": "विशेष कीर्तन दीवान — गुरुद्वारा संत भाई जी बाबा जी; भाई सरबजीत सिंह जी पटना साहिब वाले",
+      "titleEn": "Special Kirtan Diwan — Gurdwara Sant Bhai Ji Baba Ji; Bhai Sarabjeet Singh Ji, Patna Sahib",
+      "timeNote": "9:00–10:30 PM",
+      "address": "ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "21:00",
+      "titlePa": "ਸ. ਜੈਦੀਪ ਸਿੰਘ ਜੀ ਦੇ ਘਰ, ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਵਾਲੀ ਗਲੀ",
+      "titleHi": "स. जयदीप सिंह जी के घर, गुरुद्वारा गुरु नानक दरबार वाली गली",
+      "titleEn": "Jaideep Singh Ji — at home, Gurdwara Guru Nanak Darbar lane",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-11-29",
+      "time": "21:00",
+      "titlePa": "ਸ. ਜਸਮੀਤ ਸਿੰਘ ਰੂਬਲ ਵੀਰ ਜੀ ਦੇ ਘਰ ਵਿਖੇ",
+      "titleHi": "स. जस्मीत सिंह रूबल वीर जी के घर",
+      "titleEn": "Jasmeet Singh Rubal Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-11-30",
+      "time": "21:00",
+      "titlePa": "ਬਬਲੂ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਅਹੂਜਾ ਸਵੀਟਸ ਦੇ ਨਾਲ, ਜਗਮੋਹਨ ਸਿੰਘ ਜੀ ਨਿਮਾਣਾ ਜੀ ਦੀ ਗਲੀ",
+      "titleHi": "बबलू वीर जी के घर, अहूजा स्वीट्स के पास, जगमोहन सिंह जी निमाणा जी की गली",
+      "titleEn": "Bablu Veer Ji — beside Ahuja Sweets, Jagmohan Singh Ji Nimana lane",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-01",
+      "time": "21:00",
+      "titlePa": "ਮੰਨੂ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਫਰਸ਼ਖਾਨਾ",
+      "titleHi": "मन्नू वीर जी के घर, फराशखाना",
+      "titleEn": "Mannu Veer Ji — at home, Farashkhana",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-02",
+      "time": "21:00",
+      "titlePa": "ਸ. ਅਮਰਦੀਪ ਸਿੰਘ ਜੀ (ਸੰਨੀ ਵੀਰ ਜੀ) ਦੇ ਘਰ ਵਿਖੇ",
+      "titleHi": "स. अमरदीप सिंह जी (सन्नी वीर जी) के घर",
+      "titleEn": "Amardeep Singh Ji (Sunny Veer Ji) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-03",
+      "time": "21:00",
+      "titlePa": "ਰੌਕੀ ਵੀਰ ਜੀ ਅਤੇ ਸ਼ੇਰੂ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਚਰਨ ਮਾਸੀ ਜੀ ਦੀ ਗਲੀ",
+      "titleHi": "रॉकी वीर जी और शेरू वीर जी के घर, चरण मासी जी की गली",
+      "titleEn": "Rocky Veer Ji and Sheru Veer Ji — Charan Masi Ji lane",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-04",
+      "time": "21:00",
+      "titlePa": "ਸ. ਇੰਦਰਜੀਤ ਸਿੰਘ ਜੀ, ਸ. ਕਰਮਜੀਤ ਸਿੰਘ ਜੀ ਅਤੇ ਸ. ਨਿਰਵੈਰ ਸਿੰਘ ਜੀ ਦੇ ਘਰ ਵਿਖੇ",
+      "titleHi": "स. इंदरजीत सिंह जी, स. करमजीत सिंह जी और स. निरवैर सिंह जी के घर",
+      "titleEn": "Inderjeet Singh Ji, Karamjeet Singh Ji and Nirvair Singh Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-05",
+      "time": "22:00",
+      "titlePa": "ਰੈਣ ਸਬਾਈ 01 — ਸ. ਨਰਿੰਦਰ ਸਿੰਘ ਜੀ ਅਤੇ ਭੈਣ ਮੋਨੀਆ ਜੀ ਦੇ ਘਰ, ਗੁਰਦੁਆਰਾ ਸ੍ਰੀ ਗੁਰੂ ਸਿੰਘ ਸਭਾ ਦੇ ਪਿੱਛੇ, ਕ੍ਰਿਸ਼ਨਾ ਕਾਲੋਨੀ",
+      "titleHi": "रैण सबाई 01 — स. नरिंदर सिंह जी एवं बहन मोनिया जी के घर, गुरुद्वारा श्री गुरु सिंह सभा के पीछे, कृष्णा कॉलोनी",
+      "titleEn": "Rain Sabai 01 — Narinder Singh Ji and Bhen Monia Ji; behind Gurdwara Sri Guru Singh Sabha, Krishna Colony",
+      "timeNote": "10:00 PM–3:00 AM (next day)",
+      "address": "",
+      "occasionEn": "Rain Sabai"
+    },
+    {
+      "date": "2026-12-06",
+      "time": "21:00",
+      "titlePa": "ਸ. ਭੁਪਿੰਦਰ ਸਿੰਘ ਜੀ ਨਰੂਲਾ ਅਤੇ ਰੂਬਲ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਰਾਧਾ ਰੋਡ, ਕ੍ਰਿਸ਼ਨਾ ਹੋਟਲ ਦੇ ਨਾਲ",
+      "titleHi": "स. भूपिंदर सिंह जी नरूला और रूबल वीर जी के घर, राधा रोड, कृष्णा होटल के पास",
+      "titleEn": "Bhupinder Singh Ji Narula and Rubal Veer Ji — Radha Road, beside Krishna Hotel",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-07",
+      "time": "21:00",
+      "titlePa": "ਸ. ਗੁਰਬਚਨ ਸਿੰਘ ਜੀ (ਗੁਲਾਟੀ ਚਸ਼ਮੇ ਵਾਲੇ), ਅਮਨ ਵੀਰ ਜੀ ਅਤੇ ਰੌਣਕ ਵੀਰ ਦੇ ਘਰ",
+      "titleHi": "स. गुरबचन सिंह जी (गुलाटी चश्मे वाले), अमन वीर जी और रौनक वीर जी के घर",
+      "titleEn": "Gurbachan Singh Ji (Gulati Chashme Wale), Aman Veer Ji and Raunak Veer Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-08",
+      "time": "21:00",
+      "titlePa": "ਸ. ਰਾਜਵੰਤ ਸਿੰਘ ਜੀ ਅਤੇ ਸ. ਤਰਨਜੀਤ ਸਿੰਘ ਜੀ (ਡਿੰਪੀ ਵੀਰ ਜੀ) ਦੇ ਘਰ",
+      "titleHi": "स. राजवंत सिंह जी और स. तरनजीत सिंह जी (डिम्पी वीर जी) के घर",
+      "titleEn": "Rajwant Singh Ji and Taranjeet Singh Ji (Dimpy Veer Ji) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-09",
+      "time": "21:00",
+      "titlePa": "ਸ. ਗੁਰਬਚਨ ਸਿੰਘ ਜੀ ਪਰਦੇਸੀ ਦੇ ਘਰ, ਗੁਰੂ ਨਾਨਕ ਰੋਡ, ਹੋਟਲ ਜਾਇੰਟਾ ਪੰਜਾਬ ਦੇ ਨੇੜੇ",
+      "titleHi": "स. गुरबचन सिंह जी परदेसी के घर, गुरु नानक रोड, होटल जायंटा पंजाब के पास",
+      "titleEn": "Gurbachan Singh Ji Pardesi — Guru Nanak Road, near Hotel Jayanta Punjab",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-10",
+      "time": "21:00",
+      "titlePa": "ਆਸ਼ਾ ਆਂਟੀ ਜੀ ਅਤੇ ਵੀਰ ਤੇਜਵੀਰ ਸਿੰਘ ਜੀ ਦੇ ਘਰ, ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਕੋਲ",
+      "titleHi": "आशा आंटी जी और वीर तेजवीर सिंह जी के घर, गुरुद्वारा संत भाई जी बाबा जी के पास",
+      "titleEn": "Asha Aunty Ji and Tejveer Singh Ji — near Gurdwara Sant Bhai Ji Baba Ji",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-11",
+      "time": "21:00",
+      "titlePa": "ਵੀਰ ਮਨਦੀਪ ਸਿੰਘ ਜੀ, ਮੰਨੀ ਮੋਬਾਈਲ ਵਾਲਿਆਂ ਦੇ ਘਰ",
+      "titleHi": "वीर मनदीप सिंह जी, मन्नी मोबाइल वालों के घर",
+      "titleEn": "Mandeep Singh Ji (Manni Mobile) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-12",
+      "time": "22:00",
+      "titlePa": "ਰੈਣ ਸਬਾਈ 02 — ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਵਿਖੇ",
+      "titleHi": "रैण सबाई 02 — गुरुद्वारा गुरु नानक दरबार",
+      "titleEn": "Rain Sabai 02 — Gurdwara Guru Nanak Darbar",
+      "timeNote": "10:00 PM–3:00 AM (next day)",
+      "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Rain Sabai"
+    },
+    {
+      "date": "2026-12-13",
+      "time": "",
+      "titlePa": "ਸ਼ਹੀਦੀ ਪੁਰਬ — ਸ੍ਰੀ ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਸਾਹਿਬ ਜੀ (13–14 ਦਸੰਬਰ)",
+      "titleHi": "शहीदी पर्व — श्री गुरु तेग बहादुर साहिब जी (13–14 दिसंबर)",
+      "titleEn": "Shaheedi Purab — Sri Guru Tegh Bahadur Sahib Ji (13–14 December)",
+      "timeNote": "",
+      "address": "",
+      "occasionEn": "Special Samagam"
+    },
+    {
+      "date": "2026-12-14",
+      "time": "",
+      "titlePa": "ਸ਼ਹੀਦੀ ਪੁਰਬ — ਸ੍ਰੀ ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਸਾਹਿਬ ਜੀ (ਦੂਜਾ ਦਿਨ)",
+      "titleHi": "शहीदी पर्व — श्री गुरु तेग बहादुर साहिब जी (दूसरा दिन)",
+      "titleEn": "Shaheedi Purab — Sri Guru Tegh Bahadur Sahib Ji (continuation)",
+      "timeNote": "",
+      "address": "",
+      "occasionEn": "Special Samagam"
+    },
+    {
+      "date": "2026-12-15",
+      "time": "21:00",
+      "titlePa": "ਕਟਘਰ ਗੁਰਦੁਆਰਾ ਸਾਹਿਬ, ਮੁਰਾਦਾਬਾਦ",
+      "titleHi": "कटघर गुरुद्वारा साहिब, मुरादाबाद",
+      "titleEn": "Kathghar Gurdwara Sahib, Moradabad",
+      "timeNote": "9:00–11:00 PM",
+      "address": "ਕਟਘਰ ਗੁਰਦੁਆਰਾ ਸਾਹਿਬ, ਕਟਘਰ, ਮੁਰਾਦਾਬਾਦ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-16",
+      "time": "21:00",
+      "titlePa": "ਸ. ਮਨਜੀਤ ਸਿੰਘ ਜੀ (ਸਿੰਪਲ ਵੀਰ ਜੀ), ਭੈਣ ਕੈਮੀ ਜੀ, ਇਸਮਾਈਲੀ–ਅਗਮ ਦੇ ਘਰ",
+      "titleHi": "स. मनजीत सिंह जी (सिंपल वीर जी), बहन कैमी जी, इस्माइली–अगम के घर",
+      "titleEn": "Manjeet Singh Ji (Simple Veer Ji), Bhen Kaimi Ji, Ismaili–Agam — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-17",
+      "time": "21:00",
+      "titlePa": "ਮਾਤਾ ਸਵਰਨ ਕੌਰ ਜੀ, ਸ. ਸੁਰਜੀਤ ਸਿੰਘ ਜੀ ਅਤੇ ਵੀਰ ਗੁਨਦੀਪ ਸਿੰਘ ਜੀ ਦੇ ਘਰ, ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਵਾਲੀ ਗਲੀ",
+      "titleHi": "माता स्वर्ण कौर जी, स. सुरजीत सिंह जी और वीर गुनदीप सिंह जी के घर, गुरुद्वारा गुरु नानक दरबार वाली गली",
+      "titleEn": "Mata Swaran Kaur Ji, Surjeet Singh Ji and Gundeep Singh Ji — Gurdwara Guru Nanak Darbar lane",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-18",
+      "time": "21:00",
+      "titlePa": "ਸ. ਨਰਿੰਦਰ ਸਿੰਘ ਜੀ (ਬਿੱਟੂ ਵੀਰ ਜੀ), ਵੀਰ ਗੁਰਕੀਰਤ ਸਿੰਘ ਦੇ ਘਰ",
+      "titleHi": "स. नरिंदर सिंह जी (बिट्टू वीर जी), वीर गुरकीरत सिंह के घर",
+      "titleEn": "Narinder Singh Ji (Bittu Veer Ji), Gurkeerat Singh Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-19",
+      "time": "",
+      "titlePa": "ਵਿਸ਼ਰਾਮ — ਅਗਲੇ ਦਿਨ ਦੇ ਅੰਮ੍ਰਿਤ ਵੇਲੇ ਸਮਾਗਮ ਦੀ ਤਿਆਰੀ",
+      "titleHi": "विश्राम — अगले दिन के अमृत वेला समागम की तैयारी",
+      "titleEn": "Rest — preparation for next morning's Amrit Vela",
+      "timeNote": "",
+      "address": "",
+      "occasionEn": "Rest"
+    },
+    {
+      "date": "2026-12-20",
+      "time": "02:30",
+      "titlePa": "ਅੰਮ੍ਰਿਤ ਵੇਲਾ — ਪਰਿਵਾਰ ਵਿਛੋੜਾ / ਬੇੜਾ ਪਾਰ ਸਮਾਗਮ; ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਤੋਂ ਰਵਾਨਗੀ",
+      "titleHi": "अमृत वेला — परिवार विछोड़ा / बेड़ा पार समागम; गुरुद्वारा गुरु नानक दरबार से प्रस्थान",
+      "titleEn": "Amrit Vela — Parivar Vichhora / Beda Paar Samagam; gather at Gurdwara Guru Nanak Darbar",
+      "timeNote": "2:30–6:00 AM",
+      "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Amrit Vela"
+    },
+    {
+      "date": "2026-12-20",
+      "time": "21:00",
+      "titlePa": "ਸ. ਅਜੀਤ ਸਿੰਘ ਜੀ, ਜੀਤੂ ਵੀਰ ਜੀ ਅਤੇ ਗੁੜੀਆ ਭੈਣ ਜੀ ਦੇ ਘਰ, ਮੰਨੂ ਵੀਰ ਜੀ ਅਚਾਰ ਵਾਲੀ ਗਲੀ",
+      "titleHi": "स. अजीत सिंह जी, जीतू वीर जी और गुड़िया बहन जी के घर, मन्नू वीर जी अचार वाली गली",
+      "titleEn": "Ajit Singh Ji, Jeetu Veer Ji and Gudiya Bhen Ji — Manno Veer Ji Achar lane",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-21",
+      "time": "21:00",
+      "titlePa": "ਸ. ਰਿਪਨਜੀਤ ਸਿੰਘ ਜੀ, ਬੱਬੂ ਵੀਰ ਜੀ (13–13 ਵਾਲੇ) ਦੇ ਘਰ",
+      "titleHi": "स. रिपनजीत सिंह जी, बब्बू वीर जी (13–13 वाले) के घर",
+      "titleEn": "Ripanjeet Singh Ji and Babbu Veer Ji (13–13 Wale) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-22",
+      "time": "21:00",
+      "titlePa": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ — ਸ. ਗੁਰਜੀਤ ਸਿੰਘ ਜੀ (ਸੋਨੂ ਵੀਰ ਜੀ), ਆਧਾਰ ਕਾਰਡ ਵਾਲਿਆਂ ਵੱਲੋਂ",
+      "titleHi": "गुरुद्वारा गुरु नानक दरबार — स. गुरजीत सिंह जी (सोनू वीर जी), आधार कार्ड वालों की ओर से",
+      "titleEn": "Gurdwara Guru Nanak Darbar — by Gurjeet Singh Ji (Sonu Veer Ji), Aadhaar Card Wale",
+      "timeNote": "9:00–11:00 PM",
+      "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-23",
+      "time": "21:00",
+      "titlePa": "ਸ. ਸਤਿੰਦਰ ਸਿੰਘ ਜੀ ਅਹੂਜਾ (ਚਿੰਨੇ ਅੰਕਲ ਜੀ) ਦੇ ਘਰ",
+      "titleHi": "स. सतिंदर सिंह जी अहूजा (चिन्ने अंकल जी) के घर",
+      "titleEn": "Satinder Singh Ji Ahuja (Chinne Uncle Ji) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-24",
+      "time": "21:00",
+      "titlePa": "ਸ. ਮਨੋਹਰ ਸਿੰਘ ਜੀ ਅਤੇ ਸ. ਜੈਦੀਪ ਸਿੰਘ ਜੀ (ਗਿਫ਼ਟੀ ਵੀਰ ਜੀ) ਦੇ ਘਰ, ਖਾਲਸਾ ਮੁਹੱਲਾ",
+      "titleHi": "स. मनोहर सिंह जी और स. जयदीप सिंह जी (गिफ्टी वीर जी) के घर, खालसा मोहल्ला",
+      "titleEn": "Manohar Singh Ji and Jaideep Singh Ji (Gifty Veer Ji) — Khalsa Mohalla",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-25",
+      "time": "03:00",
+      "titlePa": "ਅੰਮ੍ਰਿਤ ਵੇਲਾ — ਅਹਿਸਾਸ-ਏ-ਠੰਢ ਬੁਰਜ ਸਮਾਗਮ, ਗੁਰਦੁਆਰਾ ਕਲਗੀਧਰ ਸਾਹਿਬ, ਖਾਲਸਾ ਮੁਹੱਲਾ",
+      "titleHi": "अमृत वेला — एहसास-ए-ठंड बुर्ज समागम, गुरुद्वारा कलगीधर साहिब, खालसा मोहल्ला",
+      "titleEn": "Amrit Vela — Ehsaas-e-Thand Burj Samagam, Gurdwara Kalgidhar Sahib, Khalsa Mohalla",
+      "timeNote": "3:00–6:00 AM",
+      "address": "ਗੁਰਦੁਆਰਾ ਕਲਗੀਧਰ ਸਾਹਿਬ, ਖਾਲਸਾ ਮੁਹੱਲਾ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Amrit Vela"
+    },
+    {
+      "date": "2026-12-25",
+      "time": "21:00",
+      "titlePa": "ਸਚਿਨ ਵੀਰ ਜੀ ਅਤੇ ਰਿੰਕੂ ਵੀਰ ਜੀ (ਰੇਤਾ ਬਜਰੀ ਵਾਲਿਆਂ) ਦੇ ਘਰ",
+      "titleHi": "सचिन वीर जी और रिंकू वीर जी (रेता बजरी वालों) के घर",
+      "titleEn": "Sachin Veer Ji and Rinku Veer Ji (Reta Bajri Wale) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-26",
+      "time": "21:00",
+      "titlePa": "ਸ. ਭੁਪਿੰਦਰ ਸਿੰਘ ਜੀ, ਬੀਬੀ ਰਣਜੀਤ ਕੌਰ ਜੀ (ਡਿੰਪਲ ਦੀਦੀ), ਵੀਰ ਜਸ਼ਨਦੀਪ ਸਿੰਘ ਜੀ ਦੇ ਘਰ",
+      "titleHi": "स. भूपिंदर सिंह जी, बीबी रंजीत कौर जी (डिंपल दीदी), वीर जशनदीप सिंह जी के घर",
+      "titleEn": "Bhupinder Singh Ji, Bibi Ranjeet Kaur Ji (Dimple Didi) and Jashandeep Singh Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-27",
+      "time": "11:00",
+      "titlePa": "ਸਵੇਰੇ ਕਵੀ ਦਰਬਾਰ — ਮਾਤਾ ਨਿਰਮਲਜੀਤ ਕੌਰ ਜੀ, ਨਿੰਮ ਦੀਦੀ ਜੀ ਅਤੇ ਵੀਰ ਅਮਰਜੀਤ ਸਿੰਘ ਜੀ ਦੇ ਘਰ",
+      "titleHi": "सुबह कवि दरबार — माता निर्मलजीत कौर जी, निम्म दीदी जी और वीर अमरजीत सिंह जी के घर",
+      "titleEn": "Morning Kavi Darbar — Mata Nirmaljeet Kaur Ji, Nimm Didi Ji and Amarjeet Singh Ji — at home",
+      "timeNote": "11:00 AM–3:00 PM",
+      "address": "",
+      "occasionEn": "Special Samagam"
+    },
+    {
+      "date": "2026-12-27",
+      "time": "21:00",
+      "titlePa": "ਸਤੀਸ਼ ਅਰੋੜਾ ਜੀ ਅਤੇ ਗੌਤਮ ਅਰੋੜਾ ਜੀ ਦੇ ਘਰ",
+      "titleHi": "सतीश अरोड़ा जी और गौतम अरोड़ा जी के घर",
+      "titleEn": "Satish Arora Ji and Gautam Arora Ji — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-28",
+      "time": "21:00",
+      "titlePa": "ਬੀਬੀ ਰਣਜੀਤ ਕੌਰ ਜੀ (ਬੱਬਲ ਆਂਟੀ ਜੀ), ਰਿੰਕਲ ਵੀਰ ਜੀ ਦੇ ਪੁਰਾਣੇ ਘਰ, ਸੰਸਕਾਰ ਪਲੇਸ ਸਕੂਲ ਵਿਖੇ",
+      "titleHi": "बीबी रंजीत कौर जी (बब्बल आंटी जी), रिंकल वीर जी के पुराने घर, संस्कार पैलेस स्कूल के पास",
+      "titleEn": "Bibi Ranjeet Kaur Ji (Babbal Aunty Ji), Rinkal Veer Ji — old house, Sanskar Palace School",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-29",
+      "time": "21:00",
+      "titlePa": "ਚਰਨ ਮਾਸੀ ਜੀ, ਵੀਰ ਮਨਦੀਪ ਸਿੰਘ ਜੀ (ਰੌਕੀ ਵੀਰ ਜੀ) ਦੇ ਘਰ",
+      "titleHi": "चरण मासी जी, वीर मनदीप सिंह जी (रॉकी वीर जी) के घर",
+      "titleEn": "Charan Masi Ji, Veer Mandeep Singh Ji (Rocky Veer Ji) — at home",
+      "timeNote": "9:00–11:00 PM",
+      "address": "",
+      "occasionEn": "Gurmat Samagam"
+    },
+    {
+      "date": "2026-12-30",
+      "time": "20:00",
+      "titlePa": "ਸ਼ੁਕਰਾਨਾ ਸਮਾਗਮ — ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਵਿਖੇ",
+      "titleHi": "शुकराना समागम — गुरुद्वारा गुरु नानक दरबार",
+      "titleEn": "Shukrana Samagam — Gurdwara Guru Nanak Darbar",
+      "timeNote": "8:00–11:00 PM",
+      "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
+      "occasionEn": "Special Samagam"
+    }
+  ]
+}
