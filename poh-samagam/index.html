@@ -403,21 +403,6 @@ main .goldline{background:#d7a055}
  box-shadow:0 6px 23px #1a101b33;backdrop-filter:blur(7px)}
 #events .event{border-top:3px solid #bd804d}
 #events .event.gurdwara-card{background:linear-gradient(115deg,#fff7e8f0,#f3dfd9e9)!important;border-top-color:#bd9456}
-[data-program-plate="rain-sabai"]{--plate-accent:#274b86;--plate-wash:#dbe8fb;--plate-ink:#203d6a}
-[data-program-plate="amrit-vela"]{--plate-accent:#b28212;--plate-wash:#ffec9c;--plate-ink:#654807}
-[data-program-plate="shaheedi"]{--plate-accent:#a33340;--plate-wash:#f7d4d5;--plate-ink:#792637}
-#events .event[data-program-plate],#nextBody.upcoming[data-program-plate]{
- background:linear-gradient(120deg,#fff7df 3%,#f6e3b0 44%,var(--plate-wash) 100%)!important;
- border-color:#c9a059;border-top:4px solid var(--plate-accent)
-}
-#events .event[data-program-plate] h3,#nextBody[data-program-plate] h3{color:var(--plate-ink)}
-#events .event[data-program-plate] .chip,#nextBody[data-program-plate] .chip,#nextBody[data-program-plate] .datebox{
- background:var(--plate-wash);color:var(--plate-ink);border-color:#c9a059
-}
-#events .event[data-program-plate] .samagam-banner{
- background:linear-gradient(90deg,#f6e3b0,var(--plate-wash),#f6e3b0);
- color:var(--plate-ink);border-color:#c9a059
-}
 #events .event h3,#nextBody h3{color:#55293c}
 #events .event .meta,#nextBody .meta{color:#675151}
 #events .event .chip,#nextBody .chip{background:#f9e8d1;color:#6b3543;border-color:#d0a46e}
@@ -477,6 +462,21 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
 @media(max-width:760px){
  #next>.wrap>.sectop h2,#programs>.wrap>.sectop h2,
  #live>.wrap>h2,#suggestions>.wrap>h2{color:#fff5dc!important}
+}
+[data-program-plate="rain-sabai"]{--plate-accent:#274b86;--plate-wash:#dbe8fb;--plate-ink:#203d6a}
+[data-program-plate="amrit-vela"]{--plate-accent:#b28212;--plate-wash:#ffec9c;--plate-ink:#654807}
+[data-program-plate="shaheedi"]{--plate-accent:#a33340;--plate-wash:#f7d4d5;--plate-ink:#792637}
+#events .event[data-program-plate],#nextBody.upcoming[data-program-plate]{
+ background:linear-gradient(120deg,#fff7df 3%,#f6e3b0 44%,var(--plate-wash) 100%)!important;
+ border-color:#c9a059;border-top:4px solid var(--plate-accent)
+}
+#events .event[data-program-plate] h3,#nextBody[data-program-plate] h3{color:var(--plate-ink)!important}
+#events .event[data-program-plate] .chip,#nextBody[data-program-plate] .chip,#nextBody[data-program-plate] .datebox{
+ background:var(--plate-wash);color:var(--plate-ink);border-color:#c9a059
+}
+#events .event[data-program-plate] .samagam-banner{
+ background:linear-gradient(90deg,#f6e3b0,var(--plate-wash),#f6e3b0);
+ color:var(--plate-ink);border-color:#c9a059
 }
 </style></head>
 <body>
