@@ -7,7 +7,10 @@ on:
       - '.github/workflows/safar-e-shahadat-apk.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: safar-e-shahadat-apk-release
+  cancel-in-progress: false
 jobs:
   android-apk:
     runs-on: ubuntu-latest
@@ -27,10 +30,55 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Build debug installable APK
+      - name: Restore original signing certificate
+        id: signing
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: safar-shahadat-android-debug-signing-2026-v1
+      - name: Fail closed if original certificate is no longer available
+        if: steps.signing.outputs.cache-hit != 'true'
+        run: |
+          if [ -f poh-samagam/apk/Safar-e-Shahadat-2026-1.apk ]; then
+            echo "::error::Signing cache expired. Refusing to publish an APK signed with a new key. Configure persistent release signing."
+            exit 1
+          fi
+      - name: Build installable APK
         working-directory: safar-e-shahadat-2026-android
         run: gradle --no-daemon :app:assembleDebug
-      - name: Upload APK
+      - name: Save original signing certificate cache
+        if: steps.signing.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: safar-shahadat-android-debug-signing-2026-v1
+      - name: Publish APK for in-app updates
+        run: |
+          python - <<'PY'
+          import json, pathlib, shutil, re, datetime
+          root=pathlib.Path('safar-e-shahadat-2026-android')
+          g=(root/'app/build.gradle').read_text()
+          version=int(re.search(r'versionCode\s+(\d+)',g).group(1))
+          apk=root/'app/build/outputs/apk/debug/app-debug.apk'
+          out=pathlib.Path('poh-samagam/apk')
+          out.mkdir(exist_ok=True,parents=True)
+          name=f'Safar-e-Shahadat-2026-{version}.apk'
+          shutil.copyfile(apk,out/name)
+          data={'versionCode':version,'apkUrl':f'https://gamesplanet13.github.io/Gamesplanet_in/poh-samagam/apk/{name}',
+                'publishedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('poh-samagam/app-update.json').write_text(json.dumps(data,indent=2)+'\n')
+          print(data)
+          PY
+      - name: Publish APK and update manifest to GitHub Pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add poh-samagam/apk/ poh-samagam/app-update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Safar-e-Shahadat 2026 Android APK"
+            git push
+          fi
+      - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
           name: Safar-e-Shahadat-2026-APK
