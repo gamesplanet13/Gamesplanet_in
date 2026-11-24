@@ -1,0 +1,42 @@
+name: Publish corrected Lasaani Shahadat banner
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/poh-lasaani-banner.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and optimize corrected poster
+        env:
+          POSTER: 'https://d2jqrm6oza8nb6.cloudfront.net/datasets/000398f7-deba-4722-8e78-c49b786575ca.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNzYxYjRlNzA1MTY3MWNlMyIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY1NDY0MH0.Qu4F9Kwlc1zuQTRa76YGEm6tC4PV2awLR89AHm4ktPs'
+        run: |
+          set -eu
+          curl -fL --retry 3 --max-time 70 "$POSTER" -o /tmp/lasaani.png
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image,ImageFilter
+          img=Image.open('/tmp/lasaani.png').convert('RGB')
+          assert img.width>=1200,img.size
+          img.save('poh-samagam/assets/safare-lasaani-2026.webp','WEBP',quality=93,method=6)
+          bg=img.copy()
+          bg.thumbnail((1360,900))
+          bg=bg.filter(ImageFilter.GaussianBlur(18))
+          bg.save('poh-samagam/assets/safare-lasaani-2026-blur.webp','WEBP',quality=78,method=6)
+          print(img.size)
+          PY
+      - name: Commit corrected banner
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add poh-samagam/assets/safare-lasaani-2026.webp poh-samagam/assets/safare-lasaani-2026-blur.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish corrected Lasaani Shahadat banner assets'
+            git pull --rebase
+            git push
+          fi
