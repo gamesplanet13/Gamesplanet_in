@@ -1,66 +1,87 @@
 'use strict';
-/* Top and bottom: non-scrolling NEXT program + continuously scrolling later programs. */
+/* Always-visible fixed next program plus continuously moving remaining dates.
+   Real scrollLeft animation avoids a several-minute CSS marquee appearing stationary. */
 (()=>{
-  const $=id=>document.getElementById(id);
-  const rails=[
-    {main:$('noticeTop'),track:$('noticeTopTrack')},
-    {main:$('noticeBottom'),track:$('noticeBottomTrack')}
+  const byId=id=>document.getElementById(id);
+  const banners=[
+    {main:byId('noticeTop'),track:byId('noticeTopTrack')},
+    {main:byId('noticeBottom'),track:byId('noticeBottomTrack')}
   ];
-  if(rails.some(r=>!r.main||!r.track))return;
-  let programs=Array.isArray(window.POH_INITIAL_PROGRAMS)?[...window.POH_INITIAL_PROGRAMS]:[];
-  let announcement={pa:'',hi:'',en:''};
+  if(banners.some(b=>!b.main||!b.track))return;
+  let programs=Array.isArray(window.POH_INITIAL_PROGRAMS)?window.POH_INITIAL_PROGRAMS:[];
+  let announcements={pa:'',hi:'',en:''},langIndex=0,groupWidth=0;
+  let previous=0,lastDay='',lastSignature='';
   const languages=['pa','hi','en'];
   const labels={pa:'ਅਗਲਾ ਸਮਾਗਮ',hi:'अगला समागम',en:'Next Samagam'};
-  const empty={pa:'ਅਗਲੇ ਸਮਾਗਮ ਦੀ ਜਾਣਕਾਰੀ ਜਲਦੀ',hi:'अगले समागम की जानकारी जल्द',en:'Next Samagam to be announced'};
-  const later={pa:'ਆਉਣ ਵਾਲੇ ਸਮਾਗਮ',hi:'आगामी समागम',en:'Upcoming programs'};
-  const locale={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
-  let offset=0;
-  const title=(p,lang)=>p['title'+lang[0].toUpperCase()+lang.slice(1)]||p.titlePa||p.titleEn||'';
-  const day=(p,lang)=>new Date(p.date+'T12:00:00').toLocaleDateString(locale[lang],{day:'numeric',month:'short',year:'numeric'});
-  function scheduled(){
-    const now=new Date();
-    const y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,'0'),d=String(now.getDate()).padStart(2,'0');
-    const today=y+'-'+m+'-'+d;
-    return [...programs].filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&p.date>=today)
-     .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));
+  const none={pa:'ਅਗਲਾ ਸਮਾਗਮ ਜਲਦੀ',hi:'अगला समागम जल्द',en:'Next Samagam soon'};
+  const fmt={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
+  function today(){return new Date(Date.now()+330*60000).toISOString().slice(0,10)}
+  function sorted(){
+    const day=today();
+    return programs.filter(p=>p&&/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&p.date>=day)
+      .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));
   }
-  function text(p,lang){return day(p,lang)+' · '+title(p,lang)+(p.timeNote?' · '+p.timeNote:'')}
-  function mainTick(){
-    const arr=scheduled(),p=arr[0],lang=languages[offset%3];
-    for(const rail of rails){
-      rail.main.lang=lang;
-      rail.main.textContent=p?labels[lang]+' · '+text(p,lang):empty[lang];
+  function label(p,lang){
+    const name=p['title'+lang[0].toUpperCase()+lang.slice(1)]||p.titlePa||p.titleEn||'';
+    const d=new Date(p.date+'T12:00:00').toLocaleDateString(fmt[lang],{day:'numeric',month:'short',year:'numeric'});
+    return d+' · '+name+(p.timeNote?' · '+p.timeNote:'');
+  }
+  function next(){
+    const p=sorted()[0],lang=languages[langIndex++%3];
+    for(const b of banners){
+      b.main.lang=lang;
+      const announcement=announcements[lang];
+      b.main.textContent=(announcement&&b===banners[0]?announcement+'  •  ':'')+(p?labels[lang]+' · '+label(p,lang):none[lang]);
+      b.main.title=b.main.textContent;
     }
-    offset++;
   }
-  function upcomingTrack(){
-    const list=scheduled().slice(1);
-    for(const rail of rails){
-      const track=rail.track;
-      track.replaceChildren();
-      if(!list.length){
-        const msg=document.createElement('span');msg.className='ticker-entry';msg.textContent=empty.en;track.append(msg);
-        track.classList.add('no-scroll');continue;
-      }
-      track.classList.remove('no-scroll');
-      const group=document.createElement('div');group.className='ticker-group';
-      for(const p of list){
+  function makeTrack(b,rows){
+    const track=b.track,windowEl=track.parentElement;
+    track.replaceChildren();
+    const group=document.createElement('div');
+    group.className='ticker-group';
+    if(!rows.length){
+      const msg=document.createElement('span');msg.className='ticker-entry';msg.textContent=none.pa+'  ·  '+none.hi+'  ·  '+none.en;
+      group.append(msg);
+    }else{
+      for(const p of rows){
         for(const lang of languages){
-          const el=document.createElement('span');el.className='ticker-entry';el.lang=lang;
-          el.textContent=text(p,lang);
-          group.append(el);
+          const span=document.createElement('span');span.className='ticker-entry';span.lang=lang;
+          span.textContent=label(p,lang);group.append(span);
         }
       }
-      track.append(group,group.cloneNode(true));
-      // Speed relative to content width, including every remaining program.
-      requestAnimationFrame(()=>{const width=group.scrollWidth;track.style.setProperty('--ticker-duration',Math.max(45,Math.round(width/65))+'s')});
     }
+    track.append(group,group.cloneNode(true));
+    windowEl.scrollLeft=0;
+    // Keep a visible first entry even before the next animation frame.
+    return group;
   }
-  function refresh(){mainTick();upcomingTrack()}
-  window.addEventListener('poh:schedule',e=>{if(Array.isArray(e.detail)){programs=e.detail;refresh()}});
-  window.addEventListener('poh:settings',e=>{const x=e.detail||{};announcement={pa:x.announcementPa||'',hi:x.announcementHi||'',en:x.announcementEn||''};});
-  refresh();
-  setInterval(mainTick,7000);
-  // On the next calendar day, update which program is current.
-  setInterval(refresh,60000);
+  function redraw(force=false){
+    const day=today(),rows=sorted().slice(1);
+    const signature=rows.map(x=>x.id||x.date+':'+x.titlePa).join('|');
+    if(!force&&lastDay===day&&signature===lastSignature)return;
+    lastDay=day;lastSignature=signature;
+    const groups=banners.map(b=>makeTrack(b,rows));
+    groupWidth=groups[0].getBoundingClientRect().width||groups[0].scrollWidth||0;
+    next();
+  }
+  function frame(now){
+    const dt=previous?Math.min(70,now-previous):0;previous=now;
+    if(!document.hidden&&groupWidth>0){
+      for(const b of banners){
+        const scroller=b.track.parentElement;
+        const firstWidth=b.track.firstElementChild?.getBoundingClientRect().width||groupWidth;
+        scroller.scrollLeft+=dt*0.09;
+        if(scroller.scrollLeft>=firstWidth)scroller.scrollLeft-=firstWidth;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('poh:schedule',e=>{if(Array.isArray(e.detail)){programs=e.detail;redraw(true)}});
+  window.addEventListener('poh:settings',e=>{const v=e.detail||{};announcements={pa:v.announcementPa||'',hi:v.announcementHi||'',en:v.announcementEn||''};next()});
+  window.addEventListener('resize',()=>{groupWidth=banners[0].track.firstElementChild?.getBoundingClientRect().width||0});
+  redraw(true);
+  setInterval(next,7000);
+  setInterval(()=>redraw(),60000);
+  requestAnimationFrame(frame);
 })();
