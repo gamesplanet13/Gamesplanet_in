@@ -106,7 +106,7 @@ public final class MainActivity extends Activity {
     if(uri==null)return true;
     String url=uri.toString();
     if(url.startsWith(SANGAT)){showPage(true);return true;}
-    if(url.startsWith(HOME)){showPage(false);return true;}
+    if(url.startsWith(HOME)){inSangat=false;updateTabs();return false;}
     if("https".equals(uri.getScheme()) && "gamesplanet13.github.io".equals(uri.getHost())) return false;
     try {
       Intent intent=new Intent(Intent.ACTION_VIEW,uri);
