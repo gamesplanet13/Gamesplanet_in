@@ -1,100 +1,129 @@
 'use strict';
 (()=>{
  const $=id=>document.getElementById(id);
- const player=$('liveFrame'),badge=$('videoStatus'),date=$('videoDate'),title=$('videoTitle');
- if(!player||!badge||!date)return;
- const lang=()=> $('lang')?.value||'en';
+ const badge=$('videoStatus'),date=$('videoDate'),title=$('videoTitle'),sound=$('liveSoundButton');
+ if(!$('liveFrame')||!badge||!date)return;
  const tr={
- en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator',latest:'▶ Latest Livestream Replay (from YouTube Streams)'},
- pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਪਿਛਲੀ ਲਾਈਵ ਦੀ ਰਿਕਾਰਡਿੰਗ (YouTube Streams)'},
- hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ पिछली लाइव रिकॉर्डिंग (YouTube Streams)'}
+  pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',waiting:'▶ ਚੈਨਲ ਲਾਈਵ ਦੀ ਜਾਂਚ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',sound:'🔊 ਆਵਾਜ਼ ਚਾਲੂ ਕਰੋ',playing:'🔊 ਆਵਾਜ਼ ਚਾਲੂ ਹੈ'},
+  hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',waiting:'▶ चैनल लाइव की जाँच',date:'लाइव हुआ था',started:'लाइव शुरू हुआ',sound:'🔊 आवाज़ चालू करें',playing:'🔊 आवाज़ चालू है'},
+  en:{live:'● Currently LIVE',recorded:'▶ Previous livestream recording',waiting:'▶ Checking channel livestream',date:'Streamed on',started:'Live started',sound:'🔊 Turn sound on',playing:'🔊 Sound on'}
  };
- let data=null,manual='',shown='',frameVisible=false,liveAutostarted=false,fallbackPlayback=false,archiveFallback=false,probeTimer=null;
+ const channel='UCDxFgFt0_TKCKZxnf7KSmNA',playlist='UULVDxFgFt0_TKCKZxnf7KSmNA';
+ let status=null,manual='',activeKey='',livePlaying=false,playerApi=null,apiReady=false,initialVisibility=false,audioEnabled=false,apiInitializing=false;
+ const lang=()=> $('lang')?.value||'pa';
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
- const getId=x=>{
+ const videoId=x=>{
   if(valid(x))return x;
-  try{
-   const u=new URL(x);
-   if(!['www.youtube.com','youtube.com','m.youtube.com','youtu.be'].includes(u.hostname))return '';
-   const id=u.hostname==='youtu.be'?u.pathname.slice(1):u.searchParams.get('v')||u.pathname.match(/\/(?:live|embed)\/([\w-]{11})/)?.[1];
-   return valid(id)?id:'';
-  }catch(_){return ''}
+  try{const u=new URL(x);if(!['www.youtube.com','youtube.com','youtu.be','m.youtube.com'].includes(u.hostname))return '';
+   const id=u.hostname==='youtu.be'?u.pathname.slice(1):u.searchParams.get('v')||u.pathname.match(/\/(?:live|embed)\/([\w-]{11})/)?.[1];return valid(id)?id:''}
+  catch(_){return ''}
  };
- function draw(){
-  const L=lang(),w=tr[L]||tr.en;
-  const checked=Date.parse(data?.checkedAt||'');
-  const fresh=Number.isFinite(checked)&&Date.now()-checked>=0&&Date.now()-checked<20*60*1000;
-  const verifiedLive=fresh&&data?.status==='ok'&&valid(data?.live?.videoId);
-  if(verifiedLive){archiveFallback=false;clearTimeout(probeTimer)}
-  const isLive=verifiedLive||fallbackPlayback;
-  const entry=verifiedLive?data.live:(fallbackPlayback?null:valid(data?.recorded?.videoId)?data.recorded:null);
-  const custom=getId(manual);
-  const id=entry?.videoId||(fallbackPlayback?'':custom);
-  // Don't assert LIVE unless stream metadata verifies it.
-  const kind=isLive?'live':entry?'recorded':custom?'manual':'latest';
-  badge.textContent=kind==='live'?w.live:kind==='recorded'?w.recorded:kind==='manual'?w.manual:w.latest;
-  badge.dataset.kind=kind;
-  badge.setAttribute('aria-live','polite');
-  const liveLamp=$('verifiedLiveLamp');
-  if(liveLamp){liveLamp.hidden=!isLive;liveLamp.textContent=isLive?({pa:'🔴 ਲਾਈਵ ਚੱਲ ਰਿਹਾ ਹੈ',hi:'🔴 लाइव चल रहा है',en:'🔴 LIVE AVAILABLE'})[L]:''}
-  let time=entry?.date||'';
-  if(time){
-    let parsed=new Date(time);
-    date.textContent=Number.isNaN(parsed.getTime())?'':(kind==='live'?w.started:w.date)+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(parsed);
-  }else date.textContent='';
-  if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
-  if(!verifiedLive)liveAutostarted=false;
-  if(verifiedLive&&frameVisible)liveAutostarted=true;
-  if(id){const shouldAuto=verifiedLive&&liveAutostarted;const key=kind+':'+id+':'+(shouldAuto?'auto':'manual');if(key!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1'+(shouldAuto?'&autoplay=1&mute=1':'&autoplay=0');shown=key}}
-  if(!id){
-    if(archiveFallback){
-      if(shown!=='archive'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UULVDxFgFt0_TKCKZxnf7KSmNA&autoplay=0&playsinline=1';shown='archive'}
-    }else{
-      const key='probe:'+(frameVisible?'auto':'manual');
-      if(shown!==key && !fallbackPlayback){
-        player.src='https://www.youtube-nocookie.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&playsinline=1&enablejsapi=1&origin='+encodeURIComponent(location.origin)+(frameVisible?'&autoplay=1&mute=1':'&autoplay=0');
-        shown=key;
-      }
-      if(frameVisible&&!fallbackPlayback&&!probeTimer){
-        probeTimer=setTimeout(()=>{
-          probeTimer=null;
-          if(shown.startsWith('probe:')&&!fallbackPlayback){archiveFallback=true;draw()}
-        },18000);
-      }
-    }
+ function verified(){
+  const at=Date.parse(status?.checkedAt||'');
+  return status?.status==='ok'&&Number.isFinite(at)&&at<=Date.now()&&Date.now()-at<20*60*1000&&valid(status?.live?.videoId);
+ }
+ function selected(){
+  if(verified())return {key:'live:'+status.live.videoId,kind:'live',entry:status.live,videoId:status.live.videoId};
+  // A YouTube PLAYING event on the channel's live-only embed verifies current playback.
+  if(livePlaying && activeKey==='channel-live')return {key:'channel-live',kind:'live',entry:null};
+  if(valid(status?.recorded?.videoId))return {key:'replay:'+status.recorded.videoId,kind:'recorded',entry:status.recorded,videoId:status.recorded.videoId};
+  const id=videoId(manual);
+  if(id)return {key:'manual:'+id,kind:'manual',videoId:id};
+  return {key:'channel-live',kind:'waiting'};
+ }
+ function updateLabels(choice){
+  const L=lang(),w=tr[L]||tr.pa;
+  badge.textContent=choice.kind==='live'?w.live:choice.kind==='recorded'?w.recorded:w.waiting;
+  badge.dataset.kind=choice.kind;
+  const lamp=$('verifiedLiveLamp');
+  if(lamp){lamp.hidden=choice.kind!=='live';lamp.textContent=choice.kind==='live'?({pa:'🔴 ਲਾਈਵ ਚੱਲ ਰਿਹਾ ਹੈ',hi:'🔴 लाइव चल रहा है',en:'🔴 LIVE AVAILABLE'})[L]:''}
+  if(title)title.textContent=choice.entry?.title||'Akaal Ji Sahai TV';
+  const time=choice.entry?.date,when=time?new Date(time):null;
+  date.textContent=when&&!Number.isNaN(when.getTime())?(choice.kind==='live'?w.started:w.date)+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(when):'';
+  if(sound){sound.hidden=choice.kind!=='live';sound.textContent=audioEnabled?w.playing:w.sound}
+ }
+ function setVideo(choice){
+  // Never replace a playing iframe because of scrolling, a language switch,
+  // a 60-second metadata refresh or a probe timeout. Replace only for a
+  // genuinely different video identity (live -> recorded or vice versa).
+  if(choice.key===activeKey)return;
+  activeKey=choice.key;
+  livePlaying=false;audioEnabled=false;
+  const iframe=playerApi?.getIframe?.()||$('liveFrame');
+  const common='&rel=0&playsinline=1&enablejsapi=1&origin='+encodeURIComponent(location.origin);
+  let url;
+  if(choice.kind==='live'&&choice.videoId){
+   url='https://www.youtube.com/embed/'+choice.videoId+'?autoplay=1&mute=1'+common;
+  }else if(choice.kind==='recorded'||choice.kind==='manual'){
+   url='https://www.youtube.com/embed/'+choice.videoId+'?autoplay=0'+common;
+  }else{
+   url='https://www.youtube.com/embed/live_stream?channel='+channel+'&autoplay=1&mute=1'+common;
   }
-  $('videoUnavailable')?.classList.add('hidden');
+  // The YouTube API owns its iframe after initialization; safely cue a new
+  // source by loading the new embed URL only when the video really changes.
+  if(iframe && iframe.src!==url)iframe.src=url;
+ }
+ function render(){
+  const choice=selected();
+  // If a live-only probe is playing, don't switch back to a stale or missing
+  // metadata result. The active stream should play uninterrupted.
+  const choiceToUse=livePlaying&&activeKey==='channel-live'&&!verified()?{key:'channel-live',kind:'live'}:choice;
+  setVideo(choiceToUse);
+  updateLabels(choiceToUse);
  }
  async function sync(){
   try{
-   let r=await fetch('./youtube-status.json?cache='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
-   if(!r.ok)throw Error('status unavailable');
-   let res=await r.json();
-   if(res&&typeof res==='object')data=res;
-  }catch(_){/* Keep any last known verified recording, never label a stale video live. */if(data)data={...data,live:null,status:'unavailable'}}
-  draw();
+   const response=await fetch('./youtube-status.json?cache='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
+   if(!response.ok)throw Error('Status unavailable');
+   const result=await response.json();
+   if(result&&typeof result==='object')status=result;
+  }catch(_){if(status)status={...status,live:null,status:'unavailable'}}
+  render();
  }
- // The channel /live_stream URL selects an active livestream only. When status
- // metadata is unavailable, use YouTube's official player event to light LIVE.
- const previousReady=window.onYouTubeIframeAPIReady;
- window.onYouTubeIframeAPIReady=()=>{
-   if(typeof previousReady==='function')previousReady();
-   if(!window.YT||!YT.Player)return;
-   try{new YT.Player('liveFrame',{events:{
-     onStateChange:ev=>{
-       if(!shown.startsWith('probe:'))return;
-       if(ev.data===YT.PlayerState.PLAYING){clearTimeout(probeTimer);probeTimer=null;archiveFallback=false;if(!fallbackPlayback){fallbackPlayback=true;draw()}}
-       else if(ev.data===YT.PlayerState.ENDED){clearTimeout(probeTimer);probeTimer=null;fallbackPlayback=false;archiveFallback=true;sync()}
+ function initializeApi(){
+  if(apiInitializing||!window.YT?.Player)return;
+  apiInitializing=true;
+  try{
+   playerApi=new YT.Player('liveFrame',{events:{
+    onReady:()=>{apiReady=true;if(initialVisibility){try{playerApi.mute();playerApi.playVideo()}catch(_){}}},
+    onStateChange:event=>{
+     if(event.data===YT.PlayerState.PLAYING){
+      if(activeKey==='channel-live'){livePlaying=true;updateLabels({key:activeKey,kind:'live'});}
+     }else if(event.data===YT.PlayerState.ENDED&&activeKey==='channel-live'){
+      livePlaying=false;
+      // Wait for the next verified status rather than auto-switching or
+      // forcibly restarting a finished livestream mid-playback.
+      sync();
      }
-   }})}catch(e){console.warn('Live playback status unavailable',e)}
- };
- if(!window.YT?.Player){const script=document.createElement('script');script.src='https://www.youtube.com/iframe_api';script.async=true;document.head.append(script)}
- else window.onYouTubeIframeAPIReady();
-
- window.addEventListener('poh:settings',e=>{manual=e.detail?.live||'';draw()});
- $('lang')?.addEventListener('change',draw);
+    },
+    onError:()=>{if(activeKey==='channel-live')livePlaying=false}
+   }});
+  }catch(e){apiInitializing=false;console.warn('YouTube controls not ready',e)}
+ }
+ const prior=window.onYouTubeIframeAPIReady;
+ window.onYouTubeIframeAPIReady=()=>{if(typeof prior==='function')prior();initializeApi()};
+ if(window.YT?.Player)initializeApi();
+ else{const script=document.createElement('script');script.src='https://www.youtube.com/iframe_api';script.async=true;document.head.append(script)}
+ if(sound)sound.addEventListener('click',()=>{
+  // Unmuting autoplay without a gesture is blocked by mobile browsers.
+  // This button provides the real user gesture needed to enable audio.
+  try{
+   if(!playerApi||!apiReady)throw Error('YouTube player not ready');
+   playerApi.unMute();playerApi.setVolume(100);playerApi.playVideo();
+   audioEnabled=true;updateLabels({kind:'live'});
+  }catch(e){sound.textContent='▶ Tap the video to enable sound'}
+ });
+ if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(items=>{
+    if(items.some(x=>x.isIntersecting)){
+     initialVisibility=true;observer.disconnect();
+     if(apiReady && activeKey.startsWith('live:')||apiReady&&activeKey==='channel-live'){try{playerApi.mute();playerApi.playVideo()}catch(_){}}
+    }
+  },{threshold:0.15});
+  observer.observe($('liveFrame').closest('.video')||$('liveFrame'));
+ }else initialVisibility=true;
+ window.addEventListener('poh:settings',e=>{manual=e.detail?.live||'';render()});
+ $('lang')?.addEventListener('change',render);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});
- if('IntersectionObserver' in window){const observer=new IntersectionObserver(items=>{frameVisible=items.some(x=>x.intersectionRatio>=0.5);if(frameVisible)draw()},{threshold:[0,0.5,1]});observer.observe(player.closest('.video')||player)}
- else frameVisible=true;
- draw();sync();setInterval(()=>{if(!document.hidden)sync()},60000);
+ render();sync();setInterval(()=>{if(!document.hidden)sync()},60000);
 })();
