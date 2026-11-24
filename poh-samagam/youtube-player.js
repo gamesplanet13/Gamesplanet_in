@@ -52,7 +52,12 @@
     const key=choice.type==='unavailable'?'empty':choice.type+':'+choice.id;
     // Never touch an already playing video during a 60-second status poll,
     // language change, scroll, or sound change. Only real video ID changes.
-    if(key===active)return;
+    if(key===active){
+      if(choice.type==='live'&&visible&&!autoplayStarted&&ytReady&&yt){
+        try{yt.mute();yt.playVideo();autoplayStarted=true}catch(_){}
+      }
+      return;
+    }
     active=key;soundEnabled=false;
     if(choice.type==='unavailable'){
       frame.classList.add('hidden');
@@ -61,8 +66,10 @@
     }
     frame.classList.remove('hidden');
     const autoplay=choice.type==='live'&&visible;
+    if(autoplay)autoplayStarted=true;
     const params=new URLSearchParams({rel:'0',playsinline:'1',enablejsapi:'1',origin:location.origin,autoplay:autoplay?'1':'0',mute:autoplay?'1':'0'});
     frame.src='https://www.youtube.com/embed/'+choice.id+'?'+params.toString();
+    if(window.YT?.Player&&!yt)preparePlayer();
   }
   async function sync(){
     try{
@@ -82,7 +89,7 @@
     }catch(_){sound.textContent='Tap video to turn on sound'}
   });
   function preparePlayer(){
-    if(!window.YT?.Player)return;
+    if(!window.YT?.Player||selection().type==='unavailable'||yt)return;
     try{yt=new YT.Player('liveFrame',{events:{onReady:()=>{ytReady=true}}})}
     catch(error){console.warn('YouTube player API unavailable',error)}
   }
@@ -90,7 +97,7 @@
   if(window.YT?.Player)preparePlayer();
   else{const js=document.createElement('script');js.src='https://www.youtube.com/iframe_api';js.async=true;document.head.append(js)}
   if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(items=>{if(items.some(x=>x.isIntersecting)){visible=true;observer.disconnect();if(!autoplayStarted){autoplayStarted=true;draw()}}},{threshold:0.15});
+    const observer=new IntersectionObserver(items=>{if(items.some(x=>x.isIntersecting)){visible=true;observer.disconnect();draw()}},{threshold:0.15});
     observer.observe(frame.closest('.video')||frame);
   }else visible=true;
   window.addEventListener('poh:settings',e=>{manual=e.detail?.live||'';draw()});
