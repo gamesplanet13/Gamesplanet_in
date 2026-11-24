@@ -5,9 +5,9 @@
  if(!player||!badge||!date)return;
  const lang=()=> $('lang')?.value||'en';
  const tr={
- en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator',latest:'▶ Latest Channel Video (auto fallback)'},
- pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਚੈਨਲ ਦੀ ਨਵੀਂ ਵੀਡੀਓ (ਆਟੋਮੈਟਿਕ)'},
- hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ चैनल की नई वीडियो (ऑटोमैटिक)'}
+ en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator',latest:'▶ Latest Livestream Replay (from YouTube Streams)'},
+ pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਪਿਛਲੀ ਲਾਈਵ ਦੀ ਰਿਕਾਰਡਿੰਗ (YouTube Streams)'},
+ hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ पिछली लाइव रिकॉर्डिंग (YouTube Streams)'}
  };
  let data=null,manual='',shown='';
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
@@ -37,7 +37,7 @@
   }else date.textContent='';
   if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
   if(id&&id!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0';shown=id}
-  if(!id&&shown!=='uploads'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UUDxFgFt0_TKCKZxnf7KSmNA';shown='uploads'}
+  if(!id&&shown!=='livestreams'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UULVDxFgFt0_TKCKZxnf7KSmNA';shown='livestreams'}
   $('videoUnavailable')?.classList.add('hidden');
  }
  async function sync(){
