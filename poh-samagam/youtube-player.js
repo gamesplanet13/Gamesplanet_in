@@ -9,7 +9,7 @@
  pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਪਿਛਲੀ ਲਾਈਵ ਦੀ ਰਿਕਾਰਡਿੰਗ (YouTube Streams)'},
  hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ पिछली लाइव रिकॉर्डिंग (YouTube Streams)'}
  };
- let data=null,manual='',shown='',frameVisible=false,liveAutostarted=false,fallbackPlayback=false;
+ let data=null,manual='',shown='',frameVisible=false,liveAutostarted=false,fallbackPlayback=false,archiveFallback=false,probeTimer=null;
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
  const getId=x=>{
   if(valid(x))return x;
@@ -25,6 +25,7 @@
   const checked=Date.parse(data?.checkedAt||'');
   const fresh=Number.isFinite(checked)&&Date.now()-checked>=0&&Date.now()-checked<20*60*1000;
   const verifiedLive=fresh&&data?.status==='ok'&&valid(data?.live?.videoId);
+  if(verifiedLive){archiveFallback=false;clearTimeout(probeTimer)}
   const isLive=verifiedLive||fallbackPlayback;
   const entry=verifiedLive?data.live:(fallbackPlayback?null:valid(data?.recorded?.videoId)?data.recorded:null);
   const custom=getId(manual);
@@ -46,10 +47,20 @@
   if(verifiedLive&&frameVisible)liveAutostarted=true;
   if(id){const shouldAuto=verifiedLive&&liveAutostarted;const key=kind+':'+id+':'+(shouldAuto?'auto':'manual');if(key!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1'+(shouldAuto?'&autoplay=1&mute=1':'&autoplay=0');shown=key}}
   if(!id){
-    const key='probe:'+(frameVisible?'auto':'manual');
-    if(shown!==key && !fallbackPlayback){
-      player.src='https://www.youtube-nocookie.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&playsinline=1&enablejsapi=1&origin='+encodeURIComponent(location.origin)+(frameVisible?'&autoplay=1&mute=1':'&autoplay=0');
-      shown=key;
+    if(archiveFallback){
+      if(shown!=='archive'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UULVDxFgFt0_TKCKZxnf7KSmNA&autoplay=0&playsinline=1';shown='archive'}
+    }else{
+      const key='probe:'+(frameVisible?'auto':'manual');
+      if(shown!==key && !fallbackPlayback){
+        player.src='https://www.youtube-nocookie.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&playsinline=1&enablejsapi=1&origin='+encodeURIComponent(location.origin)+(frameVisible?'&autoplay=1&mute=1':'&autoplay=0');
+        shown=key;
+      }
+      if(frameVisible&&!fallbackPlayback&&!probeTimer){
+        probeTimer=setTimeout(()=>{
+          probeTimer=null;
+          if(shown.startsWith('probe:')&&!fallbackPlayback){archiveFallback=true;draw()}
+        },18000);
+      }
     }
   }
   $('videoUnavailable')?.classList.add('hidden');
@@ -72,8 +83,8 @@
    try{new YT.Player('liveFrame',{events:{
      onStateChange:ev=>{
        if(!shown.startsWith('probe:'))return;
-       if(ev.data===YT.PlayerState.PLAYING){if(!fallbackPlayback){fallbackPlayback=true;draw()}}
-       else if(ev.data===YT.PlayerState.ENDED){fallbackPlayback=false;sync()}
+       if(ev.data===YT.PlayerState.PLAYING){clearTimeout(probeTimer);probeTimer=null;archiveFallback=false;if(!fallbackPlayback){fallbackPlayback=true;draw()}}
+       else if(ev.data===YT.PlayerState.ENDED){clearTimeout(probeTimer);probeTimer=null;fallbackPlayback=false;archiveFallback=true;sync()}
      }
    }})}catch(e){console.warn('Live playback status unavailable',e)}
  };
