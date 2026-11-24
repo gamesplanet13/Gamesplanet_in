@@ -116,8 +116,9 @@ const CPU_HOME='https://gamesplanet13.github.io/Gamesplanet_in/';
 const cpuCompleteUrl=n=>CPU_HOME+'cpu-complete-setup.html?preset='+Number(n);
 const cpuManualUrl=CPU_HOME+'cpu-manual-setup.html';
 const cpuSelectorUrl=CPU_HOME+'cpu-setup.html';
-const PS2_COMPLETE_URL='https://gamesplanet13.github.io/ps2/complete-setup.html';
-const productUrl=p=>p.customType==='ps2'?PS2_COMPLETE_URL:p.readyCpuVersion?cpuCompleteUrl(p.readyCpuVersion):p.customType==='cpu'?cpuSelectorUrl:p.url||(!window.GP_ASSET_BASE&&p.pagePath?asset(p.pagePath):'#product/'+p.id);
+const PS2_SITE='https://gamesplanet13.github.io/ps2/';
+const PS2_COMPLETE_URL=PS2_SITE+'complete-setup.html';
+const productUrl=p=>p.customType==='ps2'?PS2_COMPLETE_URL:p.shopPage==='ps2'&&isConsoleDevice(p)?PS2_SITE:p.readyCpuVersion?cpuCompleteUrl(p.readyCpuVersion):p.customType==='cpu'?cpuSelectorUrl:p.url||(!window.GP_ASSET_BASE&&p.pagePath?asset(p.pagePath):'#product/'+p.id);
 const photo=(p,cls='')=>p.images?.length?`<img class="${cls}" src="${esc(asset(p.images[0]))}" alt="${esc(p.name)}" loading="lazy" data-product-photo-id="${esc(p.id)}">`:`<div class="no-photo"><span>G✦</span>Product photo coming soon</div>`;
 let cart={};
 try{
