@@ -9,7 +9,7 @@
  pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਪਿਛਲੀ ਲਾਈਵ ਦੀ ਰਿਕਾਰਡਿੰਗ (YouTube Streams)'},
  hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ पिछली लाइव रिकॉर्डिंग (YouTube Streams)'}
  };
- let data=null,manual='',shown='';
+ let data=null,manual='',shown='',frameVisible=false,liveAutostarted=false;
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
  const getId=x=>{
   if(valid(x))return x;
@@ -41,7 +41,9 @@
     date.textContent=Number.isNaN(parsed.getTime())?'':(kind==='live'?w.started:w.date)+': '+new Intl.DateTimeFormat(L==='pa'?'pa-IN':L==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(parsed);
   }else date.textContent='';
   if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
-  if(id){const key=kind+':'+id;if(key!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1'+(isLive?'&autoplay=1&mute=1':'&autoplay=0');shown=key}}
+  if(!isLive)liveAutostarted=false;
+  if(isLive&&frameVisible)liveAutostarted=true;
+  if(id){const shouldAuto=isLive&&liveAutostarted;const key=kind+':'+id+':'+(shouldAuto?'auto':'manual');if(key!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1'+(shouldAuto?'&autoplay=1&mute=1':'&autoplay=0');shown=key}}
   if(!id&&shown!=='livestreams'){player.src='https://www.youtube-nocookie.com/embed/live_stream?channel=UCDxFgFt0_TKCKZxnf7KSmNA&autoplay=0&playsinline=1';shown='livestreams'}
   $('videoUnavailable')?.classList.add('hidden');
  }
@@ -57,5 +59,7 @@
  window.addEventListener('poh:settings',e=>{manual=e.detail?.live||'';draw()});
  $('lang')?.addEventListener('change',draw);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(items=>{frameVisible=items.some(x=>x.intersectionRatio>=0.5);if(frameVisible)draw()},{threshold:[0,0.5,1]});observer.observe(player)}
+ else frameVisible=true;
  draw();sync();setInterval(()=>{if(!document.hidden)sync()},60000);
 })();
