@@ -23,6 +23,7 @@ public final class MainActivity extends Activity {
   private WebView web;
   private TextView homeTab, sangatTab;
   private boolean inSangat = false;
+  private Updater updater;
 
   @Override public void onCreate(Bundle state) {
     super.onCreate(state);
@@ -40,7 +41,15 @@ public final class MainActivity extends Activity {
     title.setTextColor(Color.WHITE);
     title.setTextSize(20);
     title.setTypeface(null,1);
-    top.addView(title,new LinearLayout.LayoutParams(-1,-2));
+    top.addView(title,new LinearLayout.LayoutParams(0,-2,1));
+    TextView updateButton = new TextView(this);
+    updateButton.setText("↻ Update");
+    updateButton.setTextColor(Color.rgb(244,214,162));
+    updateButton.setTextSize(14);
+    updateButton.setPadding(dp(12),dp(8),dp(4),dp(8));
+    top.addView(updateButton);
+    updater = new Updater(this);
+    updateButton.setOnClickListener(v -> updater.check(true));
     root.addView(top);
 
     web = new WebView(this);
@@ -82,6 +91,9 @@ public final class MainActivity extends Activity {
     showPage(false);
   }
 
+  @Override protected void onResume(){super.onResume();if(updater!=null)updater.resume();}
+  @Override protected void onPause(){if(updater!=null)updater.pause();super.onPause();}
+
   private TextView tab(String label){
     TextView t=new TextView(this);
     t.setText(label);
@@ -119,5 +131,5 @@ public final class MainActivity extends Activity {
     if(web.canGoBack()){web.goBack();return;}
     super.onBackPressed();
   }
-  @Override protected void onDestroy(){ if(web!=null){((ViewGroup)web.getParent()).removeView(web);web.destroy();}super.onDestroy(); }
+  @Override protected void onDestroy(){ if(updater!=null)updater.close();if(web!=null){((ViewGroup)web.getParent()).removeView(web);web.destroy();}super.onDestroy(); }
 }
