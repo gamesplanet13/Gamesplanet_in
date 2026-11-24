@@ -89,7 +89,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleHi": "बबलू वीर जी के घर, अहूजा स्वीट्स के पास, जगमोहन सिंह जी निमाणा जी की गली",
     "address": "",
     "timeNote": "9:00–11:00 PM",
-    "map": "",
+    "map": "https://maps.app.goo.gl/t3pUquJPkHg7iQX58?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
