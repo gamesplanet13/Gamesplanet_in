@@ -1,0 +1,40 @@
+name: Import user-approved Sarsa River Shahadat banner
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/poh-sarsa-river-banner.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Save collage and blurred background
+        env:
+          BANNER_URL: 'https://d2jqrm6oza8nb6.cloudfront.net/datasets/20fc19b3-19ca-44e6-8f77-05e27fe48a16.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiZTk0ZTM4ODg2MTkxMGVjMiIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY4OTYwOH0.Th53aNwiqum2vwxBBBdGFS9NYD6o2f6DQbyc8HYttjU'
+        run: |
+          set -eu
+          mkdir -p poh-samagam/assets
+          curl --fail --location --retry 3 --max-time 80 "$BANNER_URL" -o /tmp/sarsa.png
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image,ImageFilter
+          src=Image.open('/tmp/sarsa.png').convert('RGB')
+          assert src.width>=1200 and src.height>=700,src.size
+          src.save('poh-samagam/assets/safare-sarsa-2026.webp','WEBP',quality=93,method=6)
+          bg=src.copy();bg.thumbnail((1360,900))
+          bg=bg.filter(ImageFilter.GaussianBlur(18))
+          bg.save('poh-samagam/assets/safare-sarsa-2026-blur.webp','WEBP',quality=77,method=6)
+          PY
+      - name: Commit website artwork
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add poh-samagam/assets/safare-sarsa-2026.webp poh-samagam/assets/safare-sarsa-2026-blur.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish banner with Sarsa river scene'
+            git pull --rebase
+            git push
+          fi
