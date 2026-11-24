@@ -433,6 +433,37 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
 #live .video-title{color:#57273a}
 #live .video-date{color:#745160}
 #nextBody .datebox{background:#ead3b1;color:#632a3b;border:1px solid #ba8954}
+
+/* Fix dark-on-dark section headings against the approved maroon background.
+   Text inside light program cards deliberately keeps its dark ink color. */
+#next>.wrap>.sectop h2,
+#next>.wrap>.sectop .sub,
+#programs>.wrap>.sectop h2,
+#programs>.wrap>.sectop .sub,
+#live>.wrap>h2,
+#suggestions>.wrap>h2,
+#suggestions>.wrap>.sectop h2,
+#suggestions>.wrap>.sectop .sub{
+ color:#fff4dc!important;
+ text-shadow:0 2px 5px #130c16a6;
+}
+#next>.wrap>.sectop h2,#programs>.wrap>.sectop h2,
+#live>.wrap>h2,#suggestions>.wrap>h2{font-weight:850}
+#next>.wrap>.sectop .sub,#programs>.wrap>.sectop .sub,
+#suggestions>.wrap>.sectop .sub{color:#f9dfc6!important}
+#next>.wrap>.goldline,#programs>.wrap>.goldline,
+#live>.wrap>.goldline,#suggestions>.wrap>.goldline{
+ background:#efbd67!important;box-shadow:0 0 7px #36172270
+}
+#nextBody.upcoming h3,#events .event h3{color:#55293c!important;text-shadow:none}
+#nextBody.upcoming .meta,#events .event .meta{color:#645054!important;text-shadow:none}
+#nextBody.upcoming{border-top:4px solid #d3a36a}
+#floatWa{transition:opacity .16s ease,transform .16s ease}
+#floatWa.avoid-actions{opacity:0;pointer-events:none;transform:scale(.75)}
+@media(max-width:760px){
+ #next>.wrap>.sectop h2,#programs>.wrap>.sectop h2,
+ #live>.wrap>h2,#suggestions>.wrap>h2{color:#fff5dc!important}
+}
 </style></head>
 <body>
 <div class="notice-rail top" aria-label="Upcoming samagams"><div class="notice-main"><span class="notice-label">ੴ NEXT</span><div class="notice-current-window"><div class="notice-current" id="noticeTop">Next Samagam</div></div></div><div class="notice-sub"><span class="notice-sub-label">UPCOMING</span><div class="ticker-window"><div class="ticker-track" id="noticeTopTrack"></div></div></div></div>
@@ -490,5 +521,30 @@ async function load(){
  }catch(error){console.warn('Could not display Safar-e-Shahadat banner',error)}
 }
 load();
+})();
+</script><script>
+/* Keep the floating WhatsApp shortcut from covering Directions and other
+   active card buttons, while retaining its normal position elsewhere. */
+(()=>{const wa=document.getElementById('floatWa');if(!wa)return;
+ let busy=false;
+ function update(){
+  busy=false;
+  if(wa.classList.contains('hidden'))return;
+  wa.classList.remove('avoid-actions');
+  const w=wa.getBoundingClientRect();
+  const links=document.querySelectorAll('#nextBody a.btn,#events a.btn,#live a.btn,#suggestions button.btn');
+  let overlap=false;
+  for(const link of links){
+   const b=link.getBoundingClientRect();
+   if(b.width&&b.height&&b.left<w.right+6&&b.right>w.left-6&&b.top<w.bottom+6&&b.bottom>w.top-6){overlap=true;break}
+  }
+  wa.classList.toggle('avoid-actions',overlap);
+ }
+ function schedule(){if(busy)return;busy=true;requestAnimationFrame(update)}
+ addEventListener('scroll',schedule,{passive:true});
+ addEventListener('resize',schedule,{passive:true});
+ document.addEventListener('DOMContentLoaded',schedule);
+ setInterval(schedule,1500);
+ schedule();
 })();
 </script></body></html>
