@@ -1,7 +1,11 @@
 {
-  "checkedAt": "2026-11-24T11:21:40.600409Z",
+  "checkedAt": "2026-11-24T21:10:04.977664Z",
   "live": null,
-  "recorded": null,
-  "status": "unavailable",
-  "message": "Stream tab read but no verified completed recordings identified"
+  "recorded": {
+    "videoId": "UiOOMEZBLss",
+    "title": "LIVE | KIRTAN DARBAR | PRAKASH PURAB GURU NANAK DEV JI || GURUDWARA SANT BHAI JI BABA|| 24.NOV.2026",
+    "date": null
+  },
+  "status": "ok",
+  "message": ""
 }
