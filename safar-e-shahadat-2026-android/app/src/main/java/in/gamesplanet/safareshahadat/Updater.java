@@ -26,7 +26,7 @@ import java.net.URL;
 
 final class Updater {
     private static final String HOST = "gamesplanet13.github.io";
-    private static final String SITE = "https://" + HOST + "/Gamesplanet_in/safar-e-shahadat-2026-android/";
+    private static final String SITE = "https://" + HOST + "/Gamesplanet_in/poh-samagam/";
     private static final String APK_TYPE = "application/vnd.android.package-archive";
     private final Activity activity;
     private final DownloadManager downloads;
@@ -68,7 +68,7 @@ final class Updater {
                 Uri uri = Uri.parse(update.getString("apkUrl"));
                 String filename = "Safar-e-Shahadat-2026-" + version + ".apk";
                 if (!"https".equals(uri.getScheme()) || !HOST.equals(uri.getAuthority())
-                        || !("/Gamesplanet_in/safar-e-shahadat-2026-android/apk/" + filename).equals(uri.getPath())) {
+                        || !("/Gamesplanet_in/poh-samagam/apk/" + filename).equals(uri.getPath())) {
                     throw new IllegalStateException("Unexpected update URL");
                 }
                 handler.post(() -> {
