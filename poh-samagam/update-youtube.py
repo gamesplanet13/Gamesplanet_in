@@ -52,7 +52,8 @@ def candidates():
         try:
             listing=query(channel,flat=True,limit=15)
             for item in listing.get("entries") or []:
-                if item and video_id(item) and video_id(item) not in result:result.append(video_id(item))
+                if item and video_id(item) and video_id(item) not in [x["id"] for x in result]:
+                    result.append({"id":video_id(item),"title":item.get("title"),"live_status":item.get("live_status"),"date":item.get("release_date") or item.get("upload_date")})
             if result:break
         except Exception as exc:errors.append(str(exc)[:180])
     if not result:raise RuntimeError("; ".join(errors) or "No publicly accessible streams")
@@ -73,7 +74,9 @@ try:
         print('Livestream history lookup failed:',str(exc)[:180])
         ids=[]
     completed=[]
-    for vid in ids[:12]:
+    for item in ids[:12]:
+        vid=item["id"]
+        if item.get("live_status")=="is_upcoming":continue
         try:
             v=query("https://www.youtube.com/watch?v="+vid)
             if not video_id(v):continue
@@ -81,11 +84,16 @@ try:
             if live=="is_live":
                 status["live"]=normalize(v)
                 continue
-            # /streams can include upcoming streams. Never use those as a recording.
-            if live in ("was_live","post_live") or v.get("was_live") is True:
+            # Only items found on the channel's dedicated Streams tab are
+            # eligible for past-livestream replay (not ordinary videos).
+            if live in ("was_live","post_live") or v.get("was_live") is True or (
+                live not in ("is_live","is_upcoming") and (v.get("duration") or 0)>600
+            ):
                 completed.append(normalize(v))
         except Exception as exc:
             print("Cannot inspect",vid,str(exc)[:130])
+            if item.get("live_status") in ("was_live","post_live"):
+                completed.append({"videoId":vid,"title":item.get("title") or "Past livestream","date":None})
     if completed:
         completed.sort(key=lambda x:x.get("date") or "",reverse=True)
         status["recorded"]=completed[0]
