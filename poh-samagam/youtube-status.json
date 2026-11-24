@@ -1,6 +1,7 @@
 {
-  "checkedAt": null,
+  "checkedAt": "2026-11-24T11:21:40.600409Z",
   "live": null,
   "recorded": null,
-  "status": "pending"
+  "status": "unavailable",
+  "message": "Stream tab read but no verified completed recordings identified"
 }
