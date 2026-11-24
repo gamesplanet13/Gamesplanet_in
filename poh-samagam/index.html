@@ -369,6 +369,56 @@ footer{position:relative;background:#102b35e8}
 #live .video #videoFallback{width:100%;height:100%;aspect-ratio:16/9;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:0;padding:15px;gap:7px}
 #live .video #videoFallback.hidden{display:none!important}
 #videoUnavailable{display:none!important}
+
+/* Safar-e-Shahadat 2026: final approved artwork palette.
+   Wine red, midnight blue, antique gold, saffron and warm parchment. */
+:root{--ink:#2b2230;--gold:#d7a95c;--bg:#eee0d3;--muted:#73645d;--poh-red:#641f2e;--poh-navy:#192339;--poh-gold:#d6a457;--poh-cream:#fff3e0}
+html{background:#211a2a}
+body{color:var(--ink)}
+body.memorial-background-ready::before{
+ background-image:linear-gradient(180deg,#171a2e8a 0%,#4c213286 45%,#281d2fb8 100%),var(--poh-fixed-art);
+ background-position:center center;background-size:cover;filter:blur(13px) saturate(1.08)}
+header{background:linear-gradient(90deg,#241d31f4,#632b37f0)!important;border-bottom:1px solid #d9ae68!important}
+header .compact-brand,header .brand,header .brand *,header .compact-nav,header .compact-nav a{color:#fff0d5!important}
+header .lightbtn,header .compact-nav .lightbtn{background:#fff2df;color:#411d30;border:1px solid #cda46d}
+.engagement-strip{background:linear-gradient(100deg,#fff2dd,#ecd4bb);border-bottom:1px solid #b4824b}
+.engagement-strip button{background:#fff9ed;border:1px solid #ad7846;color:#54283a}
+.engagement-strip button[aria-pressed=true]{background:#632538;color:#fff1d7}
+.engagement-strip #pohLocalLike{color:#60454e}
+.hero .hero-photo{max-width:1500px}
+.hero .hero-full-photo{object-fit:contain}
+.hero .hero-text{background:linear-gradient(160deg,#fff1dbe9,#edd3bfdd);border-bottom:2px solid #a16b39}
+.hero .hero-text h1{color:#551c30;text-shadow:0 1px 1px #fff3e5}
+.hero .hero-text p{color:#513a41}
+.hero .hero-text .eyebrow{color:#875325}
+.hero .hero-text .btn,.btn{background:linear-gradient(120deg,#d9ab63,#e8c587);border:1px solid #bc8946;color:#352135}
+.hero .hero-text .btn.secondary,.btn.secondary{background:#fff2df;color:#562b3a;border:1px solid #b98b57}
+#next.section,#programs.section,#live.section,#suggestions.section{background:transparent!important}
+main .section h2,main .section h3{color:#59243a}
+main .section .sub{color:#5d4c4f}
+main .goldline{background:#d7a055}
+#nextBody.upcoming,#events .event,.panel,.pankti-card{
+ background:linear-gradient(140deg,#fff9f0f3,#ffecdbed)!important;
+ border:1px solid #d9b98f;color:#3c2b35;
+ box-shadow:0 6px 23px #1a101b33;backdrop-filter:blur(7px)}
+#events .event{border-top:3px solid #bd804d}
+#events .event.gurdwara-card{background:linear-gradient(115deg,#fff7e8f0,#f3dfd9e9)!important;border-top-color:#bd9456}
+#events .event.rain-sabai-card{background:linear-gradient(110deg,#fff8ebef,#f9e4d5ed)!important;border-top-color:#87374a}
+#events .event h3,#nextBody h3{color:#55293c}
+#events .event .meta,#nextBody .meta{color:#675151}
+#events .event .chip,#nextBody .chip{background:#f9e8d1;color:#6b3543;border-color:#d0a46e}
+#events .event .btn,#nextBody .btn{background:linear-gradient(110deg,#a5604b,#743348);color:#fff6e7;border:1px solid #8b4c48}
+#events .event .btn:hover,#nextBody .btn:hover{background:#562239}
+#events .samagam-banner{background:linear-gradient(90deg,#fff4dc,#efd4ad,#fff4dc);color:#773343;border-color:#cda363}
+#live .video{background:#1e1b2c;border:2px solid #ac774e}
+#live .video-fallback{background:radial-gradient(circle at center,#5b263d,#1b1e36 75%)!important}
+.video-status-panel{background:#fff7e9;border:1px solid #d8b684}
+.video-status[data-kind=live]{color:#b51b2c}
+.pankti-card{background:linear-gradient(135deg,#4e1e34,#222743)!important;color:#fff0d6!important;border-color:#d2a45f}
+.pankti-card .pankti-verse,.pankti-card .pankti-kicker,.pankti-card .pankti-arth,.pankti-card .pankti-state{color:#fff0d6!important}
+#suggestions input,#suggestions textarea,#suggestions select{background:#fffdf7;color:#3d2939;border:1px solid #c5a47f}
+footer{background:#1a192ce8!important;color:#f6dfbb;border-top:2px solid #b88446}
+@media(max-width:760px){body.memorial-background-ready::before{background-size:auto 100%;filter:blur(12px)}.hero .hero-text{background:linear-gradient(180deg,#fff2dfeb,#ecd6c5e6)}}
 </style></head>
 <body>
 <div class="notice-rail top" aria-label="Upcoming samagams"><div class="notice-main"><span class="notice-label">ੴ NEXT</span><div class="notice-current-window"><div class="notice-current" id="noticeTop">Next Samagam</div></div></div><div class="notice-sub"><span class="notice-sub-label">UPCOMING</span><div class="ticker-window"><div class="ticker-track" id="noticeTopTrack"></div></div></div></div>
@@ -409,22 +459,22 @@ async function initialize(){if(!configured){$('adminNotice').textContent='Secure
 render();window.addEventListener('DOMContentLoaded',()=>window.dispatchEvent(new CustomEvent('poh:schedule',{detail:events})));initialize();
 </script><script>
 (()=>{const section=document.querySelector('.hero');if(!section)return;
-const main=section.querySelector('.hero-full-photo'),reflection=section.querySelector('.hero-reflection img');
-const HD='./assets/safare-2026-banner.webp?v=20261125-new-banner';
-const BACKDROP='./assets/safare-2026-background.webp?v=20261125-new-banner';
-const TEMP="https://d2jqrm6oza8nb6.cloudfront.net/datasets/e9bd8d55-21cf-42bf-b85a-7eacc23dba3c.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMzJlZTliMzhjZDdmMDRmMiIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY1MzMwNH0.x0R6Ilp19gHYYDVFWmtuFWtg9ccvpeBcbib-_-CdZuw";
-function checkImage(url){return new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(url);i.onerror=reject;i.src=url})}
-async function place(){
+const image=section.querySelector('.hero-full-photo'),reflection=section.querySelector('.hero-reflection img');
+const hero='./assets/safare-final-2026.webp?v=20261125-approved-final';
+const background='./assets/safare-final-2026-blur.webp?v=20261125-approved-final';
+const temporary="https://d2jqrm6oza8nb6.cloudfront.net/datasets/6bccbf53-59ba-4dbe-9a85-70d508a2f977.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiOGI3ZDk2OTk4MTRhN2M0MiIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY4NDM3N30.yKuFGCdyvpQ6yNwaNQccuRhF3zadEi6NpCrLs81xbGU";
+function ready(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(src);img.onerror=reject;img.src=src})}
+async function load(){
  try{
-  const src=await checkImage(HD).catch(()=>checkImage(TEMP));
-  main.src=src;reflection.src=src;
-  main.addEventListener('load',()=>section.classList.add('hero-loaded'),{once:true});
-  if(main.complete&&main.naturalWidth)section.classList.add('hero-loaded');
-  const back=await checkImage(BACKDROP).catch(()=>Promise.resolve(src));
-  document.documentElement.style.setProperty('--poh-fixed-art','url("'+back+'")');
+  const src=await ready(hero).catch(()=>ready(temporary));
+  image.src=src;reflection.src=src;
+  image.addEventListener('load',()=>section.classList.add('hero-loaded'),{once:true});
+  if(image.complete&&image.naturalWidth)section.classList.add('hero-loaded');
+  const bg=await ready(background).catch(()=>Promise.resolve(src));
+  document.documentElement.style.setProperty('--poh-fixed-art','url("'+bg+'")');
   document.body.classList.add('memorial-background-ready');
- }catch(err){console.warn('New Safar-e-Shahadat banner could not be loaded',err)}
+ }catch(error){console.warn('Could not display Safar-e-Shahadat banner',error)}
 }
-place();
+load();
 })();
 </script></body></html>
