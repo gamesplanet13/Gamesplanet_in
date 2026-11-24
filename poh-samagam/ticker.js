@@ -16,12 +16,25 @@
   return date+' · '+title;
  }
  function updateMain(){
-  const p=all()[0],lang=langs[step++%3];
+  const p=all()[0];
   for(const rail of rails){
-   const note=rail===rails[0]?notices[lang]:'';
-   rail.main.textContent=(note?note+' · ':'')+(p?names[lang]+' · '+describe(p,lang):empty[lang]);
-   rail.main.title=rail.main.textContent;
-   rail.main.lang=lang;
+   rail.main.replaceChildren();
+   const group=document.createElement('div');
+   group.className='ticker-group';
+   for(const lang of langs){
+    const item=document.createElement('span');
+    item.className='ticker-entry ticker-next-entry';
+    item.lang=lang;
+    const note=rail===rails[0]?notices[lang]:'';
+    item.textContent=(note?note+' · ':'')+(p?names[lang]+' · '+describe(p,lang):empty[lang]);
+    group.append(item);
+   }
+   rail.main.append(group,group.cloneNode(true));
+   const width=group.getBoundingClientRect().width||group.scrollWidth;
+   rail.main.style.setProperty('--scroll-seconds',Math.max(14,Math.round(width/62))+'s');
+   rail.main.classList.remove('ticker-running');
+   void rail.main.offsetWidth;
+   rail.main.classList.add('ticker-running');
   }
  }
  function updateTracks(force){
@@ -56,5 +69,5 @@
  function refresh(force=false){updateTracks(force);updateMain()}
  window.addEventListener('poh:schedule',e=>{if(Array.isArray(e.detail)){programs=e.detail;refresh(true)}});
  window.addEventListener('poh:settings',e=>{const s=e.detail||{};notices={pa:s.announcementPa||'',hi:s.announcementHi||'',en:s.announcementEn||''};updateMain()});
- refresh(true);setInterval(updateMain,7000);setInterval(()=>refresh(),60000);
+ refresh(true);setInterval(()=>refresh(),60000);
 })();
