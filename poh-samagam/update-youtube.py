@@ -59,6 +59,14 @@ def candidates():
     return result
 
 try:
+    # Check the dedicated /live URL as well as the stream archive.
+    # The /live endpoint may redirect to a video; only trust live_status=is_live.
+    try:
+        current=query("https://www.youtube.com/channel/UCDxFgFt0_TKCKZxnf7KSmNA/live")
+        if video_id(current) and current.get("live_status")=="is_live":
+            status["live"]=normalize(current)
+    except Exception as exc:
+        print("Direct live lookup failed:",str(exc)[:140])
     ids=candidates()
     completed=[]
     for vid in ids[:12]:
