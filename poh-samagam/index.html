@@ -40,16 +40,16 @@ header{top:var(--notice-h)}
 .notice-current{flex:1;min-width:0;font-size:clamp(13px,1.5vw,19px);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .notice-sub{display:flex;height:32px;min-height:32px;align-items:center;border-top:1px solid #ffffff29;background:#071b23bd;overflow:hidden}
 .notice-sub-label{flex:none;font-size:10px;font-weight:800;color:#efd59c;letter-spacing:.4px;padding:0 10px;background:#24424c;height:100%;display:flex;align-items:center;z-index:1}
-.ticker-window{flex:1;min-width:0;overflow:hidden;height:100%;display:flex;align-items:center}
-.ticker-track{display:flex;align-items:center;gap:0;flex-wrap:nowrap;white-space:nowrap;width:max-content;min-width:100%;animation:tickerScroll var(--ticker-duration,90s) linear infinite;will-change:transform}
-.ticker-track.no-scroll{animation:none}
+.ticker-window{flex:1;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;height:100%;display:flex;align-items:center;pointer-events:none}.ticker-window::-webkit-scrollbar{display:none}
+.ticker-track{display:flex;flex:none;align-items:center;gap:0;flex-wrap:nowrap;white-space:nowrap;width:max-content;min-width:100%;position:relative}
+
 .ticker-group{display:flex;align-items:center;flex:none}
 .ticker-entry{display:inline-block;font-weight:650;font-size:clamp(11px,1.1vw,13px);color:#e9e0cd;padding:0 24px 0 9px}
 .ticker-entry::after{content:"✦";padding-left:25px;color:#e3b869}
-@keyframes tickerScroll{to{transform:translateX(-50%)}}
+
 .floatwa{bottom:calc(var(--notice-h) + 19px)}
 @media(max-width:600px){:root{--notice-h:87px}.notice-main{height:53px;min-height:53px;padding:4px 9px;gap:7px}.notice-main .notice-label{font-size:9px;padding:3px 5px}.notice-current{font-size:13px}.notice-sub-label{font-size:9px;padding:0 6px}.ticker-entry{font-size:11px;padding-right:16px}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation-duration:calc(var(--ticker-duration,90s) * 2)}}
+
 
 .video-status-panel{display:flex;gap:9px;flex-direction:column;margin-top:12px;padding:13px 16px;background:#fff;border:1px solid #d6dece;border-radius:13px}
 .video-status{font-weight:800;font-size:clamp(15px,1.6vw,19px);color:#385766}
