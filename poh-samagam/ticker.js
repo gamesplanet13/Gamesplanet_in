@@ -1,39 +1,66 @@
 'use strict';
-/* Fixed accessibility-minded announcements. Rotating Gurmukhi -> Hindi -> English, then shuffled cycles. */
+/* Top and bottom: non-scrolling NEXT program + continuously scrolling later programs. */
 (()=>{
- const $=id=>document.getElementById(id);
- const top=$('noticeTop'),bottom=$('noticeBottom');
- if(!top||!bottom)return;
- const localeDate={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
- let programs=[...(window.POH_INITIAL_PROGRAMS||[])],announcement={pa:'',hi:'',en:''};
- let order=['pa','hi','en'],idx=0,phase=0;
- const pick=(p,key,lang)=>p[key+lang[0].toUpperCase()+lang.slice(1)]||p[key+'Pa']||'';
- function nextProgram(){
-  const now=new Date();
-  return programs.filter(e=>new Date(e.date+'T23:59:59')>=now)
-   .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')))[0];
- }
- const prefix={pa:'ਅਗਲਾ ਸਮਾਗਮ',hi:'अगला समागम',en:'Next Samagam'};
- const date=(p,lang)=>new Date(p.date+'T12:00').toLocaleDateString(localeDate[lang],{day:'numeric',month:'long',year:'numeric'});
- const upcoming=(lang)=>{
-  const p=nextProgram();if(!p)return {pa:'ਸਮਾਗਮਾਂ ਲਈ ਜੁੜੇ ਰਹੋ',hi:'समागम की जानकारी के लिए जुड़े रहें',en:'Stay connected for upcoming samagams'}[lang];
-  return prefix[lang]+' · '+date(p,lang)+' · '+pick(p,'title',lang)+(p.timeNote?' · '+p.timeNote:'');
- };
- function shuffle(){
-  for(let i=order.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
-  if(order[0]===order[order.length-1])order.reverse();
- }
- function tick(){
-  const lang=order[idx],a=announcement[lang]||announcement.pa||announcement.hi||announcement.en;
-  top.textContent=a && phase%2===0?a:upcoming(lang);
-  bottom.textContent=upcoming(lang);
-  top.lang=lang;bottom.lang=lang;
-  top.classList.remove('notice-transition');bottom.classList.remove('notice-transition');
-  void top.offsetWidth;top.classList.add('notice-transition');bottom.classList.add('notice-transition');
-  phase++;idx++;
-  if(idx>=order.length){idx=0;shuffle()}
- }
- window.addEventListener('poh:schedule',e=>{if(Array.isArray(e.detail))programs=e.detail;tick()});
- window.addEventListener('poh:settings',e=>{const s=e.detail||{};announcement={pa:s.announcementPa||'',hi:s.announcementHi||'',en:s.announcementEn||''};tick()});
- tick();setInterval(tick,5200);
+  const $=id=>document.getElementById(id);
+  const rails=[
+    {main:$('noticeTop'),track:$('noticeTopTrack')},
+    {main:$('noticeBottom'),track:$('noticeBottomTrack')}
+  ];
+  if(rails.some(r=>!r.main||!r.track))return;
+  let programs=Array.isArray(window.POH_INITIAL_PROGRAMS)?[...window.POH_INITIAL_PROGRAMS]:[];
+  let announcement={pa:'',hi:'',en:''};
+  const languages=['pa','hi','en'];
+  const labels={pa:'ਅਗਲਾ ਸਮਾਗਮ',hi:'अगला समागम',en:'Next Samagam'};
+  const empty={pa:'ਅਗਲੇ ਸਮਾਗਮ ਦੀ ਜਾਣਕਾਰੀ ਜਲਦੀ',hi:'अगले समागम की जानकारी जल्द',en:'Next Samagam to be announced'};
+  const later={pa:'ਆਉਣ ਵਾਲੇ ਸਮਾਗਮ',hi:'आगामी समागम',en:'Upcoming programs'};
+  const locale={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
+  let offset=0;
+  const title=(p,lang)=>p['title'+lang[0].toUpperCase()+lang.slice(1)]||p.titlePa||p.titleEn||'';
+  const day=(p,lang)=>new Date(p.date+'T12:00:00').toLocaleDateString(locale[lang],{day:'numeric',month:'short',year:'numeric'});
+  function scheduled(){
+    const now=new Date();
+    const y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,'0'),d=String(now.getDate()).padStart(2,'0');
+    const today=y+'-'+m+'-'+d;
+    return [...programs].filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&p.date>=today)
+     .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));
+  }
+  function text(p,lang){return day(p,lang)+' · '+title(p,lang)+(p.timeNote?' · '+p.timeNote:'')}
+  function mainTick(){
+    const arr=scheduled(),p=arr[0],lang=languages[offset%3];
+    for(const rail of rails){
+      rail.main.lang=lang;
+      rail.main.textContent=p?labels[lang]+' · '+text(p,lang):empty[lang];
+    }
+    offset++;
+  }
+  function upcomingTrack(){
+    const list=scheduled().slice(1);
+    for(const rail of rails){
+      const track=rail.track;
+      track.replaceChildren();
+      if(!list.length){
+        const msg=document.createElement('span');msg.className='ticker-entry';msg.textContent=empty.en;track.append(msg);
+        track.classList.add('no-scroll');continue;
+      }
+      track.classList.remove('no-scroll');
+      const group=document.createElement('div');group.className='ticker-group';
+      for(const p of list){
+        for(const lang of languages){
+          const el=document.createElement('span');el.className='ticker-entry';el.lang=lang;
+          el.textContent=text(p,lang);
+          group.append(el);
+        }
+      }
+      track.append(group,group.cloneNode(true));
+      // Speed relative to content width, including every remaining program.
+      requestAnimationFrame(()=>{const width=group.scrollWidth;track.style.setProperty('--ticker-duration',Math.max(45,Math.round(width/65))+'s')});
+    }
+  }
+  function refresh(){mainTick();upcomingTrack()}
+  window.addEventListener('poh:schedule',e=>{if(Array.isArray(e.detail)){programs=e.detail;refresh()}});
+  window.addEventListener('poh:settings',e=>{const x=e.detail||{};announcement={pa:x.announcementPa||'',hi:x.announcementHi||'',en:x.announcementEn||''};});
+  refresh();
+  setInterval(mainTick,7000);
+  // On the next calendar day, update which program is current.
+  setInterval(refresh,60000);
 })();
