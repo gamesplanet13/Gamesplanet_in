@@ -40,15 +40,7 @@
     const stamp=choice.data?.date?new Date(choice.data.date):null;
     date.textContent=stamp&&!Number.isNaN(stamp.getTime())?(choice.type==='live'?l.started:l.date)+': '+new Intl.DateTimeFormat(language()==='pa'?'pa-IN':language()==='hi'?'hi-IN':'en-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'}).format(stamp):'';
     if(sound){sound.hidden=choice.type!=='live';sound.textContent=soundEnabled?'🔊 '+(language()==='pa'?'ਆਵਾਜ਼ ਚਾਲੂ ਹੈ':language()==='hi'?'आवाज़ चालू है':'Sound on'):l.sound}
-    if(unavailable){
-      unavailable.classList.toggle('hidden',choice.type!=='unavailable');
-      if(choice.type==='unavailable'){
-        unavailable.replaceChildren();
-        const link=document.createElement('a');
-        link.href=channel;link.target='_blank';link.rel='noopener';link.className='btn';
-        link.textContent=l.go;unavailable.append(link);
-      }
-    }
+    if(unavailable){unavailable.classList.add('hidden');unavailable.replaceChildren()}
     const key=choice.type==='unavailable'?'empty':choice.type+':'+choice.id;
     // Never touch an already playing video during a 60-second status poll,
     // language change, scroll, or sound change. Only real video ID changes.
