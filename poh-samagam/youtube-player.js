@@ -25,7 +25,7 @@
  function selected(){
   if(verified())return {key:'live:'+status.live.videoId,kind:'live',entry:status.live,videoId:status.live.videoId};
   // A YouTube PLAYING event on the channel's live-only embed verifies current playback.
-  if(livePlaying && activeKey==='channel-live')return {key:'channel-live',kind:'live',entry:null};
+  if(livePlaying&&(activeKey==='channel-live'||activeKey.startsWith('live:')))return {key:activeKey,kind:'live',entry:null};
   if(valid(status?.recorded?.videoId))return {key:'replay:'+status.recorded.videoId,kind:'recorded',entry:status.recorded,videoId:status.recorded.videoId};
   const id=videoId(manual);
   if(id)return {key:'manual:'+id,kind:'manual',videoId:id};
@@ -67,7 +67,7 @@
   const choice=selected();
   // If a live-only probe is playing, don't switch back to a stale or missing
   // metadata result. The active stream should play uninterrupted.
-  const choiceToUse=livePlaying&&activeKey==='channel-live'&&!verified()?{key:'channel-live',kind:'live'}:choice;
+  const choiceToUse=livePlaying&&(activeKey==='channel-live'||activeKey.startsWith('live:'))&&!verified()?{key:activeKey,kind:'live'}:choice;
   setVideo(choiceToUse);
   updateLabels(choiceToUse);
  }
@@ -85,11 +85,11 @@
   apiInitializing=true;
   try{
    playerApi=new YT.Player('liveFrame',{events:{
-    onReady:()=>{apiReady=true;if(initialVisibility){try{playerApi.mute();playerApi.playVideo()}catch(_){}}},
+    onReady:()=>{apiReady=true;if(initialVisibility&&(activeKey==='channel-live'||activeKey.startsWith('live:'))){try{playerApi.mute();playerApi.playVideo()}catch(_){}}},
     onStateChange:event=>{
      if(event.data===YT.PlayerState.PLAYING){
-      if(activeKey==='channel-live'){livePlaying=true;updateLabels({key:activeKey,kind:'live'});}
-     }else if(event.data===YT.PlayerState.ENDED&&activeKey==='channel-live'){
+      if(activeKey==='channel-live'||activeKey.startsWith('live:')){livePlaying=true;updateLabels({key:activeKey,kind:'live'});}
+     }else if(event.data===YT.PlayerState.ENDED&&(activeKey==='channel-live'||activeKey.startsWith('live:'))){
       livePlaying=false;
       // Wait for the next verified status rather than auto-switching or
       // forcibly restarting a finished livestream mid-playback.
@@ -117,7 +117,7 @@
   const observer=new IntersectionObserver(items=>{
     if(items.some(x=>x.isIntersecting)){
      initialVisibility=true;observer.disconnect();
-     if(apiReady && activeKey.startsWith('live:')||apiReady&&activeKey==='channel-live'){try{playerApi.mute();playerApi.playVideo()}catch(_){}}
+     if(apiReady&&(activeKey.startsWith('live:')||activeKey==='channel-live')){try{playerApi.mute();playerApi.playVideo()}catch(_){}}
     }
   },{threshold:0.15});
   observer.observe($('liveFrame').closest('.video')||$('liveFrame'));
