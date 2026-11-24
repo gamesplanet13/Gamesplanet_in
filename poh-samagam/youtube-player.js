@@ -5,9 +5,9 @@
  if(!player||!badge||!date)return;
  const lang=()=> $('lang')?.value||'en';
  const tr={
- en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator'},
- pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ'},
- hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो'}
+ en:{live:'● Currently Live',recorded:'▶ Recorded Live Video',date:'Streamed on',started:'Live started on',no:'Video status unavailable',waiting:'Checking the channel…',manual:'Video selected by administrator',latest:'▶ Latest Channel Video (auto fallback)'},
+ pa:{live:'● ਇਸ ਵੇਲੇ ਲਾਈਵ',recorded:'▶ ਪਿਛਲੀ ਲਾਈਵ ਰਿਕਾਰਡਿੰਗ',date:'ਲਾਈਵ ਹੋਈ ਸੀ',started:'ਲਾਈਵ ਸ਼ੁਰੂ ਹੋਈ',no:'ਵੀਡੀਓ ਦੀ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ',waiting:'ਚੈਨਲ ਦੀ ਜਾਂਚ ਜਾਰੀ ਹੈ…',manual:'ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਚੁਣੀ ਵੀਡੀਓ',latest:'▶ ਚੈਨਲ ਦੀ ਨਵੀਂ ਵੀਡੀਓ (ਆਟੋਮੈਟਿਕ)'},
+ hi:{live:'● अभी लाइव',recorded:'▶ पिछली लाइव रिकॉर्डिंग',date:'लाइव हुई थी',started:'लाइव शुरू हुआ',no:'वीडियो की जानकारी उपलब्ध नहीं',waiting:'चैनल की जाँच जारी है…',manual:'प्रबंधक द्वारा चुनी गई वीडियो',latest:'▶ चैनल की नई वीडियो (ऑटोमैटिक)'}
  };
  let data=null,manual='',shown='';
  const valid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{11}$/.test(id);
@@ -27,8 +27,8 @@
   const custom=getId(manual);
   const id=entry?.videoId||custom;
   // Don't assert LIVE unless stream metadata verifies it.
-  const kind=isLive?'live':entry?'recorded':custom?'manual':'unavailable';
-  badge.textContent=kind==='live'?w.live:kind==='recorded'?w.recorded:kind==='manual'?w.manual:w.no;
+  const kind=isLive?'live':entry?'recorded':custom?'manual':'latest';
+  badge.textContent=kind==='live'?w.live:kind==='recorded'?w.recorded:kind==='manual'?w.manual:w.latest;
   badge.dataset.kind=kind;
   let time=entry?.date||'';
   if(time){
@@ -37,8 +37,8 @@
   }else date.textContent='';
   if(title)title.textContent=entry?.title||'Akaal Ji Sahai TV';
   if(id&&id!==shown){player.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0';shown=id}
-  if(!id&&shown){player.removeAttribute('src');shown=''}
-  $('videoUnavailable')?.classList.toggle('hidden',!!id);
+  if(!id&&shown!=='uploads'){player.src='https://www.youtube-nocookie.com/embed/videoseries?list=UUDxFgFt0_TKCKZxnf7KSmNA';shown='uploads'}
+  $('videoUnavailable')?.classList.add('hidden');
  }
  async function sync(){
   try{
