@@ -89,8 +89,15 @@ public final class MainActivity extends Activity {
     homeTab.setOnClickListener(v->showPage(false));
     sangatTab.setOnClickListener(v->showPage(true));
     showPage(false);
+    SamagamNotifications.start(this);
   }
 
+  @Override public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] results){
+    super.onRequestPermissionsResult(requestCode,permissions,results);
+    if(requestCode==2026&&results.length>0&&results[0]==android.content.pm.PackageManager.PERMISSION_GRANTED){
+      new Thread(()->SamagamNotifications.refresh(getApplicationContext()),"samagam-permission-granted").start();
+    }
+  }
   @Override protected void onResume(){super.onResume();if(updater!=null)updater.resume();}
   @Override protected void onPause(){if(updater!=null)updater.pause();super.onPause();}
 
