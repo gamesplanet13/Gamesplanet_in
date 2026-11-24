@@ -317,6 +317,26 @@ footer{border-top:2px solid #d4ac69}
 #pohLocalLike{font-size:11px;color:#67767b}
 #pohFollowStatus{font-size:11px;font-weight:600;color:#2e655c}
 @media(max-width:600px){.engagement-strip{gap:4px 7px;padding:4px 6px}.engagement-strip button{font-size:11px;padding:3px 7px}#pohLocalLike,#pohFollowStatus{font-size:10px}}
+
+/* Approved HD illustration stays uncropped at top; the softer companion art
+   remains fixed behind the full document while contents scroll above it. */
+html{background:#f3ede4}
+body{background:transparent;isolation:isolate}
+body.memorial-background-ready::before{content:"";position:fixed;z-index:-1;top:calc(var(--notice-h) + 30px);right:-24px;bottom:calc(var(--notice-h) - 30px);left:-24px;background-image:linear-gradient(#f5f1eb99,#f7f3edb0),var(--poh-fixed-art);background-position:center center;background-repeat:no-repeat;background-size:cover;filter:blur(16px);pointer-events:none;transform:translateZ(0)}
+.hero{background:transparent}
+.hero.hero-loaded .hero-full-photo{width:100%;height:auto;object-fit:contain;image-rendering:auto}
+.hero .hero-photo{max-width:1400px;box-shadow:none}
+.hero .hero-text{background:linear-gradient(180deg,#fff9edc2,#fffaf1e3);backdrop-filter:blur(2px)}
+.hero .hero-reflection{opacity:.33;mask-image:linear-gradient(#000,transparent 90%);-webkit-mask-image:linear-gradient(#000,transparent 90%)}
+.hero .hero-reflection img{opacity:.57;filter:blur(19px) saturate(.65)}
+#next.section,#programs.section,#live.section,#suggestions.section{background:transparent!important}
+#next .wrap,#live .wrap,#programs .wrap,#suggestions .wrap{position:relative;z-index:1}
+#nextBody.upcoming,#events .event,.panel,.pankti-card{box-shadow:0 5px 22px #20344018}
+#nextBody.upcoming,#events .event,.panel{background-color:#fffdfaeb;backdrop-filter:blur(7px)}
+#events .event.gurdwara-card,#events .event.rain-sabai-card{background-color:#fffdfaed}
+footer{position:relative;background:#102b35e8}
+@media(max-width:760px){body.memorial-background-ready::before{background-position:center center;background-size:auto 100%;filter:blur(13px)}.hero .hero-reflection img{filter:blur(16px)}}
+@media(prefers-reduced-transparency:reduce){#nextBody.upcoming,#events .event,.panel{background:#fffdf8}.hero .hero-text{background:#fffaf3}}
 </style></head>
 <body>
 <div class="notice-rail top" aria-label="Upcoming samagams"><div class="notice-main"><span class="notice-label">ੴ NEXT</span><div class="notice-current-window"><div class="notice-current" id="noticeTop">Next Samagam</div></div></div><div class="notice-sub"><span class="notice-sub-label">UPCOMING</span><div class="ticker-window"><div class="ticker-track" id="noticeTopTrack"></div></div></div></div>
@@ -357,11 +377,25 @@ async function initialize(){if(!configured){$('adminNotice').textContent='Secure
 render();window.addEventListener('DOMContentLoaded',()=>window.dispatchEvent(new CustomEvent('poh:schedule',{detail:events})));initialize();
 </script><script>
 (()=>{const section=document.querySelector('.hero');if(!section)return;
-fetch('./assets/safare-hero.txt?v=20261124-memorial-hero1',{cache:'force-cache'}).then(r=>{if(!r.ok)throw Error('Image asset not found');return r.text()}).then(src=>{
-if(!src.trim().startsWith('data:image/webp;base64,'))throw Error('Invalid photo asset');
-const images=section.querySelectorAll('.hero-full-photo,.hero-reflection img');
-const lead=images[0];lead.addEventListener('load',()=>section.classList.add('hero-loaded'),{once:true});
-for(const im of images)im.src=src.trim();
-}).catch(e=>console.warn('Safar-e-Shahadat image could not load:',e.message));
+const main=section.querySelector('.hero-full-photo'),reflection=section.querySelector('.hero-reflection img');
+const localHD='./assets/safare-hero-hd.webp?v=20261124-hd2';
+const localBG='./assets/safare-background.webp?v=20261124-hd2';
+const temporaryHD="https://d2jqrm6oza8nb6.cloudfront.net/datasets/b7c0c429-ddf7-465f-b684-9e2ea9929b1b.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiZmY0N2MwMGM3NzA0NGVkZCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY5NTUwMH0.V-KfoKbgKW_LLh05nDwT2GMkOaoKrUW2xFEeHsBQDfo";
+const temporaryBG="https://d2jqrm6oza8nb6.cloudfront.net/datasets/dade83c2-1bc1-4569-b05b-c566569171c5.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNzk1Y2NmNDM5MTQxNmUzOCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5NTY3NDMwN30.TbfUQGL2xnqotfStsfDRkJHznghMffK0-Q6EPdTMuG4";
+function loadImage(url){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(url);img.onerror=reject;img.src=url})}
+async function setHD(){
+ try{
+  const src=await loadImage(localHD).catch(()=>loadImage(temporaryHD));
+  main.src=src;reflection.src=src;section.classList.add('hero-loaded');
+ }catch(err){
+  try{const res=await fetch('./assets/safare-hero.txt');if(!res.ok)throw Error('missing');const src=(await res.text()).trim();if(src.startsWith('data:image/webp;base64,')){main.src=src;reflection.src=src;section.classList.add('hero-loaded')}}catch(e){console.warn('Banner photo failed to load',e)}
+ }
+}
+async function setBG(){
+ try{const src=await loadImage(localBG).catch(()=>loadImage(temporaryBG));document.documentElement.style.setProperty('--poh-fixed-art','url("'+src+'")');document.body.classList.add('memorial-background-ready')}
+ catch(err){if(main.complete&&main.naturalWidth){document.documentElement.style.setProperty('--poh-fixed-art','url("'+main.src+'")');document.body.classList.add('memorial-background-ready')}}
+}
+setHD().then(setBG);
+
 })();
 </script></body></html>
