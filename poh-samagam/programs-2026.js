@@ -668,17 +668,17 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Bibi Ranjeet Kaur Ji (Babbal Aunty Ji), Rinkal Veer Ji and Vicky Veer Ji — at the old house",
     "titlePa": "ਬੀਬੀ ਰਣਜੀਤ ਕੌਰ ਜੀ (ਬੱਬਲ ਆਂਟੀ ਜੀ), ਰਿੰਕਲ ਵੀਰ ਜੀ ਅਤੇ ਵਿੱਕੀ ਵੀਰ ਜੀ ਦੇ ਪੁਰਾਣੇ ਘਰ",
     "titleHi": "बीबी रंजीत कौर जी (बब्बल आंटी जी), रिंकल वीर जी और विक्की वीर जी के पुराने घर",
-    "address": "ਸੰਸਕਾਰ ਪਲੇਸ ਸਕੂਲ, ਆਦਰਸ਼ ਕਲੋਨੀ, ਹੋਲੀ ਪਾਰਕ, ਰਾਮਪੁਰ",
+    "address": "ਸੰਸਕਾਰ ਪਲੇ ਸਕੂਲ, ਆਦਰਸ਼ ਕਲੋਨੀ, ਹੋਲੀ ਪਾਰਕ, ਰਾਮਪੁਰ",
     "timeNote": "9:00–11:00 PM",
-    "map": "https://www.google.com/maps/search/?api=1&query=Holi%20Park%2C%20Adarsh%20Colony%2C%20Rampur%2C%20Uttar%20Pradesh",
+    "map": "https://maps.app.goo.gl/Qxn2CnmXC3YjjyN2A?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
     "venueKnown": true,
-    "addressPa": "ਸੰਸਕਾਰ ਪਲੇਸ ਸਕੂਲ, ਆਦਰਸ਼ ਕਲੋਨੀ, ਹੋਲੀ ਪਾਰਕ, ਰਾਮਪੁਰ",
-    "addressHi": "संस्कार प्लेस स्कूल, आदर्श कॉलोनी, होली पार्क, रामपुर",
-    "addressEn": "Sanskar Place School, Adarsh Colony, Holi Park, Rampur"
+    "addressPa": "ਸੰਸਕਾਰ ਪਲੇ ਸਕੂਲ, ਆਦਰਸ਼ ਕਲੋਨੀ, ਹੋਲੀ ਪਾਰਕ, ਰਾਮਪੁਰ",
+    "addressHi": "संस्कार प्ले स्कूल, आदर्श कॉलोनी, होली पार्क, रामपुर",
+    "addressEn": "Sanskar Play School, Adarsh Colony, Holi Park, Rampur"
   },
   {
     "id": "poster2026-1229-37",
