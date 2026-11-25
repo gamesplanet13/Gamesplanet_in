@@ -10,7 +10,7 @@
  const locales={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
  function all(){
   const now=Date.now();
-  return programs.filter(program=>program&&window.POH_PROGRAM_CLOCK.isActive(program,now))
+  return programs.filter(program=>program&&!program.noProgram&&window.POH_PROGRAM_CLOCK.isActive(program,now))
    .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));
  }
  function describe(p,l){
