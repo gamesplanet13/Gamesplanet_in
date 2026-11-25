@@ -247,14 +247,14 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Asha Aunty Ji and Tejveer Singh Ji — near Gurdwara Sant Bhai Ji Baba Ji",
     "titlePa": "ਆਸ਼ਾ ਆਂਟੀ ਜੀ ਅਤੇ ਵੀਰ ਤੇਜਵੀਰ ਸਿੰਘ ਜੀ ਦੇ ਘਰ, ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਕੋਲ",
     "titleHi": "आशा आंटी जी और वीर तेजवीर सिंह जी के घर, गुरुद्वारा संत भाई जी बाबा जी के पास",
-    "address": "",
+    "address": "ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਨਾਲ, ਡਾਕਟਰ ਲਾਲ ਪੈਥ ਲੈਬ ਦੇ ਨਾਲ",
     "timeNote": "9:00–11:00 PM",
     "map": "",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
-    "venueKnown": false
+    "venueKnown": true
   },
   {
     "id": "poster2026-1211-16",
