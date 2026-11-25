@@ -448,8 +448,8 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
  #live>.wrap>h2,#suggestions>.wrap>h2{color:#fff5dc!important}
 }
 [data-program-plate="gurdwara"]{--plate-accent:#8b5a0b;--plate-wash:#f7d785;--plate-ink:#302005;--plate-bg:linear-gradient(120deg,#f7d77f,#f9e6a4 46%,#dfab50)}
-[data-program-plate="rain-sabai"]{--plate-accent:#936612;--plate-wash:#fff097;--plate-ink:#3c2b06;--plate-bg:linear-gradient(120deg,#fff4a3,#ffe16c)}
-[data-program-plate="amrit-vela"]{--plate-accent:#ab7720;--plate-wash:#d6efff;--plate-ink:#143b56;--plate-bg:linear-gradient(120deg,#e7f7ff,#bde5ff)}
+[data-program-plate="rain-sabai"]{--plate-accent:#ecc16d;--plate-wash:#70091c;--plate-ink:#fff4df;--plate-bg:linear-gradient(120deg,#b3192d,#8d0a20)}
+[data-program-plate="amrit-vela"]{--plate-accent:#bf8b32;--plate-wash:#d6efff;--plate-ink:#143b56;--plate-bg:linear-gradient(120deg,#e7f7ff,#bde5ff)}
 .gurdwara-badge{display:flex;align-items:center;gap:6px;align-self:flex-start;width:fit-content;max-width:100%;padding:3px 8px;margin:3px 0;border:1px solid #8b5a0b;border-radius:8px;background:#ffedb0;color:#382308;font-size:12px;font-weight:800;line-height:1.4}
 .gurdwara-badge span{font-size:16px;line-height:1}
 #events .event[data-program-plate] .meta,#nextBody[data-program-plate] .meta{color:var(--plate-ink)!important}
@@ -472,6 +472,15 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
 #events .event[data-program-plate] .samagam-banner{
  background:linear-gradient(90deg,#f6e3b0,var(--plate-wash),#f6e3b0);
  color:var(--plate-ink);border-color:#c9a059
+}
+#events .event[data-program-plate="rain-sabai"] .samagam-banner,
+#events .event[data-program-plate="rain-sabai"] .btn,
+#nextBody.upcoming[data-program-plate="rain-sabai"] .btn{
+ background:#f5d782;color:#571424;border-color:#d8ab51
+}
+#events .event[data-program-plate="rain-sabai"] .btn:hover,
+#nextBody.upcoming[data-program-plate="rain-sabai"] .btn:hover{
+ background:#ffe6a2;color:#571424
 }
 </style></head>
 <body>
@@ -525,17 +534,15 @@ const gurdwaraPrograms=new Set([
  'poster2026-1214-19','poster2026-1215-20','poster2026-1222-28','poster2026-1225-31','poster2026-1230-38'
 ]);
 function isGurdwaraProgram(event){
- if(gurdwaraPrograms.has(event.id))return true;
  if(event.noProgram)return false;
+ if(gurdwaraPrograms.has(event.id))return true;
  const titles=[event.titleEn,event.titlePa,event.titleHi].filter(Boolean);
  const addresses=[event.addressEn,event.addressPa,event.addressHi,event.address].filter(Boolean);
- const otherVenue=/\bat home\b|\blane\b|\bdeparture from\b|ਦੇ ਘਰ|ਵਾਲੀ ਗਲੀ|ਰਵਾਨਗੀ|के घर|वाली गली|प्रस्थान/i;
+ const otherVenue=/\b(?:home|house|lane|near|nearby|beside|behind|opposite|adjacent|across from|next to|departure from|meet at|gather at)\b|ਘਰ|ਗਲੀ|ਨੇੜੇ|ਨਜ਼ਦੀਕ|ਦੇ (?:ਕੋਲ|ਨਾਲ|ਪਿੱਛੇ|ਸਾਹਮਣੇ)|ਰਵਾਨਗੀ|घर|गली|नज़दीक|के (?:पास|बगल|पीछे|सामने)|प्रस्थान/i;
  const gurdwara=/\b(?:gurdwara|gurudwara)\b|ਗੁਰਦੁਆਰਾ|ਗੁਰਦਵਾਰਾ|गुरुद्वारा|गुरद्वारा/i;
  const startsAtGurdwara=/^(?:gurdwara|gurudwara|ਗੁਰਦੁਆਰਾ|ਗੁਰਦਵਾਰਾ|गुरुद्वारा|गुरद्वारा)/i;
- return ![...titles,...addresses].some(value=>otherVenue.test(value))&&(
-  addresses.some(value=>startsAtGurdwara.test(value.trim())&&!/ਦੇ (?:ਨੇੜੇ|ਕੋਲ|ਨਾਲ|ਪਿੱਛੇ|ਸਾਹਮਣੇ)|के (?:पास|बगल|पीछे|सामने)/i.test(value))||
-  titles.some(value=>gurdwara.test(value)&&!/\b(?:near|beside|behind|opposite)\b|ਦੇ (?:ਨੇੜੇ|ਕੋਲ|ਨਾਲ)|के (?:पास|बगल)/i.test(value))
- );
+ if([...titles,...addresses].some(value=>otherVenue.test(value)))return false;
+ return addresses.some(value=>startsAtGurdwara.test(value.trim()))||titles.some(value=>gurdwara.test(value));
 }
 function gurdwaraBadge(){
  const badge=node('span','gurdwara-badge');
