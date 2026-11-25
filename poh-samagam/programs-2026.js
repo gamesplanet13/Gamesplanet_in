@@ -613,7 +613,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleHi": "स. भूपिंदर सिंह जी, बीबी रंजीत कौर जी (डिंपल दीदी), वीर जशनदीप सिंह जी के घर",
     "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਦੇ ਨੇੜੇ, ਤਰਨਜੀਤ ਸਿੰਘ ਡਿੰਪੀ ਵੀਰ ਜੀ ਦੇ ਘਰ ਦੇ ਨਾਲ",
     "timeNote": "9:00–11:00 PM",
-    "map": "https://maps.app.goo.gl/fBMHRuqvhzXvr9ra9",
+    "map": "https://maps.app.goo.gl/U5BEedwwh7CxNVLBA?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
