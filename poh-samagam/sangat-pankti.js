@@ -4,7 +4,7 @@
  const url='https://sangat-view-live.gamesplanet.chatgpt.site/live';
  const verse=document.getElementById('panktiVerse'),arth=document.getElementById('panktiArth'),box=document.getElementById('panktiBox');
  if(!verse||!arth||!box)return;
- const locale=()=>document.getElementById('lang')?.value||'en';
+ const locale=()=>document.getElementById('lang')?.value||'pa';
  let feedContent=null,feedRevision,etag='',online=false,job=null,busy=false;
  let peer=null,channel=null,peerContent;
  function connectPublic(){
