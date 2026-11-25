@@ -632,7 +632,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleHi": "सुबह कवि दरबार — माता विंदरजीत कौर जी, निशू बहन जी और वीर अपार जोत सिंह जी के घर",
     "address": "ਗੁਰਜੀਤ ਸਿੰਘ ਸੋਨੂ (ਆਧਾਰ ਕਾਰਡ ਵਾਲਿਆਂ) ਦੀ ਗਲੀ",
     "timeNote": "11:00 AM–3:00 PM",
-    "map": "https://www.google.com/maps/search/?api=1&query=Gurdwara%20Sant%20Bhai%20Ji%20Baba%20Ji%2C%20Rampur%2C%20Uttar%20Pradesh",
+    "map": "https://maps.app.goo.gl/y8hDWi8N89qaCW7z9?g_st=ac",
     "occasionEn": "Special Samagam",
     "occasionPa": "ਵਿਸ਼ੇਸ਼ ਸਮਾਗਮ",
     "occasionHi": "विशेष समागम",
