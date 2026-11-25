@@ -93,10 +93,10 @@ window.POH_INITIAL_PROGRAMS=[
     "id": "poster2026-1130-5",
     "date": "2026-11-30",
     "time": "21:00",
-    "titleEn": "Bablu Veer Ji — at home",
-    "titlePa": "ਬਬਲੂ ਵੀਰ ਜੀ ਦੇ ਘਰ",
-    "titleHi": "बबलू वीर जी के घर",
-    "address": "ਅਰੋੜਾ ਸਵੀਟਸ ਵਾਲੀ ਗਲੀ, ਜਗਮੋਹਨ ਵੀਰ ਜੀ ਨਿਮਾਣਾ ਦੇ ਘਰ ਵਾਲੀ ਗਲੀ",
+    "titleEn": "Bablu Veer Ji’s Samagam",
+    "titlePa": "ਬਬਲੂ ਵੀਰ ਜੀ ਦਾ ਸਮਾਗਮ",
+    "titleHi": "बबलू वीर जी का समागम",
+    "address": "ਜਗਮੋਹਨ ਸਿੰਘ ਨਿਮਾਣਾ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਅਰੋੜਾ ਸਵੀਟਸ ਵਾਲੀ ਗਲੀ",
     "timeNote": "9:00–11:00 PM",
     "map": "https://maps.app.goo.gl/t3pUquJPkHg7iQX58?g_st=ac",
     "occasionEn": "Gurmat Samagam",
@@ -104,9 +104,9 @@ window.POH_INITIAL_PROGRAMS=[
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
     "venueKnown": true,
-    "addressPa": "ਅਰੋੜਾ ਸਵੀਟਸ ਵਾਲੀ ਗਲੀ, ਜਗਮੋਹਨ ਵੀਰ ਜੀ ਨਿਮਾਣਾ ਦੇ ਘਰ ਵਾਲੀ ਗਲੀ",
-    "addressHi": "अरोड़ा स्वीट्स वाली गली, जगमोहन वीर जी निमाणा के घर वाली गली",
-    "addressEn": "Arora Sweets lane, Jagmohan Veer Ji Nimana’s lane"
+    "addressPa": "ਜਗਮੋਹਨ ਸਿੰਘ ਨਿਮਾਣਾ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਅਰੋੜਾ ਸਵੀਟਸ ਵਾਲੀ ਗਲੀ",
+    "addressHi": "जगमोहन सिंह निमाणा वीर जी के घर, अरोड़ा स्वीट्स वाली गली",
+    "addressEn": "At Jagmohan Singh Nimana Veer Ji’s home, Arora Sweets lane"
   },
   {
     "id": "poster2026-1201-6",
