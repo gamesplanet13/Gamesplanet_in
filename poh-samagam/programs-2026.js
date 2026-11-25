@@ -284,7 +284,10 @@ window.POH_INITIAL_PROGRAMS=[
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
-    "venueKnown": true
+    "venueKnown": true,
+    "addressPa": "ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਨਾਲ, ਡਾਕਟਰ ਲਾਲ ਪੈਥ ਲੈਬ ਦੇ ਨਾਲ",
+    "addressHi": "गुरुद्वारा संत भाई जी बाबा जी के बगल में, डॉ. लाल पैथलैब्स के पास",
+    "addressEn": "Beside Gurdwara Sant Bhai Ji Baba Ji, next to Dr. Lal PathLabs"
   },
   {
     "id": "poster2026-1211-16",
@@ -293,7 +296,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Mandeep Singh Ji (Manni Mobile) — at home",
     "titlePa": "ਵੀਰ ਮਨਦੀਪ ਸਿੰਘ ਜੀ, ਮੰਨੀ ਮੋਬਾਈਲ ਵਾਲਿਆਂ ਦੇ ਘਰ",
     "titleHi": "वीर मनदीप सिंह जी, मन्नी मोबाइल वालों के घर",
-    "address": "ਮੰਨੀ ਮੋਬਾਈਲ ਵਾਲਿਆਂ ਦੇ ਘਰ",
+    "address": "ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਸਾਹਮਣੇ ਵਾਲੀ ਗਲੀ, ਗੁਰਜੀਤ ਸਿੰਘ (ਸੋਨੂ, ਆਧਾਰ ਕਾਰਡ ਵਾਲਿਆਂ) ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
     "timeNote": "9:00–11:00 PM",
     "map": "",
     "occasionEn": "Gurmat Samagam",
@@ -301,9 +304,9 @@ window.POH_INITIAL_PROGRAMS=[
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
     "venueKnown": true,
-    "addressPa": "ਮੰਨੀ ਮੋਬਾਈਲ ਵਾਲਿਆਂ ਦੇ ਘਰ",
-    "addressHi": "मन्नी मोबाइल वालों के घर",
-    "addressEn": "At the home of the Manni Mobile family"
+    "addressPa": "ਗੁਰਦੁਆਰਾ ਸੰਤ ਭਾਈ ਜੀ ਬਾਬਾ ਜੀ ਦੇ ਸਾਹਮਣੇ ਵਾਲੀ ਗਲੀ, ਗੁਰਜੀਤ ਸਿੰਘ (ਸੋਨੂ, ਆਧਾਰ ਕਾਰਡ ਵਾਲਿਆਂ) ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
+    "addressHi": "गुरुद्वारा संत भाई जी बाबा जी के सामने वाली गली, गुरजीत सिंह (सोनू, आधार कार्ड वाले) के घर के सामने",
+    "addressEn": "In the lane opposite Gurdwara Sant Bhai Ji Baba Ji, across from Gurjeet Singh (Sonu, Aadhaar Card Wale)’s home"
   },
   {
     "id": "poster2026-1212-17",
