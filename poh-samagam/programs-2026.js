@@ -135,14 +135,14 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Rocky Veer Ji and Sheru Veer Ji — Charan Masi Ji lane",
     "titlePa": "ਰੌਕੀ ਵੀਰ ਜੀ ਅਤੇ ਸ਼ੇਰੂ ਵੀਰ ਜੀ ਦੇ ਘਰ, ਚਰਨ ਮਾਸੀ ਜੀ ਦੀ ਗਲੀ",
     "titleHi": "रॉकी वीर जी और शेरू वीर जी के घर, चरण मासी जी की गली",
-    "address": "",
+    "address": "ਚਰਨ ਮਾਸੀ ਵਾਲੀ ਗਲੀ",
     "timeNote": "9:00–11:00 PM",
     "map": "https://maps.app.goo.gl/qfbBjWoG8sgENQGH6?g_st=ac",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
-    "venueKnown": false
+    "venueKnown": true
   },
   {
     "id": "poster2026-1204-9",
