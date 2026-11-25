@@ -116,17 +116,17 @@ window.POH_INITIAL_PROGRAMS=[
     "id": "poster2026-1202-7",
     "date": "2026-12-02",
     "time": "21:00",
-    "titleEn": "Amardeep Singh Ji (Sunny Veer Ji) — at home",
-    "titlePa": "ਸ. ਅਮਰਦੀਪ ਸਿੰਘ ਜੀ (ਸੰਨੀ ਵੀਰ ਜੀ) ਦੇ ਘਰ ਵਿਖੇ",
-    "titleHi": "स. अमरदीप सिंह जी (सन्नी वीर जी) के घर",
-    "address": "",
+    "titleEn": "Amardeep Singh Ji (Sunny Veer Ji) — Gurdwara Guru Nanak Darbar",
+    "titlePa": "ਸ. ਅਮਰਦੀਪ ਸਿੰਘ ਜੀ (ਸੰਨੀ ਵੀਰ ਜੀ) — ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਵਿਖੇ",
+    "titleHi": "स. अमरदीप सिंह जी (सन्नी वीर जी) — गुरुद्वारा गुरु नानक दरबार",
+    "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ, ਰਾਮਪੁਰ, ਉੱਤਰ ਪ੍ਰਦੇਸ਼",
     "timeNote": "9:00–11:00 PM",
-    "map": "https://maps.app.goo.gl/csWrSZve9q2sdpAw8",
+    "map": "https://www.google.com/maps/search/?api=1&query=Gurdwara%20Guru%20Nanak%20Darbar%2C%20Rampur%2C%20Uttar%20Pradesh",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
-    "venueKnown": false
+    "venueKnown": true
   },
   {
     "id": "poster2026-1203-8",
