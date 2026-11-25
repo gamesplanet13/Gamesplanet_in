@@ -217,10 +217,10 @@ window.POH_INITIAL_PROGRAMS=[
     "id": "poster2026-1207-12",
     "date": "2026-12-07",
     "time": "21:00",
-    "titleEn": "Gurpanjan Singh Ji (Gulati Chashme Wale), Aman Veer Ji and Raunak Veer Ji — at home",
-    "titlePa": "ਸ. ਗੁਰਪੰਜਨ ਸਿੰਘ ਜੀ (ਗੁਲਾਟੀ ਚਸ਼ਮੇ ਵਾਲੇ), ਅਮਨ ਵੀਰ ਜੀ ਅਤੇ ਰੌਣਕ ਵੀਰ ਜੀ ਦੇ ਘਰ",
-    "titleHi": "स. गुरपंजन सिंह जी (गुलाटी चश्मे वाले), अमन वीर जी और रौनक वीर जी के घर",
-    "address": "ਗੁਰੂ ਗੋਬਿੰਦ ਸਿੰਘ ਜੀ ਪਾਰਕ ਦੇ ਨੇੜੇ, ਜਾਇਕਾ ਹੋਟਲ",
+    "titleEn": "Gurbachan Singh Ji (Gulati Chashme Wale), Aman Veer Ji and Raunak Veer Ji — at home",
+    "titlePa": "ਸ. ਗੁਰਬਚਨ ਸਿੰਘ ਜੀ (ਗੁਲਾਟੀ ਚਸ਼ਮੇ ਵਾਲੇ), ਅਮਨ ਵੀਰ ਜੀ ਅਤੇ ਰੌਣਕ ਵੀਰ ਜੀ ਦੇ ਘਰ",
+    "titleHi": "स. गुरबचन सिंह जी (गुलाटी चश्मे वाले), अमन वीर जी और रौनक वीर जी के घर",
+    "address": "ਮਾਟਾ ਬੁੱਕ ਡਿਪੋ ਵਾਲੀ ਗਲੀ",
     "timeNote": "9:00–11:00 PM",
     "map": "https://maps.app.goo.gl/2tVL1u4hVvGtv4EZ6?g_st=ac",
     "occasionEn": "Gurmat Samagam",
@@ -228,9 +228,9 @@ window.POH_INITIAL_PROGRAMS=[
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
     "venueKnown": true,
-    "addressPa": "ਗੁਰੂ ਗੋਬਿੰਦ ਸਿੰਘ ਜੀ ਪਾਰਕ ਦੇ ਨੇੜੇ, ਜਾਇਕਾ ਹੋਟਲ",
-    "addressHi": "गुरु गोबिंद सिंह जी पार्क के पास, जायका होटल",
-    "addressEn": "Near Guru Gobind Singh Ji Park, Zaika Hotel"
+    "addressPa": "ਮਾਟਾ ਬੁੱਕ ਡਿਪੋ ਵਾਲੀ ਗਲੀ",
+    "addressHi": "माटा बुक डिपो वाली गली",
+    "addressEn": "Mata Book Depot lane"
   },
   {
     "id": "poster2026-1208-13",
