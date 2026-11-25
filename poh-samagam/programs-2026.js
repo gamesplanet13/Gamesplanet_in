@@ -166,14 +166,17 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Inderjeet Singh Ji, Karamjit Singh and Nirvair Singh — at home",
     "titlePa": "ਸ. ਇੰਦਰਜੀਤ ਸਿੰਘ ਜੀ, ਸ. ਕਰਮਜੀਤ ਸਿੰਘ ਅਤੇ ਸ. ਨਿਰਵੈਰ ਸਿੰਘ ਦੇ ਘਰ ਵਿਖੇ",
     "titleHi": "स. इंदरजीत सिंह जी, स. करमजीत सिंह और स. निरवैर सिंह के घर",
-    "address": "",
+    "address": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਦੇ ਨੇੜੇ, ਤਰਨਜੀਤ ਸਿੰਘ ਡਿੰਪੀ ਵੀਰ ਜੀ ਅਤੇ ਡਿੰਪਲ ਭੈਣ ਜੀ ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
     "timeNote": "9:00–11:00 PM",
-    "map": "",
+    "map": "https://www.google.com/maps/search/?api=1&query=Gurdwara%20Guru%20Nanak%20Darbar%2C%20Rampur%2C%20Uttar%20Pradesh",
     "occasionEn": "Gurmat Samagam",
     "occasionPa": "ਗੁਰਮਤਿ ਸਮਾਗਮ",
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
-    "venueKnown": false
+    "venueKnown": true,
+    "addressPa": "ਗੁਰਦੁਆਰਾ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ ਦੇ ਨੇੜੇ, ਤਰਨਜੀਤ ਸਿੰਘ ਡਿੰਪੀ ਵੀਰ ਜੀ ਅਤੇ ਡਿੰਪਲ ਭੈਣ ਜੀ ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
+    "addressHi": "गुरुद्वारा गुरु नानक दरबार के पास, तरनजीत सिंह डिम्पी वीर जी और डिंपल बहन जी के घर के सामने",
+    "addressEn": "Near Gurdwara Guru Nanak Darbar, opposite Taranjeet Singh Dimpy Veer Ji and Dimple Bhen Ji’s home"
   },
   {
     "id": "poster2026-1205-10",
