@@ -2,10 +2,9 @@
 /* Read-only live verse widget using both public Sangat View connections. */
 (()=>{
  const url='https://sangat-view-live.gamesplanet.chatgpt.site/live';
- const verse=document.getElementById('panktiVerse'),arth=document.getElementById('panktiArth'),state=document.getElementById('panktiState'),box=document.getElementById('panktiBox');
- if(!verse||!arth||!state||!box)return;
+ const verse=document.getElementById('panktiVerse'),arth=document.getElementById('panktiArth'),box=document.getElementById('panktiBox');
+ if(!verse||!arth||!box)return;
  const locale=()=>document.getElementById('lang')?.value||'en';
- const status={en:'● Sangat View Live',pa:'● ਸੰਗਤ ਵਿਊ ਲਾਈਵ',hi:'● संगत व्यू लाइव'};
  let feedContent=null,feedRevision,etag='',online=false,job=null,busy=false;
  let peer=null,channel=null,peerContent;
  function connectPublic(){
@@ -52,8 +51,6 @@
   arth.hidden=!meaning;
   box.hidden=!line&&!meaning;
   box.dataset.language=lang;
-  state.textContent=box.hidden?'':status[lang]||status.en;
-  state.dataset.connected=String(!box.hidden);
  }
  async function poll(){
   if(document.hidden||busy)return;
