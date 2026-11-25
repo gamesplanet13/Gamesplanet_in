@@ -8,8 +8,11 @@
  const langs=['pa','hi','en'], names={pa:'ਅਗਲਾ ਸਮਾਗਮ',hi:'अगला समागम',en:'Next Samagam'};
  const empty={pa:'ਅਗਲੇ ਸਮਾਗਮ ਦੀ ਜਾਣਕਾਰੀ ਜਲਦੀ',hi:'अगले समागम की जानकारी जल्द',en:'Next program to be announced'};
  const locales={pa:'pa-IN',hi:'hi-IN',en:'en-IN'};
- function today(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());}
- function all(){const t=today();return programs.filter(p=>p&&/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&p.date>=t).sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));}
+ function all(){
+  const now=Date.now();
+  return programs.filter(program=>program&&window.POH_PROGRAM_CLOCK.isActive(program,now))
+   .sort((a,b)=>(a.date+' '+(a.time||'')).localeCompare(b.date+' '+(b.time||'')));
+ }
  function describe(p,l){
   const date=new Date(p.date+'T12:00:00').toLocaleDateString(locales[l],{day:'numeric',month:'short',year:'numeric'});
   const title=p['title'+l[0].toUpperCase()+l.slice(1)]||p.titlePa||p.titleEn||'';

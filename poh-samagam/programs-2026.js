@@ -625,3 +625,38 @@ window.POH_INITIAL_PROGRAMS=[
     "venueKnown": true
   }
 ];
+
+/* Program times use Rampur local time, including for viewers outside India. */
+window.POH_PROGRAM_CLOCK = (() => {
+  const day = 24 * 60 * 60 * 1000;
+  const midnight = date => /^\d{4}-\d{2}-\d{2}$/.test(date)
+    ? Date.parse(date + 'T00:00:00+05:30') : NaN;
+  const minutes = (hour, minute, period) => {
+    const h = Number(hour), m = Number(minute || 0);
+    if (m > 59 || (period ? h < 1 || h > 12 : h > 23)) return NaN;
+    return (period ? h % 12 + (period.toUpperCase() === 'PM' ? 12 : 0) : h) * 60 + m;
+  };
+  const clockTime = value => {
+    const match = /^(\d{1,2}):(\d{2})$/.exec(value || '');
+    return match ? minutes(match[1], match[2]) : NaN;
+  };
+  function endsAt(program) {
+    const startOfDay = midnight(program.date);
+    const start = clockTime(program.time);
+    let end = clockTime(program.endTime);
+    if (!Number.isFinite(end)) {
+      const range = /\d{1,2}(?::\d{2})?\s*(?:AM|PM)?\s*[-–—]\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i.exec(program.timeNote || '');
+      if (range) end = minutes(range[1], range[2], range[3]);
+    }
+    if (!Number.isFinite(end)) return startOfDay + day;
+    return startOfDay + end * 60000 + (end < start || /next\s+day/i.test(program.timeNote || '') && !program.endTime ? day : 0);
+  }
+  function isActive(program, now = Date.now()) {
+    return endsAt(program) > now;
+  }
+  function timeLabel(program) {
+    if (!program.endTime) return program.timeNote || program.time;
+    return [program.time, program.endTime].filter(Boolean).join('–');
+  }
+  return {endsAt, isActive, timeLabel};
+})();
