@@ -258,7 +258,7 @@ window.POH_INITIAL_PROGRAMS=[
     "titleEn": "Gurbachan Singh Ji Pardesi — at home",
     "titlePa": "ਸ. ਗੁਰਬਚਨ ਸਿੰਘ ਜੀ ਪਰਦੇਸੀ ਦੇ ਘਰ",
     "titleHi": "स. गुरबचन सिंह जी परदेसी के घर",
-    "address": "ਗੁਰੂ ਨਾਨਕ ਰੋਡ, ਹੋਟਲ ਜਾਇਕਾ ਪੰਜਾਬ ਦੇ ਨੇੜੇ",
+    "address": "ਗੁਰੂ ਨਾਨਕ ਰੋਡ, ਹੋਟਲ ਜਾਇਕਾ ਪੰਜਾਬ ਦੇ ਨੇੜੇ, ਅਮਨਪ੍ਰੀਤ ਸਿੰਘ (ਪ੍ਰੀਤ ਗਾਰਮੈਂਟਸ ਵਾਲਿਆਂ) ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
     "timeNote": "9:00–11:00 PM",
     "map": "https://maps.app.goo.gl/RQv7SPdrgw9twVWa6?g_st=ac",
     "occasionEn": "Gurmat Samagam",
@@ -266,9 +266,9 @@ window.POH_INITIAL_PROGRAMS=[
     "occasionHi": "गुरमत समागम",
     "source": "schedule2026",
     "venueKnown": true,
-    "addressPa": "ਗੁਰੂ ਨਾਨਕ ਰੋਡ, ਹੋਟਲ ਜਾਇਕਾ ਪੰਜਾਬ ਦੇ ਨੇੜੇ",
-    "addressHi": "गुरु नानक रोड, होटल जायका पंजाब के पास",
-    "addressEn": "Guru Nanak Road, near Hotel Zaika Punjab"
+    "addressPa": "ਗੁਰੂ ਨਾਨਕ ਰੋਡ, ਹੋਟਲ ਜਾਇਕਾ ਪੰਜਾਬ ਦੇ ਨੇੜੇ, ਅਮਨਪ੍ਰੀਤ ਸਿੰਘ (ਪ੍ਰੀਤ ਗਾਰਮੈਂਟਸ ਵਾਲਿਆਂ) ਦੇ ਘਰ ਦੇ ਸਾਹਮਣੇ",
+    "addressHi": "गुरु नानक रोड, होटल जायका पंजाब के पास, अमनप्रीत सिंह (प्रीत गारमेंट्स वाले) के घर के सामने",
+    "addressEn": "Guru Nanak Road, near Hotel Zaika Punjab, opposite the home of Amanpreet Singh (Preet Garments)"
   },
   {
     "id": "poster2026-1210-15",
