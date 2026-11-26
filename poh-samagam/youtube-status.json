@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-26T19:56:15.302482Z",
+  "checkedAt": "2026-11-26T19:57:11.147629Z",
   "live": null,
   "recorded": {
     "videoId": "90xcmijYz2U",
@@ -7,6 +7,6 @@
     "date": "2026-11-26T15:43:10+00:00",
     "endedAt": "2026-11-26T17:57:17+00:00"
   },
-  "status": "ok",
-  "message": ""
+  "status": "unavailable",
+  "message": "YouTube did not return verifiable live or replay metadata"
 }
