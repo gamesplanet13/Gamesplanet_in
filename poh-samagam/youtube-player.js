@@ -44,13 +44,14 @@
     const key=choice.type==='archive'?'archive':choice.type+':'+choice.id;
     // Never touch an already playing video during a 60-second status poll,
     // language change, scroll, or sound change. Only real video ID changes.
-    if(key===active){
+    if(key===active||choice.type==='recorded'&&active==='live:'+choice.id){
+      active=key;
       if(choice.type==='live'&&visible&&!autoplayStarted&&ytReady&&yt){
         try{yt.mute();yt.playVideo();autoplayStarted=true}catch(_){}
       }
       return;
     }
-    active=key;soundEnabled=false;
+    active=key;soundEnabled=false;autoplayStarted=false;
     if(fallback)fallback.classList.add('hidden');
     // YouTube's UULV... auto-playlist is the channel's livestreams-only archive.
     // It plays the most recently indexed stream in the same video window,
@@ -67,14 +68,37 @@
     frame.src='https://www.youtube.com/embed/'+choice.id+'?'+params.toString();
     if(window.YT?.Player&&!yt)preparePlayer();
   }
-  async function sync(){
+  const statusSources=[
+    'https://raw.githubusercontent.com/gamesplanet13/Gamesplanet_in/main/poh-samagam/youtube-status.json',
+    './youtube-status.json'
+  ];
+  async function readStatus(url, revision){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),6500);
     try{
-      const response=await fetch('./youtube-status.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
-      if(!response.ok)throw Error('Could not load status');
-      const next=await response.json();
-      if(next&&typeof next==='object')data=next;
-    }catch(_){if(data)data={...data,status:'unavailable',live:null}}
-    draw();
+      const response=await fetch(url+'?t='+revision,{cache:'no-store',signal:controller.signal});
+      if(!response.ok)return null;
+      const value=await response.json();
+      return Number.isFinite(Date.parse(value?.checkedAt))?value:null;
+    }finally{clearTimeout(timeout)}
+  }
+  let syncing=false;
+  async function sync(){
+    if(syncing)return;
+    syncing=true;
+    try{
+      const revision=Math.floor(Date.now()/60000);
+      const results=await Promise.allSettled(statusSources.map(url=>readStatus(url,revision)));
+      const items=[data,...results.flatMap(result=>result.status==='fulfilled'&&result.value?[result.value]:[])].filter(Boolean);
+      items.sort((a,b)=>Date.parse(b.checkedAt)-Date.parse(a.checkedAt));
+      const next=items[0];
+      if(next){
+        const clips=items.map(source=>source.recorded).filter(clip=>valid(clip?.videoId));
+        const when=clip=>Date.parse(clip.endedAt||clip.date)||0;
+        clips.sort((a,b)=>when(b)-when(a));
+        data={...next,recorded:clips[0]||null};
+      }
+    }finally{syncing=false;draw()}
   }
   // YouTube only permits muted autoplay without user gesture on many phones.
   // The button lets the user unmute the existing stream without reloading it.
