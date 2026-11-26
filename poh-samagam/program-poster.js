@@ -95,7 +95,7 @@
   const type = knownOccasion[event.id];
   const occasion = t[type] || options.occasion || t.series;
   const date = dateText(event.date, lang);
-  const fontSample = [t.series, title, address, time, t.venue, date, occasion, gurdwara ? 'ੴ ' + t.gurdwara : ''].join(' ');
+  const fontSample = [t.series, title, address, time, t.venue, date, occasion, gurdwara ? t.gurdwara : ''].join(' ');
   const fontLoad = document.fonts ? Promise.all([400, 700].flatMap(w =>
    ['Noto Sans Gurmukhi','Noto Sans Devanagari','Inter'].map(f => document.fonts.load(w + ' 38px "' + f + '"', fontSample))
   )).catch(() => {}) : Promise.resolve();
@@ -145,7 +145,7 @@
   y += 24;
   y = write(ctx, fit(ctx, date, 46, 34, 872, 1, 700), y, ink);
   if (time) y = write(ctx, fit(ctx, time, 38, 28, 872, 1, 600), y + 4, ink);
-  if (gurdwara) y = write(ctx, fit(ctx, 'ੴ  ' + t.gurdwara, 34, 26, 872, 1, 700), y + 8, ink);
+  if (gurdwara) y = write(ctx, fit(ctx, t.gurdwara, 34, 26, 872, 1, 700), y + 8, ink);
   if (addressBlock) {
    y = write(ctx, fit(ctx, t.venue, 29, 25, 872, 1, 700), y + 19, ink);
    y = write(ctx, addressBlock, y + 2, ink);
