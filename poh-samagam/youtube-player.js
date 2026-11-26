@@ -69,7 +69,7 @@
     if(window.YT?.Player&&!yt)preparePlayer();
   }
   const statusSources=[
-    'https://raw.githubusercontent.com/gamesplanet13/Gamesplanet_in/main/poh-samagam/youtube-status.json',
+    'https://raw.githubusercontent.com/gamesplanet13/Gamesplanet_in/refs/heads/main/poh-samagam/youtube-status.json',
     './youtube-status.json'
   ];
   async function readStatus(url, revision){
@@ -96,7 +96,7 @@
         const clips=items.map(source=>source.recorded).filter(clip=>valid(clip?.videoId));
         const when=clip=>Date.parse(clip.endedAt||clip.date)||0;
         clips.sort((a,b)=>when(b)-when(a));
-        data={...next,recorded:clips[0]||null};
+        data={...next,recorded:valid(next.recorded?.videoId)&&!when(next.recorded)?next.recorded:clips[0]||null};
       }
     }finally{syncing=false;draw()}
   }

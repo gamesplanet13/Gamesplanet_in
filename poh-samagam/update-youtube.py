@@ -5,6 +5,8 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import re
+import subprocess
+import sys
 from urllib.request import Request, urlopen
 
 OUT = Path(__file__).with_name("youtube-status.json")
@@ -36,12 +38,12 @@ def nodes(value):
         yield value
         for child in value.values():
             yield from nodes(child)
-    elif isinstance(value, list):
+    elif isinstance(value, (list, tuple)):
         for child in value:
             yield from nodes(child)
 
 
-def source_ids(page):
+def source_entries(page):
     seen = set()
     for node in nodes(embedded_json(page, "ytInitialData").get("contents", {})):
         for key in ("lockupViewModel", "videoRenderer", "gridVideoRenderer", "playlistVideoRenderer"):
@@ -49,9 +51,31 @@ def source_ids(page):
             if not isinstance(item, dict):
                 continue
             video_id = item.get("videoId") or item.get("contentId")
-            if isinstance(video_id, str) and VIDEO_ID.fullmatch(video_id) and video_id not in seen:
-                seen.add(video_id)
-                yield video_id
+            if not isinstance(video_id, str) or not VIDEO_ID.fullmatch(video_id) or video_id in seen:
+                continue
+            seen.add(video_id)
+            title = item.get("title") or item.get("metadata", {}).get("lockupMetadataViewModel", {}).get("title", {})
+            title = title.get("content") or title.get("simpleText") or "".join(run.get("text", "") for run in title.get("runs", []))
+            overlays = (item.get("contentImage"), item.get("thumbnailOverlays"), item.get("badges"))
+            yield video_id, title, badge_state(overlays)
+
+
+def badge_state(overlays):
+    for card in overlays:
+        for node in nodes(card):
+            style = node.get("badgeStyle") or node.get("style")
+            if style in ("THUMBNAIL_OVERLAY_BADGE_STYLE_LIVE", "BADGE_STYLE_TYPE_LIVE_NOW", "LIVE"):
+                return "live"
+            if style in ("THUMBNAIL_OVERLAY_BADGE_STYLE_UPCOMING", "UPCOMING"):
+                return "upcoming"
+    for card in overlays:
+        for node in nodes(card):
+            value = node.get("text")
+            if isinstance(value, str) and re.fullmatch(r"(?:\d+:)?\d{1,3}:\d{2}", value):
+                return "recorded"
+            if isinstance(value, dict) and re.fullmatch(r"(?:\d+:)?\d{1,3}:\d{2}", value.get("simpleText", "")):
+                return "recorded"
+    return None
 
 
 def stream_metadata(page, expected_id=None):
@@ -93,26 +117,52 @@ def timestamp(value):
         return 0
 
 
+def extractor_fallback():
+    command = [sys.executable, "-m", "yt_dlp", "--dump-single-json", "--skip-download",
+               "--socket-timeout", "8", "--retries", "0", "--flat-playlist",
+               "--playlist-items", "1:8", f"{CHANNEL}/streams"]
+    try:
+        proc = subprocess.run(command, capture_output=True, text=True, timeout=30, check=True)
+        entries = json.loads(proc.stdout).get("entries", [])
+    except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        print(f"YouTube extractor fallback unavailable: {exc}")
+        return []
+    states = {"is_live": "live", "was_live": "recorded", "post_live": "recorded", "is_upcoming": "upcoming"}
+    return [(item["id"], item.get("title"), states.get(item.get("live_status")))
+            for item in entries if item and VIDEO_ID.fullmatch(item.get("id") or "")]
+
+
 def refresh(old):
     with ThreadPoolExecutor(max_workers=8) as pool:
         direct, streams = pool.map(safe_fetch, (f"{CHANNEL}/live?hl=en", f"{CHANNEL}/streams?hl=en"))
-        ids = list(source_ids(streams)) or list(source_ids(direct))
-        if not ids:
-            ids = list(source_ids(safe_fetch(ARCHIVE)))
-        ids = ids[:8]
-        pages = pool.map(safe_fetch, (f"{YOUTUBE}/watch?v={video_id}&hl=en" for video_id in ids))
-        found = [stream_metadata(direct)]
-        found.extend(stream_metadata(page, video_id) for video_id, page in zip(ids, pages))
-    live = [item for result in found if result for state, item in (result,) if state == "live"]
-    recordings = [item for result in found if result for state, item in (result,) if state == "recorded"]
-    if old.get("recorded"):
-        recordings.append(old["recorded"])
+        entries = list(source_entries(streams))
+        if not entries:
+            entries = list(source_entries(safe_fetch(ARCHIVE)))
+        if not entries:
+            entries = extractor_fallback()
+        entries = entries[:8]
+        pages = pool.map(safe_fetch, (f"{YOUTUBE}/watch?v={video_id}&hl=en" for video_id, _, _ in entries))
+        direct_result = stream_metadata(direct)
+        live = [direct_result[1]] if direct_result and direct_result[0] == "live" else []
+        recordings = []
+        previous = old.get("recorded")
+        for (video_id, title, badge), page in zip(entries, pages):
+            watch = stream_metadata(page, video_id)
+            if watch:
+                (live if watch[0] == "live" else recordings).append(watch[1])
+            elif badge in ("live", "recorded"):
+                entry = {"videoId": video_id, "title": title or "Akaal Ji Sahai TV", "date": None}
+                if previous and previous.get("videoId") == video_id:
+                    entry = previous
+                (live if badge == "live" else recordings).append(entry)
+    if recordings and all(timestamp(item.get("endedAt") or item.get("date")) for item in recordings):
+        recordings.sort(key=lambda item: timestamp(item.get("endedAt") or item.get("date")), reverse=True)
     return {
         "checkedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "live": max(live, key=lambda item: timestamp(item.get("date")), default=None),
-        "recorded": max(recordings, key=lambda item: timestamp(item.get("endedAt") or item.get("date")), default=None),
-        "status": "ok" if any(found) else "unavailable",
-        "message": "" if any(found) else "YouTube did not return verifiable live or replay metadata",
+        "live": live[0] if live else None,
+        "recorded": recordings[0] if recordings else previous,
+        "status": "ok" if live or recordings else "unavailable",
+        "message": "" if live or recordings else "YouTube did not return verifiable live or replay metadata",
     }
 
 
