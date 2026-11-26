@@ -1,13 +1,14 @@
 'use strict';
 (()=>{
  const $=id=>document.getElementById(id);
- const like=$('pohLike'),follow=$('pohFollow'),status=$('pohFollowStatus'),localCount=$('pohLocalLike');
+ const subscribe=$('pohSubscribe'),like=$('pohLike'),follow=$('pohFollow'),status=$('pohFollowStatus'),localCount=$('pohLocalLike');
  if(!like||!follow||!status||!localCount)return;
+ const canRemind='Notification' in window&&'serviceWorker' in navigator;
  const getLang=()=> $('lang')?.value||'pa';
  const translations={
-  pa:{like:'ਪਸੰਦ',liked:'ਪਸੰਦ ਕੀਤਾ',yourLike:'ਮੇਰੀ ਲਾਈਕ',follow:'🔔 ਸਬਸਕ੍ਰਾਈਬ',following:'🔔 ਨੋਟੀਫਿਕੇਸ਼ਨ ਆਨ',permit:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ',unsupported:'ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਨੋਟੀਫਿਕੇਸ਼ਨ ਉਪਲਬਧ ਨਹੀਂ',denied:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਇਜਾਜ਼ਤ ਨਹੀਂ ਮਿਲੀ',ready:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਆਨ ਹਨ (ਪੇਜ ਖੁੱਲ੍ਹਾ ਹੋਣ ਵੇਲੇ ਯਾਦ-ਦਿਹਾਨੀ)',error:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੈੱਟ ਨਹੀਂ ਹੋ ਸਕੇ',reminder:'ਸਮਾਗਮ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲਾ ਹੈ'},
-  hi:{like:'लाइक',liked:'लाइक किया',yourLike:'मेरी लाइक',follow:'🔔 सब्सक्राइब',following:'🔔 नोटिफिकेशन ऑन',permit:'नोटिफिकेशन की अनुमति दें',unsupported:'इस ब्राउज़र में नोटिफिकेशन उपलब्ध नहीं',denied:'नोटिफिकेशन की अनुमति नहीं मिली',ready:'नोटिफिकेशन ऑन (पेज खुला होने पर रिमाइंडर)',error:'नोटिफिकेशन सेट नहीं हुए',reminder:'समागम शुरू होने वाला है'},
-  en:{like:'Like',liked:'Liked',yourLike:'My Like',follow:'🔔 Subscribe',following:'🔔 Notifications On',permit:'Allow notifications',unsupported:'Browser notifications unavailable',denied:'Notification permission denied',ready:'Notifications on (reminders while page is open)',error:'Could not enable notifications',reminder:'Samagam begins soon'}
+  pa:{like:'ਪਸੰਦ',liked:'ਪਸੰਦ ਕੀਤਾ',yourLike:'ਮੇਰੀ ਲਾਈਕ',subscribe:'▶ YouTube ਸਬਸਕ੍ਰਾਈਬ',follow:'🔔 ਸਮਾਗਮ ਦੀ ਯਾਦ-ਦਿਹਾਨੀ',following:'🔔 ਨੋਟੀਫਿਕੇਸ਼ਨ ਆਨ',permit:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ',unsupported:'ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਨੋਟੀਫਿਕੇਸ਼ਨ ਉਪਲਬਧ ਨਹੀਂ',denied:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਇਜਾਜ਼ਤ ਨਹੀਂ ਮਿਲੀ',ready:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਆਨ ਹਨ (ਪੇਜ ਖੁੱਲ੍ਹਾ ਹੋਣ ਵੇਲੇ ਯਾਦ-ਦਿਹਾਨੀ)',error:'ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੈੱਟ ਨਹੀਂ ਹੋ ਸਕੇ',reminder:'ਸਮਾਗਮ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲਾ ਹੈ'},
+  hi:{like:'लाइक',liked:'लाइक किया',yourLike:'मेरी लाइक',subscribe:'▶ YouTube सब्सक्राइब',follow:'🔔 समागम रिमाइंडर',following:'🔔 नोटिफिकेशन ऑन',permit:'नोटिफिकेशन की अनुमति दें',unsupported:'इस ब्राउज़र में नोटिफिकेशन उपलब्ध नहीं',denied:'नोटिफिकेशन की अनुमति नहीं मिली',ready:'नोटिफिकेशन ऑन (पेज खुला होने पर रिमाइंडर)',error:'नोटिफिकेशन सेट नहीं हुए',reminder:'समागम शुरू होने वाला है'},
+  en:{like:'Like',liked:'Liked',yourLike:'My Like',subscribe:'▶ Subscribe on YouTube',follow:'🔔 Samagam reminders',following:'🔔 Notifications On',permit:'Allow notifications',unsupported:'Browser notifications unavailable',denied:'Notification permission denied',ready:'Notifications on (reminders while page is open)',error:'Could not enable notifications',reminder:'Samagam begins soon'}
  };
  const t=k=>(translations[getLang()]||translations.pa)[k];
  let programs=window.POH_INITIAL_PROGRAMS||[];
@@ -17,6 +18,8 @@
   like.setAttribute('aria-pressed',String(liked()));
   like.textContent='👍 '+t(liked()?'liked':'like');
   localCount.textContent=t('yourLike')+': '+(liked()?'1':'0');
+  if(subscribe)subscribe.textContent=t('subscribe');
+  follow.hidden=!canRemind;
   follow.textContent=following()?t('following'):t('follow');
   follow.setAttribute('aria-pressed',String(following()));
  }
