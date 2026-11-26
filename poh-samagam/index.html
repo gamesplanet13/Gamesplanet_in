@@ -298,11 +298,11 @@ footer{border-top:2px solid #d4ac69}
 
 /* Compact header actions: local reaction and opt-in reminders, no false public counts. */
 .engagement-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 9px;padding:5px 10px;background:#fff8eb;border-bottom:1px solid #e2d1b2;color:#3d5360;min-height:37px}
-.engagement-strip :is(button,.subscribe-link){border:1px solid #d1ac72;background:#fffdf9;border-radius:8px;min-height:28px;padding:4px 10px;color:#2d454e;font-size:12px;font-weight:800;line-height:1.3}
+.engagement-strip button{border:1px solid #d1ac72;background:#fffdf9;border-radius:8px;min-height:28px;padding:4px 10px;color:#2d454e;font-size:12px;font-weight:800;line-height:1.3}
 .engagement-strip button[aria-pressed="true"]{background:#d9ab68;color:#19363e}
 #pohLocalLike{font-size:11px;color:#67767b}
 #pohFollowStatus{font-size:11px;font-weight:600;color:#2e655c}
-@media(max-width:600px){.engagement-strip{gap:4px 7px;padding:4px 6px}.engagement-strip :is(button,.subscribe-link){font-size:11px;padding:3px 7px}#pohLocalLike,#pohFollowStatus{font-size:10px}}
+@media(max-width:600px){.engagement-strip{gap:4px 7px;padding:4px 6px}.engagement-strip button{font-size:11px;padding:3px 7px}#pohLocalLike,#pohFollowStatus{font-size:10px}}
 
 /* Approved HD illustration stays uncropped at top; the softer companion art
    remains fixed behind the full document while contents scroll above it. */
@@ -367,7 +367,7 @@ header{background:linear-gradient(90deg,#241d31f4,#632b37f0)!important;border-bo
 header .compact-brand,header .brand,header .brand *,header .compact-nav,header .compact-nav a{color:#fff0d5!important}
 header .lightbtn,header .compact-nav .lightbtn{background:#fff2df;color:#411d30;border:1px solid #cda46d}
 .engagement-strip{background:linear-gradient(100deg,#fff2dd,#ecd4bb);border-bottom:1px solid #b4824b}
-.engagement-strip :is(button,.subscribe-link){background:#fff9ed;border:1px solid #ad7846;color:#54283a}
+.engagement-strip button{background:#fff9ed;border:1px solid #ad7846;color:#54283a}
 .engagement-strip button[aria-pressed=true]{background:#632538;color:#fff1d7}
 .engagement-strip #pohLocalLike{color:#60454e}
 .hero .hero-photo{max-width:1500px}
@@ -497,8 +497,8 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
 <div class="engagement-strip" aria-label="Samagam updates and reactions">
  <button id="pohLike" type="button" aria-pressed="false">👍 Like</button>
  <span id="pohLocalLike" title="This device only; global Like counts require a connected analytics database">My Like: 0</span>
- <a id="pohSubscribe" class="subscribe-link" href="https://www.youtube.com/@akaaljisahaitv1313">▶ YouTube ਸਬਸਕ੍ਰਾਈਬ</a>
- <button id="pohFollow" type="button" aria-pressed="false" hidden>🔔 ਸਮਾਗਮ ਦੀ ਯਾਦ-ਦਿਹਾਨੀ</button>
+ <button id="pohSubscribe" type="button" aria-pressed="false">ਪੋਹ ਸਮਾਗਮ ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</button>
+ <button id="pohFollow" type="button" aria-pressed="false">🔔 ਸਮਾਗਮ ਦੀ ਯਾਦ-ਦਿਹਾਨੀ</button>
  <span id="pohFollowStatus" role="status" aria-live="polite"></span>
 </div>
 <main id="home"><section class="hero"><div class="hero-photo" aria-label="Safar-e-Shahadat memorial illustration"><img class="hero-full-photo" alt="Safar-e-Shahadat collage showing the Sarsa River crossing, Guru Gobind Singh Ji, the Sahibzade, Mata Gujri Ji and Thanda Burj" width="1672" height="941" decoding="async"></div><div class="hero-text"><div class="hero-reflection" aria-hidden="true"><img alt="" width="1672" height="941" decoding="async"></div><div class="wrap"><span class="eyebrow" data-t="dedication">ਸਫ਼ਰ-ਏ-ਸ਼ਹਾਦਤ ਦੀ ਪਾਵਨ ਯਾਦ ਵਿੱਚ</span><h1 data-t="title">ਪੋਹ ਮਹੀਨੇ ਦੇ ਗੁਰਮਤਿ ਸਮਾਗਮ</h1><p data-t="tribute">ਧੰਨ ਧੰਨ ਸ੍ਰੀ ਗੁਰੂ ਗੋਬਿੰਦ ਸਿੰਘ ਜੀ ਦੇ ਪਰਿਵਾਰ ਦੇ ਵਿਛੋੜੇ, ਚਾਰ ਸਾਹਿਬਜ਼ਾਦਿਆਂ ਅਤੇ ਮਾਤਾ ਗੁਜਰੀ ਜੀ ਦੀ ਲਾਸਾਨੀ ਸ਼ਹਾਦਤ ਨੂੰ ਸਮਰਪਿਤ।</p><div class="actions"><a class="btn" href="#programs" data-t="see">ਸਮਾਗਮ ਵੇਖੋ</a><a class="btn secondary" href="#live" data-t="watch">ਲਾਈਵ ਕੀਰਤਨ</a></div></div></div></section>
@@ -515,7 +515,7 @@ header .compact-nav .menu-panel,header .compact-nav .dropdown{background:#fff2e2
 <script src="./sangat-pankti.js?v=20261125-pankti-punjabi" defer></script>
 <script src="./ticker.js?v=20261125-venue-corrections2" defer></script>
 <script src="./youtube-player.js?v=20261125-live-replay-restored7" defer></script>
-<script src="./engagement.js?v=20261126-youtube-subscribe" defer></script>
+<script src="./engagement.js?v=20261126-app-subscribe" defer></script>
 <script src="./program-poster.js?v=1" defer></script>
 <script type="module">
 const $=id=>document.getElementById(id),channel='https://www.youtube.com/@akaaljisahaitv1313',words={
