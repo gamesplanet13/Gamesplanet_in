@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the current and newest completed public channel livestream."""
+"""Refresh the current and next scheduled public channel livestream."""
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import json
@@ -13,7 +13,6 @@ OUT = Path(__file__).with_name("youtube-status.json")
 CHANNEL_ID = "UCDxFgFt0_TKCKZxnf7KSmNA"
 YOUTUBE = "https://www.youtube.com"
 CHANNEL = f"{YOUTUBE}/channel/{CHANNEL_ID}"
-ARCHIVE = f"{YOUTUBE}/playlist?list=UULV{CHANNEL_ID[2:]}"
 VIDEO_ID = re.compile(r"[A-Za-z0-9_-]{11}")
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"
 
@@ -66,7 +65,7 @@ def badge_state(overlays):
             style = node.get("badgeStyle") or node.get("style")
             if style in ("THUMBNAIL_OVERLAY_BADGE_STYLE_LIVE", "BADGE_STYLE_TYPE_LIVE_NOW", "LIVE"):
                 return "live"
-            if style in ("THUMBNAIL_OVERLAY_BADGE_STYLE_UPCOMING", "UPCOMING"):
+            if style in ("THUMBNAIL_OVERLAY_BADGE_STYLE_UPCOMING", "BADGE_STYLE_TYPE_UPCOMING", "UPCOMING"):
                 return "upcoming"
     for card in overlays:
         for node in nodes(card):
@@ -88,17 +87,27 @@ def stream_metadata(page, expected_id=None):
             or details.get("channelId") != CHANNEL_ID
             or expected_id and video_id != expected_id):
         return None
-    if broadcast.get("isLiveNow") is True or details.get("isLive") is True:
+    playback = player.get("playabilityStatus", {})
+    slate = playback.get("liveStreamability", {}).get("liveStreamabilityRenderer", {})
+    offline = slate.get("offlineSlate", {}).get("liveStreamOfflineSlateRenderer", {})
+    starts = broadcast.get("startTimestamp")
+    if offline.get("scheduledStartTime"):
+        try:
+            starts = datetime.fromtimestamp(int(offline["scheduledStartTime"]), timezone.utc).isoformat()
+        except (ValueError, TypeError, OverflowError, OSError):
+            pass
+    if broadcast.get("endTimestamp"):
+        state = "ended"
+    elif broadcast.get("isLiveNow") is True or details.get("isLive") is True:
         state = "live"
-    elif broadcast.get("endTimestamp"):
-        state = "recorded"
+    elif details.get("isUpcoming") is True or (playback.get("status") == "LIVE_STREAM_OFFLINE" and starts):
+        state = "upcoming"
     else:
-        return None
+        state = "other"
     return state, {
         "videoId": video_id,
         "title": details.get("title") or "Akaal Ji Sahai TV",
-        "date": broadcast.get("startTimestamp") or metadata.get("publishDate"),
-        "endedAt": broadcast.get("endTimestamp"),
+        "date": starts,
     }
 
 
@@ -120,7 +129,7 @@ def timestamp(value):
 def extractor_fallback():
     command = [sys.executable, "-m", "yt_dlp", "--dump-single-json", "--skip-download",
                "--socket-timeout", "8", "--retries", "0", "--flat-playlist",
-               "--playlist-items", "1:8", f"{CHANNEL}/streams"]
+               "--playlist-items", "1:12", f"{CHANNEL}/streams"]
     try:
         proc = subprocess.run(command, capture_output=True, text=True, timeout=30, check=True)
         entries = json.loads(proc.stdout).get("entries", [])
@@ -132,45 +141,41 @@ def extractor_fallback():
             for item in entries if item and VIDEO_ID.fullmatch(item.get("id") or "")]
 
 
-def refresh(old):
+def refresh():
     with ThreadPoolExecutor(max_workers=8) as pool:
         direct, streams = pool.map(safe_fetch, (f"{CHANNEL}/live?hl=en", f"{CHANNEL}/streams?hl=en"))
-        entries = list(source_entries(streams))
-        if not entries:
-            entries = list(source_entries(safe_fetch(ARCHIVE)))
-        if not entries:
-            entries = extractor_fallback()
-        entries = entries[:8]
-        pages = pool.map(safe_fetch, (f"{YOUTUBE}/watch?v={video_id}&hl=en" for video_id, _, _ in entries))
+        entries = list(source_entries(streams))[:12] or extractor_fallback()
+        candidates = [(video_id, title, badge) for video_id, title, badge in entries if badge != "recorded"]
+        pages = pool.map(safe_fetch, (f"{YOUTUBE}/watch?v={video_id}&hl=en" for video_id, _, _ in candidates))
+        live, upcoming = {}, {}
         direct_result = stream_metadata(direct)
-        live = [direct_result[1]] if direct_result and direct_result[0] == "live" else []
-        recordings = []
-        previous = old.get("recorded")
-        for (video_id, title, badge), page in zip(entries, pages):
+        if direct_result and direct_result[0] in ("live", "upcoming"):
+            state, entry = direct_result
+            (live if state == "live" else upcoming)[entry["videoId"]] = entry
+        for (video_id, title, badge), page in zip(candidates, pages):
             watch = stream_metadata(page, video_id)
             if watch:
-                (live if watch[0] == "live" else recordings).append(watch[1])
-            elif badge in ("live", "recorded"):
+                state, entry = watch
+                live.pop(video_id, None)
+                upcoming.pop(video_id, None)
+            else:
+                state = badge
                 entry = {"videoId": video_id, "title": title or "Akaal Ji Sahai TV", "date": None}
-                if previous and previous.get("videoId") == video_id:
-                    entry = previous
-                (live if badge == "live" else recordings).append(entry)
-    if recordings and all(timestamp(item.get("endedAt") or item.get("date")) for item in recordings):
-        recordings.sort(key=lambda item: timestamp(item.get("endedAt") or item.get("date")), reverse=True)
+            if state == "live":
+                live.setdefault(video_id, entry)
+            elif state == "upcoming":
+                upcoming.setdefault(video_id, entry)
+    scheduled = [entry for video_id, entry in upcoming.items() if video_id not in live]
+    scheduled.sort(key=lambda item: timestamp(item.get("date")) or float("inf"))
     return {
         "checkedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "live": live[0] if live else None,
-        "recorded": recordings[0] if recordings else previous,
-        "status": "ok" if live or recordings else "unavailable",
-        "message": "" if live or recordings else "YouTube did not return verifiable live or replay metadata",
+        "live": next(iter(live.values()), None),
+        "upcoming": scheduled[0] if scheduled else None,
+        "status": "ok" if direct_result or entries else "unavailable",
     }
 
 
 if __name__ == "__main__":
-    try:
-        old = json.loads(OUT.read_text(encoding="utf-8"))
-    except (FileNotFoundError, ValueError):
-        old = {}
-    status = refresh(old)
+    status = refresh()
     OUT.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status, ensure_ascii=False))
