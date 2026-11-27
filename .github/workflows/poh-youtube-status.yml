@@ -12,11 +12,11 @@ permissions:
   contents: write
 concurrency:
   group: poh-youtube-status
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,14 +24,37 @@ jobs:
           python-version: '3.12'
       - name: Install fallback YouTube extractor
         run: python -m pip install --disable-pip-version-check --upgrade yt-dlp
-      - name: Check current stream and most recent completed livestream
-        run: python poh-samagam/update-youtube.py
-      - name: Commit live-status data
+      - name: Publish live and upcoming stream status
         run: |
+          status_file=poh-samagam/youtube-status.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add poh-samagam/youtube-status.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Refresh public YouTube live and recorded stream status"
-            git push
-          fi
+          last_signature=
+          last_publish=0
+          for attempt in $(seq 1 150); do
+            python poh-samagam/update-youtube.py
+            signature=$(jq -c '[.status, .live, .upcoming]' "$status_file")
+            current_time=$(date +%s)
+            if [ "$signature" != "$last_signature" ] || [ "$((current_time-last_publish))" -ge 300 ]; then
+              git add "$status_file"
+              if ! git diff --cached --quiet; then
+                git commit -m "Refresh public YouTube live and upcoming stream status"
+                if ! git push origin HEAD:main; then
+                  git pull --rebase origin main
+                  git push origin HEAD:main
+                fi
+              fi
+              last_signature=$signature
+              last_publish=$current_time
+            fi
+            start=$(jq -r '.upcoming.date // empty' "$status_file")
+            start_time=$(date -d "$start" +%s 2>/dev/null || true)
+            if ! jq -e '.status == "ok" and .live != null' "$status_file" >/dev/null; then
+              if [ -z "$start" ] || [ -z "$start_time" ] ||
+                 [ "$start_time" -gt "$((current_time+1200))" ] ||
+                 [ "$start_time" -lt "$((current_time-1800))" ]; then
+                break
+              fi
+            fi
+            sleep 60
+          done
